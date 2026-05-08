@@ -867,11 +867,11 @@
 </div>
 
 <div class="footer-note">
-  Data: Yahoo Finance via <code>corsproxy.io</code>. Live quotes refresh every minute; 3-year weekly chart history is cached locally for 30 minutes. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
+  Data: Yahoo Finance via <code>corsproxy.io</code>. Live quotes refresh every 30 seconds; 3-year weekly chart history is cached locally for 30 minutes. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
   Click any symbol to open it in Schwab research; click anywhere else on the row to add it to the compare overlay (max 6).
   The Rating column is a synthetic A‚ÄìF grade modeled on Schwab Equity Ratings ‚Äî for orientation only, not investment advice.
   Washington alerts: when news headlines mention Fed/FOMC/Treasury/tariff/SEC/White House/Congress, you'll get a browser notification (click "Enable Washington alerts" to opt in). Hover the news ticker to pause it.
-  Auto-refresh updates live quotes every minute when enabled; heavier news/history refreshes run every 3 minutes.
+  Auto-refresh updates live quotes every 30 seconds when enabled; heavier news/history refreshes run every 3 minutes.
 </div>
 
 <script>
@@ -1066,9 +1066,9 @@ const PROXIES = [
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
 ];
 const CACHE_TTL_MS = 30 * 60 * 1000;  // 30 min ‚Äî fresher than the old 6h default
-const QUOTE_CACHE_TTL_MS = 60 * 1000;
-const AUTO_QUOTE_REFRESH_MS = 60 * 1000;
-const AUTO_DEEP_REFRESH_TICKS = 3;
+const QUOTE_CACHE_TTL_MS = 25 * 1000;
+const AUTO_QUOTE_REFRESH_MS = 30 * 1000;
+const AUTO_DEEP_REFRESH_TICKS = 6;
 
 async function proxiedFetch(url, timeoutMs = 15000) {
   let lastErr;
@@ -1738,7 +1738,7 @@ function setLastUpdated() {
   const quoteText = latestQuote
     ? ` ¬∑ quote ${new Date(latestQuote).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
     : '';
-  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (quotes every 1 min)' : 'OFF'}`);
+  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (quotes every 30 sec)' : 'OFF'}`);
 }
 
 function fmtPrice(p) { return p == null ? '‚Äî' : p.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
