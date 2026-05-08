@@ -708,7 +708,7 @@
     </svg>
     <div>
       <h1>Stock Dashboard <span style="color:var(--schwab-navy); font-weight:500; font-size:13px;">¬∑ Schwab-style</span></h1>
-      <div class="meta">Watchlist + DOW 30 + NASDAQ-100 + S&P 100 ¬∑ Live via Yahoo Finance ¬∑ 3-year weekly closes</div>
+      <div class="meta">Watchlist + DOW 30 + NASDAQ-100 + S&P 100 ¬∑ Schwab-only live numbers ¬∑ Yahoo for history/news</div>
     </div>
   </div>
   <div class="meta" id="status">Loading‚Ä¶</div>
@@ -864,7 +864,7 @@
           <span class="sub">Use broker numbers</span>
         </div>
         <div class="research-body">
-          <p class="source-note">Paste copied thinkorswim/Schwab watchlist rows here when the broker feed differs from Yahoo. Research cards and table prices will use these pasted values first.</p>
+          <p class="source-note">Paste copied thinkorswim/Schwab watchlist rows here. Current price and day % use Schwab only; Yahoo is used only for history, charts, news and screeners.</p>
           <textarea class="memo-box" id="schwab-override-input" placeholder="Example: CRWV 112.53 -16.31 -12.66% 112.51 112.55"></textarea>
           <div class="research-actions" style="margin-top:8px">
             <button class="action" id="save-schwab-overrides">Use Schwab numbers</button>
@@ -914,11 +914,11 @@
 </div>
 
 <div class="footer-note">
-  Data: Yahoo Finance via <code>corsproxy.io</code>. Live quotes refresh every 30 seconds; 3-year weekly chart history is cached locally for 30 minutes. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
+  Current price and day % are Schwab-only from pasted thinkorswim/Schwab rows. Yahoo Finance via <code>corsproxy.io</code> is used for history, charts, market movers, indices and news; 3-year weekly chart history is cached locally for 30 minutes. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
   Click any symbol to open it in Schwab research; click anywhere else on the row to add it to the compare overlay (max 6).
   The Rating column is a synthetic A‚ÄìF grade modeled on Schwab Equity Ratings ‚Äî for orientation only, not investment advice.
   Washington alerts: when news headlines mention Fed/FOMC/Treasury/tariff/SEC/White House/Congress, you'll get a browser notification (click "Enable Washington alerts" to opt in). Hover the news ticker to pause it.
-  Auto-refresh updates live quotes every 30 seconds when enabled; heavier news/history refreshes run every 3 minutes.
+  Auto-refresh updates Yahoo-supported history/news in the background; Schwab live numbers stay authoritative until you paste newer Schwab rows.
 </div>
 
 <script>
@@ -1104,6 +1104,7 @@ const state = {
   autoTick: 0,
   topPicks: [],
   schwabOverrides: {},
+  useSchwabOnly: true,
 };
 
 // ============================================================
@@ -1608,13 +1609,13 @@ function renderResearch() {
       const opp = getOpportunity(sym);
       const day = m ? fmtPct(m.dayChg) : '<span class="neutral">loading</span>';
       const name = d?.name || (opp ? opp.setup : 'Loading...');
-      const source = d?.source === 'Schwab pasted'
+      const source = m?.source === 'Schwab pasted'
         ? '<span class="source-pill schwab">Schwab live</span>'
-        : '<span class="source-pill">Yahoo</span>';
+        : '<span class="source-pill">Schwab needed</span>';
       return `<div class="top-pick-card" data-sym="${escapeHtml(sym)}">
         <div class="sym">${escapeHtml(sym)}</div>
         <div class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</div>
-        <div class="price">${m ? '$' + fmtPrice(m.price) : 'Price loading'} &nbsp; ${day}</div>
+        <div class="price">${m ? fmtLivePrice(m.price) : 'Schwab needed'} &nbsp; ${day}</div>
         <div class="price">${source}</div>
         ${opp ? '<div class="research-hit">Research hit: ' + escapeHtml(opp.rank) + '</div>' : '<div class="research-hit neutral">No deep dive yet</div>'}
       </div>`;
@@ -1823,13 +1824,15 @@ function schwabRating(r3y, r1y, r1m, pctFromHigh) {
 
 function rowMetrics(d) {
   if (!d) return null;
-  const dayChg = d.schwabDayChgPct != null
+  const hasSchwab = d.source === 'Schwab pasted';
+  const livePrice = state.useSchwabOnly && !hasSchwab ? null : d.price;
+  const dayChg = hasSchwab && d.schwabDayChgPct != null
     ? d.schwabDayChgPct
-    : d.previousClose && d.price ? ((d.price - d.previousClose) / d.previousClose) * 100 : null;
+    : !state.useSchwabOnly && d.previousClose && d.price ? ((d.price - d.previousClose) / d.previousClose) * 100 : null;
   const closes52 = d.closes && d.closes.length ? d.closes.slice(-52) : [];
   const high52 = closes52.length ? Math.max(...closes52) : null;
   const low52 = closes52.length ? Math.min(...closes52) : null;
-  const pctFromHigh = high52 && d.price ? ((d.price - high52) / high52) * 100 : null;
+  const pctFromHigh = high52 && livePrice ? ((livePrice - high52) / high52) * 100 : null;
   const r1m = pctReturn(d.closes, 4);
   const r1y = pctReturn(d.closes, 52);
   const r3y = pctReturn(d.closes, 156);
@@ -1839,7 +1842,8 @@ function rowMetrics(d) {
   return {
     symbol: d.symbol,
     name: d.name,
-    price: d.price,
+    price: livePrice,
+    source: hasSchwab ? 'Schwab pasted' : 'Schwab needed',
     dayChg,
     r1w: pctReturn(d.closes, 1),
     r1m, r1y, r3y,
@@ -1866,14 +1870,16 @@ function rowMetrics(d) {
 function setStatus(msg) { document.getElementById('status').textContent = msg; }
 function setLastUpdated() {
   const t = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  const latestQuote = Math.max(0, ...Object.values(state.data).map(d => d.quoteTime || 0));
+  const quoteRows = state.useSchwabOnly ? Object.values(state.schwabOverrides || {}) : Object.values(state.data);
+  const latestQuote = Math.max(0, ...quoteRows.map(d => d.quoteTime || 0));
   const quoteText = latestQuote
-    ? ` ¬∑ quote ${new Date(latestQuote).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+    ? ` ¬∑ Schwab ${new Date(latestQuote).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
     : '';
-  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (quotes every 30 sec)' : 'OFF'}`);
+  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ live source ${state.useSchwabOnly ? 'SCHWAB ONLY' : 'Yahoo'} ¬∑ auto-refresh ${state.autoRefresh ? 'ON' : 'OFF'}`);
 }
 
 function fmtPrice(p) { return p == null ? '‚Äî' : p.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtLivePrice(p) { return p == null ? '<span class="neutral">Schwab needed</span>' : '$' + fmtPrice(p); }
 function fmtMoney(n) { return n == null ? '‚Äî' : '$' + n.toLocaleString(undefined, { maximumFractionDigits: 0 }); }
 function fmtPct(p) {
   if (p == null) return '<span class="neutral">‚Äî</span>';
@@ -1976,7 +1982,7 @@ function render() {
       <td class="name hide-sm" title="${r.name}">${r.name}</td>
       <td>${fmtRating(r.rating)}</td>
       <td class="hide-sm">${fmtMASignal(r.maSignal, { score: r.maScore, goldenCross: r.goldenCross, deathCross: r.deathCross })}</td>
-      <td>$${fmtPrice(r.price)}</td>
+      <td>${fmtLivePrice(r.price)}</td>
       <td>${fmtPct(r.dayChg)}</td>
       <td class="hide-sm">${fmtPct(r.r1m)}</td>
       <td>${fmtPct(r.r1y)}</td>
