@@ -867,11 +867,11 @@
 </div>
 
 <div class="footer-note">
-  Data: Yahoo Finance via <code>corsproxy.io</code>, cached locally for 6 hours per ticker. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
+  Data: Yahoo Finance via <code>corsproxy.io</code>. Live quotes refresh every minute; 3-year weekly chart history is cached locally for 30 minutes. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
   Click any symbol to open it in Schwab research; click anywhere else on the row to add it to the compare overlay (max 6).
   The Rating column is a synthetic A‚ÄìF grade modeled on Schwab Equity Ratings ‚Äî for orientation only, not investment advice.
   Washington alerts: when news headlines mention Fed/FOMC/Treasury/tariff/SEC/White House/Congress, you'll get a browser notification (click "Enable Washington alerts" to opt in). Hover the news ticker to pause it.
-  Auto-refresh runs every 5 minutes when enabled and the tab is open.
+  Auto-refresh runs every 3 minutes when enabled and the tab is open.
 </div>
 
 <script>
@@ -1065,6 +1065,7 @@ const PROXIES = [
   url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
 ];
 const CACHE_TTL_MS = 30 * 60 * 1000;  // 30 min ‚Äî fresher than the old 6h default
+const QUOTE_CACHE_TTL_MS = 60 * 1000;
 
 async function proxiedFetch(url, timeoutMs = 15000) {
   let lastErr;
@@ -1078,15 +1079,79 @@ async function proxiedFetch(url, timeoutMs = 15000) {
   throw lastErr || new Error('all proxies failed');
 }
 
+async function fetchLiveQuotes(symbols, force = false) {
+  const unique = [...new Set(symbols)].filter(Boolean);
+  const result = {};
+  const missing = [];
+  unique.forEach(sym => {
+    const cacheKey = `quote_${sym}`;
+    if (!force) {
+      try {
+        const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+        if (cached && Date.now() - cached.ts < QUOTE_CACHE_TTL_MS) {
+          result[sym] = cached.data;
+          return;
+        }
+      } catch (e) {}
+    }
+    missing.push(sym);
+  });
+  const batchSize = 35;
+  for (let i = 0; i < missing.length; i += batchSize) {
+    const batch = missing.slice(i, i + batchSize);
+    try {
+      const cacheBust = force ? `&t=${Date.now()}` : '';
+      const json = await proxiedFetch(`https://query1.finance.yahoo.com/v7/finance/quote?symbols=${batch.map(encodeURIComponent).join(',')}${cacheBust}`, 10000);
+      (json?.quoteResponse?.result || []).forEach(q => {
+        const sym = q.symbol;
+        const marketState = q.marketState || '';
+        const livePrice = marketState === 'PRE'
+          ? (q.preMarketPrice ?? q.regularMarketPrice ?? q.postMarketPrice ?? null)
+          : marketState === 'POST' || marketState === 'POSTPOST'
+            ? (q.postMarketPrice ?? q.regularMarketPrice ?? q.preMarketPrice ?? null)
+            : (q.regularMarketPrice ?? q.postMarketPrice ?? q.preMarketPrice ?? null);
+        const liveTime = marketState === 'PRE'
+          ? (q.preMarketTime || q.regularMarketTime || q.postMarketTime || 0)
+          : marketState === 'POST' || marketState === 'POSTPOST'
+            ? (q.postMarketTime || q.regularMarketTime || q.preMarketTime || 0)
+            : (q.regularMarketTime || q.postMarketTime || q.preMarketTime || 0);
+        const data = {
+          symbol: sym,
+          name: q.longName || q.shortName || sym,
+          currency: q.currency || 'USD',
+          price: livePrice,
+          previousClose: q.regularMarketPreviousClose ?? q.previousClose ?? null,
+          quoteTime: liveTime * 1000,
+          marketState,
+        };
+        result[sym] = data;
+        try { localStorage.setItem(`quote_${sym}`, JSON.stringify({ ts: Date.now(), data })); } catch (e) {}
+      });
+    } catch (e) {
+      console.warn('live quote batch failed:', e.message);
+    }
+  }
+  return result;
+}
+
 async function fetchHistory(symbol, force = false) {
   const cacheKey = `stock_${symbol}`;
   if (!force) {
     try {
       const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
-      if (cached && Date.now() - cached.ts < CACHE_TTL_MS) return cached.data;
+      if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+        const live = (await fetchLiveQuotes([symbol], force))[symbol] || {};
+        return {
+          ...cached.data,
+          ...live,
+          timestamps: cached.data.timestamps || [],
+          closes: cached.data.closes || [],
+        };
+      }
     } catch (e) {}
   }
   try {
+    const live = (await fetchLiveQuotes([symbol], force))[symbol] || {};
     const json = await proxiedFetch(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=3y&interval=1wk`);
     const r = json?.chart?.result?.[0];
     if (!r) throw new Error('no result');
@@ -1096,10 +1161,12 @@ async function fetchHistory(symbol, force = false) {
     const pairs = ts.map((t, i) => [t, closesRaw[i]]).filter(p => p[1] != null);
     const data = {
       symbol,
-      name: meta.longName || meta.shortName || symbol,
-      currency: meta.currency || 'USD',
-      price: meta.regularMarketPrice ?? (pairs.length ? pairs[pairs.length-1][1] : null),
-      previousClose: meta.chartPreviousClose ?? meta.previousClose ?? null,
+      name: live.name || meta.longName || meta.shortName || symbol,
+      currency: live.currency || meta.currency || 'USD',
+      price: live.price ?? meta.regularMarketPrice ?? (pairs.length ? pairs[pairs.length-1][1] : null),
+      previousClose: live.previousClose ?? meta.chartPreviousClose ?? meta.previousClose ?? null,
+      quoteTime: live.quoteTime || (meta.regularMarketTime ? meta.regularMarketTime * 1000 : null),
+      marketState: live.marketState || '',
       timestamps: pairs.map(p => p[0]),
       closes: pairs.map(p => p[1]),
     };
@@ -1114,13 +1181,30 @@ async function fetchHistory(symbol, force = false) {
 async function loadTab(tab, force = false) {
   const symbols = TABS[tab];
   setStatus(`Loading ${tab}‚Ä¶ 0/${symbols.length}`);
+  const liveQuotes = await fetchLiveQuotes(symbols, force);
+  Object.entries(liveQuotes).forEach(([sym, quote]) => {
+    if (state.data[sym]) Object.assign(state.data[sym], quote);
+    else state.data[sym] = { ...quote, timestamps: [], closes: [] };
+  });
+  if (state.tab === tab) render();
   let done = 0;
   const batchSize = 8;
   for (let i = 0; i < symbols.length; i += batchSize) {
     const batch = symbols.slice(i, i + batchSize);
     await Promise.all(batch.map(async sym => {
       const d = await fetchHistory(sym, force);
-      if (d) state.data[sym] = d;
+      if (d) {
+        const live = state.data[sym] || {};
+        state.data[sym] = {
+          ...d,
+          price: live.price ?? d.price,
+          previousClose: live.previousClose ?? d.previousClose,
+          quoteTime: live.quoteTime || d.quoteTime,
+          marketState: live.marketState || d.marketState,
+          name: live.name || d.name,
+          currency: live.currency || d.currency,
+        };
+      }
       done++;
       setStatus(`Loading ${tab}‚Ä¶ ${done}/${symbols.length}`);
       if (state.tab === tab) render();
@@ -1627,7 +1711,11 @@ function rowMetrics(d) {
 function setStatus(msg) { document.getElementById('status').textContent = msg; }
 function setLastUpdated() {
   const t = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  setStatus(`üü¢ Live ¬∑ Updated ${t} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (every 3 min)' : 'OFF'}`);
+  const latestQuote = Math.max(0, ...Object.values(state.data).map(d => d.quoteTime || 0));
+  const quoteText = latestQuote
+    ? ` ¬∑ quote ${new Date(latestQuote).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+    : '';
+  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (every 3 min)' : 'OFF'}`);
 }
 
 function fmtPrice(p) { return p == null ? '‚Äî' : p.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -2060,7 +2148,7 @@ document.getElementById('refresh').addEventListener('click', async () => {
   state.loadedTabs.clear();
   Object.keys(localStorage).filter(k =>
     k.startsWith('stock_') || k.startsWith('earn_') || k.startsWith('nasdaq_cal_') ||
-    k.startsWith('ind_') || k === 'news_v2' || k === 'movers_v1'
+    k.startsWith('quote_') || k.startsWith('ind_') || k === 'news_v2' || k === 'movers_v1'
   ).forEach(k => localStorage.removeItem(k));
   state.data = {}; state.earnings = {}; state.news = [];
   state.movers = { gainers: [], losers: [], actives: [], ts: 0 };
