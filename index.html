@@ -647,6 +647,37 @@
     margin-top: 12px;
     padding-top: 12px;
   }
+  .source-note {
+    color: #9ca3af;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 0 0 8px;
+  }
+  .source-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #d1d5db;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    text-transform: uppercase;
+  }
+  .source-pill.schwab {
+    color: #04130c;
+    background: var(--gain);
+    border-color: var(--gain);
+  }
+  .override-summary {
+    color: #d1d5db;
+    font-size: 11px;
+    line-height: 1.45;
+    margin-top: 8px;
+  }
 
   #table-wrap { padding: 0 8px; }
   .footer-note {
@@ -824,6 +855,22 @@
         </div>
         <div class="research-body">
           <ol class="watch-next" id="watch-next-list"></ol>
+        </div>
+      </div>
+
+      <div class="research-card" style="margin-top:16px">
+        <div class="head">
+          <h3>Schwab Live Override</h3>
+          <span class="sub">Use broker numbers</span>
+        </div>
+        <div class="research-body">
+          <p class="source-note">Paste copied thinkorswim/Schwab watchlist rows here when the broker feed differs from Yahoo. Research cards and table prices will use these pasted values first.</p>
+          <textarea class="memo-box" id="schwab-override-input" placeholder="Example: CRWV 112.53 -16.31 -12.66% 112.51 112.55"></textarea>
+          <div class="research-actions" style="margin-top:8px">
+            <button class="action" id="save-schwab-overrides">Use Schwab numbers</button>
+            <button class="action" id="clear-schwab-overrides">Clear Schwab numbers</button>
+          </div>
+          <div class="override-summary" id="schwab-override-summary"></div>
         </div>
       </div>
 
@@ -1056,6 +1103,7 @@ const state = {
   autoTimer: null,
   autoTick: 0,
   topPicks: [],
+  schwabOverrides: {},
 };
 
 // ============================================================
@@ -1447,12 +1495,88 @@ function loadTopPicks() {
   if (input) input.value = picks.join(', ');
 }
 
+function loadSchwabOverrides() {
+  try {
+    state.schwabOverrides = JSON.parse(localStorage.getItem('schwab_overrides') || '{}') || {};
+  } catch (e) {
+    state.schwabOverrides = {};
+  }
+}
+
+function parseSchwabOverrides(text) {
+  const out = {};
+  String(text || '').split(/\n+/).forEach(line => {
+    const cleaned = line.replace(/,/g, '').trim();
+    if (!cleaned) return;
+    const symbol = cleaned.match(/\b[A-Z][A-Z0-9.-]{0,7}\b/)?.[0];
+    if (!symbol) return;
+    const nums = [...cleaned.matchAll(/-?\$?\d+(?:\.\d+)?%?/g)].map(m => m[0]);
+    const priceToken = nums.find(n => n.includes('$')) || nums.find(n => !n.includes('%'));
+    const pctToken = nums.find(n => n.includes('%'));
+    const price = priceToken ? parseFloat(priceToken.replace(/[$%]/g, '')) : null;
+    const dayChgPct = pctToken ? parseFloat(pctToken.replace('%', '')) : null;
+    if (Number.isFinite(price)) {
+      out[symbol] = {
+        symbol,
+        price,
+        dayChgPct: Number.isFinite(dayChgPct) ? dayChgPct : null,
+        quoteTime: Date.now(),
+        source: 'Schwab pasted',
+      };
+    }
+  });
+  return out;
+}
+
+function applySchwabOverrides() {
+  Object.entries(state.schwabOverrides || {}).forEach(([sym, quote]) => {
+    if (!quote || !Number.isFinite(quote.price)) return;
+    const existing = state.data[sym] || { symbol: sym, timestamps: [], closes: [] };
+    let previousClose = existing.previousClose;
+    if (quote.dayChgPct != null && quote.dayChgPct !== -100) {
+      previousClose = quote.price / (1 + quote.dayChgPct / 100);
+    }
+    state.data[sym] = {
+      ...existing,
+      symbol: sym,
+      price: quote.price,
+      previousClose,
+      quoteTime: quote.quoteTime || Date.now(),
+      source: quote.source || 'Schwab pasted',
+      schwabDayChgPct: quote.dayChgPct,
+    };
+  });
+}
+
+function renderSchwabOverrideSummary() {
+  const el = document.getElementById('schwab-override-summary');
+  const input = document.getElementById('schwab-override-input');
+  if (!el) return;
+  const rows = Object.values(state.schwabOverrides || {});
+  if (!rows.length) {
+    el.textContent = 'No Schwab live overrides saved.';
+    if (input && !input.value) input.value = '';
+    return;
+  }
+  if (input && !input.value) {
+    input.value = rows
+      .sort((a, b) => a.symbol.localeCompare(b.symbol))
+      .map(r => `${r.symbol} ${r.price} ${r.dayChgPct == null ? '' : r.dayChgPct + '%'}`.trim())
+      .join('\n');
+  }
+  el.innerHTML = rows
+    .sort((a, b) => a.symbol.localeCompare(b.symbol))
+    .map(r => `${escapeHtml(r.symbol)}: $${fmtPrice(r.price)} ${r.dayChgPct == null ? '' : `(${r.dayChgPct > 0 ? '+' : ''}${r.dayChgPct.toFixed(2)}%)`}`)
+    .join(' | ');
+}
+
 async function ensureTopPickData(force = false) {
   const missing = state.topPicks.filter(sym => force || !state.data[sym]);
   await Promise.all(missing.map(async sym => {
     const d = await fetchHistory(sym, force);
     if (d) state.data[sym] = d;
   }));
+  applySchwabOverrides();
 }
 
 function getOpportunity(symbol) {
@@ -1460,6 +1584,7 @@ function getOpportunity(symbol) {
 }
 
 function renderResearch() {
+  applySchwabOverrides();
   const asof = document.getElementById('research-asof');
   const bankerRead = document.getElementById('research-banker-read');
   const tags = document.getElementById('research-tags');
@@ -1483,10 +1608,14 @@ function renderResearch() {
       const opp = getOpportunity(sym);
       const day = m ? fmtPct(m.dayChg) : '<span class="neutral">loading</span>';
       const name = d?.name || (opp ? opp.setup : 'Loading...');
+      const source = d?.source === 'Schwab pasted'
+        ? '<span class="source-pill schwab">Schwab live</span>'
+        : '<span class="source-pill">Yahoo</span>';
       return `<div class="top-pick-card" data-sym="${escapeHtml(sym)}">
         <div class="sym">${escapeHtml(sym)}</div>
         <div class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</div>
         <div class="price">${m ? '$' + fmtPrice(m.price) : 'Price loading'} &nbsp; ${day}</div>
+        <div class="price">${source}</div>
         ${opp ? '<div class="research-hit">Research hit: ' + escapeHtml(opp.rank) + '</div>' : '<div class="research-hit neutral">No deep dive yet</div>'}
       </div>`;
     }).join('');
@@ -1513,6 +1642,7 @@ function renderResearch() {
   const memo = localStorage.getItem('research_memo') || '';
   if (savedMemo) savedMemo.textContent = memo || 'No custom memo saved yet. Paste an automation report here after it runs.';
   if (memoInput && !memoInput.value) memoInput.value = memo;
+  renderSchwabOverrideSummary();
 }
 
 // News (Yahoo aggregates Bloomberg, Reuters, WSJ, etc.)
@@ -1693,7 +1823,9 @@ function schwabRating(r3y, r1y, r1m, pctFromHigh) {
 
 function rowMetrics(d) {
   if (!d) return null;
-  const dayChg = d.previousClose && d.price ? ((d.price - d.previousClose) / d.previousClose) * 100 : null;
+  const dayChg = d.schwabDayChgPct != null
+    ? d.schwabDayChgPct
+    : d.previousClose && d.price ? ((d.price - d.previousClose) / d.previousClose) * 100 : null;
   const closes52 = d.closes && d.closes.length ? d.closes.slice(-52) : [];
   const high52 = closes52.length ? Math.max(...closes52) : null;
   const low52 = closes52.length ? Math.min(...closes52) : null;
@@ -1801,6 +1933,7 @@ function fmtEarningsBadge(daysToEarnings) {
 }
 
 function render() {
+  applySchwabOverrides();
   const symbols = TABS[state.tab];
   if (!symbols) {
     renderResearch();
@@ -2212,6 +2345,26 @@ document.getElementById('refresh-research-prices').addEventListener('click', asy
   renderResearch();
 });
 
+document.getElementById('save-schwab-overrides').addEventListener('click', () => {
+  const input = document.getElementById('schwab-override-input');
+  const parsed = parseSchwabOverrides(input?.value || '');
+  state.schwabOverrides = parsed;
+  localStorage.setItem('schwab_overrides', JSON.stringify(parsed));
+  applySchwabOverrides();
+  render();
+});
+
+document.getElementById('clear-schwab-overrides').addEventListener('click', async () => {
+  const oldSymbols = Object.keys(state.schwabOverrides || {});
+  state.schwabOverrides = {};
+  localStorage.removeItem('schwab_overrides');
+  oldSymbols.forEach(sym => { delete state.data[sym]; });
+  const input = document.getElementById('schwab-override-input');
+  if (input) input.value = '';
+  if (TABS[state.tab]) await loadTab(state.tab, true);
+  render();
+});
+
 document.getElementById('top-picks-grid').addEventListener('click', e => {
   const card = e.target.closest('.top-pick-card[data-sym]');
   if (!card) return;
@@ -2334,6 +2487,7 @@ document.getElementById('markets-strip').addEventListener('click', async e => {
 // Init
 // ============================================================
 loadTopPicks();
+loadSchwabOverrides();
 render();
 renderMarketsStrip();
 loadTab('watchlist');
