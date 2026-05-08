@@ -1088,7 +1088,7 @@ const RESEARCH_REPORT = {
 // State
 // ============================================================
 const state = {
-  tab: 'watchlist',
+  tab: location.hash.replace('#', '') === 'research' ? 'research' : 'watchlist',
   search: '',
   preset: 'none',
   sort: { key: 'symbol', dir: 'asc' },
@@ -2233,6 +2233,8 @@ document.querySelectorAll('.tab').forEach(tab => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     state.tab = tab.dataset.tab;
+    if (state.tab === 'research') history.replaceState(null, '', '#research');
+    else history.replaceState(null, '', location.pathname + location.search);
     state.preset = 'none';
     applyTabVisibility();
     if (state.tab === 'movers') {
@@ -2494,9 +2496,12 @@ document.getElementById('markets-strip').addEventListener('click', async e => {
 // ============================================================
 loadTopPicks();
 loadSchwabOverrides();
+document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === state.tab));
+applyTabVisibility();
 render();
 renderMarketsStrip();
-loadTab('watchlist');
+if (state.tab === 'research') ensureTopPickData().then(renderResearch);
+else loadTab('watchlist');
 fetchNews();
 fetchEarnings(WATCHLIST);
 fetchIndicators();
