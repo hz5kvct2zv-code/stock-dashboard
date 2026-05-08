@@ -871,7 +871,7 @@
   Click any symbol to open it in Schwab research; click anywhere else on the row to add it to the compare overlay (max 6).
   The Rating column is a synthetic A‚ÄìF grade modeled on Schwab Equity Ratings ‚Äî for orientation only, not investment advice.
   Washington alerts: when news headlines mention Fed/FOMC/Treasury/tariff/SEC/White House/Congress, you'll get a browser notification (click "Enable Washington alerts" to opt in). Hover the news ticker to pause it.
-  Auto-refresh runs every 3 minutes when enabled and the tab is open.
+  Auto-refresh updates live quotes every minute when enabled; heavier news/history refreshes run every 3 minutes.
 </div>
 
 <script>
@@ -1054,6 +1054,7 @@ const state = {
   loadedTabs: new Set(),
   autoRefresh: false,
   autoTimer: null,
+  autoTick: 0,
   topPicks: [],
 };
 
@@ -1066,6 +1067,8 @@ const PROXIES = [
 ];
 const CACHE_TTL_MS = 30 * 60 * 1000;  // 30 min ‚Äî fresher than the old 6h default
 const QUOTE_CACHE_TTL_MS = 60 * 1000;
+const AUTO_QUOTE_REFRESH_MS = 60 * 1000;
+const AUTO_DEEP_REFRESH_TICKS = 3;
 
 async function proxiedFetch(url, timeoutMs = 15000) {
   let lastErr;
@@ -1211,6 +1214,26 @@ async function loadTab(tab, force = false) {
     }));
   }
   state.loadedTabs.add(tab);
+  setLastUpdated();
+}
+
+async function refreshVisibleQuotes(force = true) {
+  const symbols = state.tab === 'research'
+    ? [...new Set([...WATCHLIST, ...state.topPicks])]
+    : TABS[state.tab];
+  if (!symbols || !symbols.length) return;
+  const liveQuotes = await fetchLiveQuotes(symbols, force);
+  Object.entries(liveQuotes).forEach(([sym, quote]) => {
+    const existing = state.data[sym] || {};
+    state.data[sym] = {
+      ...existing,
+      ...quote,
+      timestamps: existing.timestamps || [],
+      closes: existing.closes || [],
+    };
+  });
+  if (state.tab === 'research') renderResearch();
+  else render();
   setLastUpdated();
 }
 
@@ -1715,7 +1738,7 @@ function setLastUpdated() {
   const quoteText = latestQuote
     ? ` ¬∑ quote ${new Date(latestQuote).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
     : '';
-  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (every 3 min)' : 'OFF'}`);
+  setStatus(`üü¢ Live ¬∑ Updated ${t}${quoteText} ¬∑ ${Object.keys(state.data).length} symbols ¬∑ auto-refresh ${state.autoRefresh ? 'ON (quotes every 1 min)' : 'OFF'}`);
 }
 
 function fmtPrice(p) { return p == null ? '‚Äî' : p.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -2026,7 +2049,13 @@ function toggleAutoRefresh() {
   if (state.autoRefresh) {
     btn.textContent = '‚è± Auto-refresh: ON';
     btn.classList.add('on');
+    state.autoTick = 0;
+    refreshVisibleQuotes(true).catch(e => console.warn('quote refresh failed:', e.message));
     state.autoTimer = setInterval(async () => {
+      if (document.hidden) return;
+      state.autoTick += 1;
+      await refreshVisibleQuotes(true);
+      if (state.autoTick % AUTO_DEEP_REFRESH_TICKS !== 0) return;
       if (TABS[state.tab]) await loadTab(state.tab, true);
       if (state.tab === 'research') {
         await ensureTopPickData(true);
@@ -2035,11 +2064,12 @@ function toggleAutoRefresh() {
       await Promise.all([fetchNews(true), fetchIndicators(true)]);
       if (state.tab === 'movers') await fetchMovers(true);
       if (state.tab === 'watchlist') await fetchEarnings(WATCHLIST, false);
-    }, 3 * 60 * 1000);  // 3 min ‚Äî was 5
+    }, AUTO_QUOTE_REFRESH_MS);
   } else {
     btn.textContent = '‚è± Auto-refresh: OFF';
     btn.classList.remove('on');
     if (state.autoTimer) clearInterval(state.autoTimer);
+    state.autoTimer = null;
   }
   setLastUpdated();
 }
@@ -2220,6 +2250,16 @@ document.getElementById('export-csv').addEventListener('click', () => {
 });
 
 document.getElementById('auto-refresh').addEventListener('click', toggleAutoRefresh);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && state.autoRefresh) {
+    refreshVisibleQuotes(true).catch(e => console.warn('quote refresh failed:', e.message));
+  }
+});
+window.addEventListener('focus', () => {
+  if (state.autoRefresh) {
+    refreshVisibleQuotes(true).catch(e => console.warn('quote refresh failed:', e.message));
+  }
+});
 
 document.getElementById('enable-alerts').addEventListener('click', async () => {
   if (typeof Notification === 'undefined') {
