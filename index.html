@@ -687,13 +687,34 @@
     line-height: 1.6;
   }
   .footer-note code { background: #111827; padding: 1px 5px; border-radius: 3px; color: #9ca3af; }
+  .jump-research {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 80;
+    background: var(--schwab-navy);
+    border: 1px solid #38bdf8;
+    color: #03121d;
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 10px 14px;
+    text-transform: uppercase;
+  }
+  .jump-research:hover { filter: brightness(1.08); }
   @media (max-width: 800px) {
     thead th.hide-sm, tbody td.hide-sm { display: none; }
     .name { max-width: 110px; }
+    .jump-research { left: 12px; right: 12px; bottom: 12px; width: calc(100% - 24px); }
   }
 </style>
 </head>
 <body>
+<button class="jump-research" id="jump-research">Research Memo / Top Picks</button>
 
 <header>
   <div class="header-left">
@@ -2228,6 +2249,17 @@ function applyTabVisibility() {
   document.getElementById('watchlist-panels').style.display = (isMovers || isResearch) ? 'none' : (state.tab === 'watchlist' ? 'grid' : 'none');
 }
 
+async function openResearchMemo() {
+  state.tab = 'research';
+  state.preset = 'none';
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === 'research'));
+  history.replaceState(null, '', '#research');
+  applyTabVisibility();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  await ensureTopPickData();
+  renderResearch();
+}
+
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', async () => {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -2242,14 +2274,15 @@ document.querySelectorAll('.tab').forEach(tab => {
       return;
     }
     if (state.tab === 'research') {
-      await ensureTopPickData();
-      renderResearch();
+      await openResearchMemo();
       return;
     }
     render();
     if (!state.loadedTabs.has(state.tab) && TABS[state.tab]) await loadTab(state.tab);
   });
 });
+
+document.getElementById('jump-research').addEventListener('click', openResearchMemo);
 
 document.getElementById('movers-view').addEventListener('click', async e => {
   const row = e.target.closest('.mover-row[data-sym]');
