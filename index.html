@@ -567,6 +567,19 @@
     margin-top: 6px;
     text-transform: uppercase;
   }
+  .watch-signal {
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    margin-top: 7px;
+    padding: 4px 6px;
+    text-transform: uppercase;
+  }
+  .watch-signal.alert { background: rgba(16,185,129,0.18); color: var(--gain); border: 1px solid rgba(16,185,129,0.45); }
+  .watch-signal.wait { background: rgba(245,158,11,0.16); color: var(--alert); border: 1px solid rgba(245,158,11,0.42); }
+  .watch-signal.cool { background: rgba(239,68,68,0.14); color: var(--loss); border: 1px solid rgba(239,68,68,0.36); }
+  .watch-signal.neutral { background: #111827; color: #9ca3af; border: 1px solid #1f2937; }
   .opportunity-list { display: flex; flex-direction: column; gap: 12px; }
   .opportunity-card {
     background: #0a0e1a;
@@ -755,7 +768,7 @@
   <div class="spacer"></div>
   <input type="text" id="search" placeholder="Filter symbol or name‚Ä¶">
   <button class="action" id="auto-refresh">‚è± Auto-refresh: OFF</button>
-  <button class="action" id="enable-alerts">üîî Enable Washington alerts</button>
+  <button class="action" id="enable-alerts">üîî Enable market alerts</button>
   <button class="action" id="refresh">‚Üª Refresh</button>
   <button class="action" id="export-csv">‚Üì CSV</button>
   <button class="action" id="clear-compare">Clear compare</button>
@@ -938,7 +951,7 @@
   Current price and day % are Schwab-only from pasted thinkorswim/Schwab rows. Yahoo Finance via <code>corsproxy.io</code> is used for history, charts, market movers, indices and news; 3-year weekly chart history is cached locally for 30 minutes. Bloomberg/Reuters/WSJ headlines come via Yahoo's news search (Bloomberg articles tagged with an orange BB badge ‚Äî Bloomberg's free RSS is mostly shut down, this is the practical workaround).
   Click any symbol to open it in Schwab research; click anywhere else on the row to add it to the compare overlay (max 6).
   The Rating column is a synthetic A‚ÄìF grade modeled on Schwab Equity Ratings ‚Äî for orientation only, not investment advice.
-  Washington alerts: when news headlines mention Fed/FOMC/Treasury/tariff/SEC/White House/Congress, you'll get a browser notification (click "Enable Washington alerts" to opt in). Hover the news ticker to pause it.
+  Alerts: when Schwab-pasted priority names start turning up after a cool-off, or news headlines mention Fed/FOMC/Treasury/tariff/SEC/White House/Congress, you'll get a browser notification (click "Enable market alerts" to opt in). Hover the news ticker to pause it.
   Auto-refresh updates Yahoo-supported history/news in the background; Schwab live numbers stay authoritative until you paste newer Schwab rows.
 </div>
 
@@ -946,6 +959,8 @@
 // ============================================================
 // Ticker lists
 // ============================================================
+const PRIORITY_WATCH = ['RDDT','TSLA','SMH','PLTR','ORCL','NFLX','NEM','MU','MSFT','INTC','GOOGL','CRWV','CRCL','AXON','AVGO','AMZN','ABNB','AAPL'];
+
 const WATCHLIST = ['AAPL','ABNB','AMZN','AVGO','AXON','CRCL','CRWV','GOOGL','MSFT','MU','NEM','NFLX','NVDA','ORCL','PLTR','RDDT','RS','SMH','SPOT','TSLA','NMAX'];
 
 const DOW30 = ['AAPL','AMGN','AMZN','AXP','BA','CAT','CRM','CSCO','CVX','DIS','GS','HD','HON','IBM','JNJ','JPM','KO','MCD','MMM','MRK','MSFT','NKE','NVDA','PG','SHW','TRV','UNH','V','VZ','WMT'];
@@ -989,7 +1004,8 @@ const MANUAL_EARNINGS = {
 
 const WASHINGTON_RE = /\b(fed\b|fomc|powell|treasury|yellen|bessent|tariff|sanction|white house|trump|biden|congress|senate|house bill|tax bill|sec\b|antitrust|cpi|inflation|interest rate|rate cut|rate hike|jobs report|nfp|fda approv)/i;
 
-const DEFAULT_TOP_PICKS = ['NVDA','CRWV','PLTR','RDDT','AVGO','MU'];
+const TOP_PICKS_VERSION = 'priority-watch-2026-05-08';
+const DEFAULT_TOP_PICKS = PRIORITY_WATCH;
 
 const RESEARCH_REPORT = {
   asOf: 'May 8, 2026 premarket update',
@@ -1509,10 +1525,15 @@ function parseTickers(value) {
 function loadTopPicks() {
   let picks = DEFAULT_TOP_PICKS;
   try {
+    const version = localStorage.getItem('top_picks_version');
     const saved = JSON.parse(localStorage.getItem('top_picks') || 'null');
-    if (Array.isArray(saved) && saved.length) picks = saved;
+    if (version === TOP_PICKS_VERSION && Array.isArray(saved) && saved.length) picks = saved;
   } catch (e) {}
   state.topPicks = picks;
+  try {
+    localStorage.setItem('top_picks', JSON.stringify(picks));
+    localStorage.setItem('top_picks_version', TOP_PICKS_VERSION);
+  } catch (e) {}
   const input = document.getElementById('top-picks-input');
   if (input) input.value = picks.join(', ');
 }
@@ -1592,6 +1613,53 @@ function renderSchwabOverrideSummary() {
     .join(' | ');
 }
 
+function getWatchSignal(m) {
+  if (!m || m.source !== 'Schwab pasted') {
+    return { cls: 'neutral', text: 'Paste Schwab row to activate alert' };
+  }
+  const day = m.dayChg;
+  const cooledByHistory = (m.r1m != null && m.r1m <= 0) || (m.pctFromHigh != null && m.pctFromHigh <= -5);
+  const nearHigh = m.pctFromHigh != null && m.pctFromHigh > -1;
+  if (day != null && day >= 0.75 && cooledByHistory) {
+    return { cls: 'alert', text: 'Alert: turning up after cool-off' };
+  }
+  if (day != null && day >= 3 && nearHigh) {
+    return { cls: 'wait', text: 'Strong but extended - wait for cool-off' };
+  }
+  if (day != null && day >= 1) {
+    return { cls: 'wait', text: 'Upward momentum - wait for setup' };
+  }
+  if (day != null && day <= -1) {
+    return { cls: 'cool', text: 'Cooling off - watch for turn' };
+  }
+  return { cls: 'neutral', text: 'Neutral watch' };
+}
+
+let trendAlertIds = [];
+try { trendAlertIds = JSON.parse(localStorage.getItem('trendAlertIds') || '[]'); } catch (e) {}
+
+function maybeNotifyTrendAlerts() {
+  if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+  PRIORITY_WATCH.forEach(sym => {
+    const d = state.data[sym];
+    if (!d) return;
+    const m = rowMetrics(d);
+    const signal = getWatchSignal(m);
+    if (signal.cls !== 'alert') return;
+    const id = `${sym}:${Math.round((d.quoteTime || Date.now()) / 60000)}:${Math.round((m.price || 0) * 100)}`;
+    if (trendAlertIds.includes(id)) return;
+    try {
+      new Notification(`${sym} turning up after cool-off`, {
+        body: `${fmtLivePrice(m.price).replace(/<[^>]*>/g, '')} | ${m.dayChg > 0 ? '+' : ''}${m.dayChg.toFixed(2)}% | ${signal.text}`,
+        tag: id,
+      });
+    } catch (e) {}
+    trendAlertIds.push(id);
+  });
+  if (trendAlertIds.length > 250) trendAlertIds = trendAlertIds.slice(-250);
+  try { localStorage.setItem('trendAlertIds', JSON.stringify(trendAlertIds)); } catch (e) {}
+}
+
 async function ensureTopPickData(force = false) {
   const missing = state.topPicks.filter(sym => force || !state.data[sym]);
   await Promise.all(missing.map(async sym => {
@@ -1633,11 +1701,13 @@ function renderResearch() {
       const source = m?.source === 'Schwab pasted'
         ? '<span class="source-pill schwab">Schwab live</span>'
         : '<span class="source-pill">Schwab needed</span>';
+      const signal = getWatchSignal(m);
       return `<div class="top-pick-card" data-sym="${escapeHtml(sym)}">
         <div class="sym">${escapeHtml(sym)}</div>
         <div class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</div>
         <div class="price">${m ? fmtLivePrice(m.price) : 'Schwab needed'} &nbsp; ${day}</div>
         <div class="price">${source}</div>
+        <div class="watch-signal ${signal.cls}">${escapeHtml(signal.text)}</div>
         ${opp ? '<div class="research-hit">Research hit: ' + escapeHtml(opp.rank) + '</div>' : '<div class="research-hit neutral">No deep dive yet</div>'}
       </div>`;
     }).join('');
@@ -1665,6 +1735,7 @@ function renderResearch() {
   if (savedMemo) savedMemo.textContent = memo || 'No custom memo saved yet. Paste an automation report here after it runs.';
   if (memoInput && !memoInput.value) memoInput.value = memo;
   renderSchwabOverrideSummary();
+  maybeNotifyTrendAlerts();
 }
 
 // News (Yahoo aggregates Bloomberg, Reuters, WSJ, etc.)
@@ -2369,6 +2440,7 @@ document.getElementById('save-top-picks').addEventListener('click', async () => 
   const input = document.getElementById('top-picks-input');
   state.topPicks = parseTickers(input.value);
   localStorage.setItem('top_picks', JSON.stringify(state.topPicks));
+  localStorage.setItem('top_picks_version', TOP_PICKS_VERSION);
   await ensureTopPickData(true);
   renderResearch();
 });
@@ -2392,6 +2464,7 @@ document.getElementById('save-schwab-overrides').addEventListener('click', () =>
   state.schwabOverrides = parsed;
   localStorage.setItem('schwab_overrides', JSON.stringify(parsed));
   applySchwabOverrides();
+  maybeNotifyTrendAlerts();
   render();
 });
 
@@ -2463,9 +2536,9 @@ document.getElementById('enable-alerts').addEventListener('click', async () => {
   const perm = await Notification.requestPermission();
   const btn = document.getElementById('enable-alerts');
   if (perm === 'granted') {
-    btn.textContent = 'üîî Washington alerts ON';
+    btn.textContent = 'üîî Market alerts ON';
     btn.classList.add('on');
-    new Notification('Washington alerts enabled', { body: 'You\'ll get a notification when news hits Fed, Treasury, tariffs, SEC, or White House topics.' });
+    new Notification('Market alerts enabled', { body: 'You\'ll get alerts for priority names turning up after cool-offs plus Fed, Treasury, tariff, SEC, and White House headlines.' });
   } else {
     btn.textContent = 'üîî Alerts blocked';
     alert('Notifications were not granted. Enable them in your browser settings for this site.');
@@ -2539,7 +2612,7 @@ fetchNews();
 fetchEarnings(WATCHLIST);
 fetchIndicators();
 if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-  document.getElementById('enable-alerts').textContent = 'üîî Washington alerts ON';
+  document.getElementById('enable-alerts').textContent = 'üîî Market alerts ON';
   document.getElementById('enable-alerts').classList.add('on');
 }
 // Auto-refresh ON by default ‚Äî page is meant to feel live without you toggling
