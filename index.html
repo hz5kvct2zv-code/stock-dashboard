@@ -455,6 +455,199 @@
   .mover-row .vol { color: #6b7280; font-size: 10px; }
   .mover-empty { padding: 24px; text-align: center; color: #6b7280; font-size: 12px; font-style: italic; }
 
+  /* Skilled Research view */
+  #research-view { display: none; padding: 16px 24px 28px; }
+  .research-toolbar {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) auto;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 800px) { .research-toolbar { grid-template-columns: 1fr; } }
+  .research-field label, .research-meta-label {
+    display: block;
+    color: #6b7280;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .research-field input {
+    width: 100%;
+    min-height: 34px;
+  }
+  .research-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .research-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+    gap: 16px;
+  }
+  @media (max-width: 1050px) { .research-grid { grid-template-columns: 1fr; } }
+  .research-card {
+    background: #0f172a;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .research-card > .head {
+    padding: 12px 16px;
+    border-bottom: 1px solid #1f2937;
+    background: #050810;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .research-card h2, .research-card h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .research-card .sub {
+    color: #6b7280;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .research-body { padding: 14px 16px; }
+  .research-kicker {
+    color: #6b7280;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin: 16px 0 8px;
+    text-transform: uppercase;
+  }
+  .research-read {
+    color: #d1d5db;
+    font-size: 13px;
+    margin: 0;
+  }
+  .research-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .research-tag {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 4px;
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 7px;
+    text-transform: uppercase;
+  }
+  .research-tag.opportunity { color: #04130c; background: var(--gain); border-color: var(--gain); }
+  .research-tag.watch { color: #111827; background: var(--alert); border-color: var(--alert); }
+  .research-tag.risk { color: #fff; background: #7f1d1d; border-color: #991b1b; }
+  .top-picks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+  }
+  .top-pick-card {
+    background: #0a0e1a;
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .top-pick-card:hover { border-color: #374151; }
+  .top-pick-card .sym { color: #f9fafb; font-size: 15px; font-weight: 700; }
+  .top-pick-card .name { max-width: 100%; margin-top: 2px; }
+  .top-pick-card .price { color: #d1d5db; font-size: 12px; margin-top: 8px; }
+  .top-pick-card .research-hit {
+    color: var(--schwab-navy);
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .opportunity-list { display: flex; flex-direction: column; gap: 12px; }
+  .opportunity-card {
+    background: #0a0e1a;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+    padding: 13px;
+  }
+  .opportunity-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .opportunity-head .sym { color: #f9fafb; font-size: 16px; font-weight: 700; }
+  .opportunity-head .setup { color: #9ca3af; font-size: 12px; }
+  .opportunity-section {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 10px;
+    padding: 7px 0;
+    border-top: 1px solid #111827;
+  }
+  .opportunity-section:first-of-type { border-top: none; }
+  .opportunity-section .lbl {
+    color: #6b7280;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .opportunity-section .txt { color: #d1d5db; font-size: 12px; }
+  .research-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .research-sources a {
+    color: #9ca3af;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 4px;
+    padding: 3px 7px;
+    text-decoration: none;
+    font-size: 10px;
+  }
+  .research-sources a:hover { color: #fff; border-color: var(--schwab-navy); }
+  .watch-next {
+    margin: 0;
+    padding-left: 18px;
+    color: #d1d5db;
+  }
+  .watch-next li { margin: 6px 0; }
+  .memo-box {
+    width: 100%;
+    min-height: 180px;
+    resize: vertical;
+    background: #0a0e1a;
+    border: 1px solid #1f2937;
+    color: #d1d5db;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 10px;
+    outline: none;
+  }
+  .memo-box:focus { border-color: var(--schwab-navy); }
+  .saved-memo {
+    white-space: pre-wrap;
+    color: #d1d5db;
+    font-size: 12px;
+    line-height: 1.55;
+    max-height: 360px;
+    overflow: auto;
+    border-top: 1px solid #111827;
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
   #table-wrap { padding: 0 8px; }
   .footer-note {
     padding: 14px 24px 24px;
@@ -503,6 +696,7 @@
 <div class="controls">
   <div class="tab active" data-tab="watchlist">‚òÖ My Watchlist</div>
   <div class="tab" data-tab="movers">üìä Market Movers</div>
+  <div class="tab" data-tab="research">Research Memo</div>
   <div class="tab" data-tab="dow">DOW 30</div>
   <div class="tab" data-tab="ndx">NASDAQ-100</div>
   <div class="tab" data-tab="sp100">S&P 100</div>
@@ -591,6 +785,66 @@
   </div>
 </div>
 
+<div id="research-view">
+  <div class="research-toolbar">
+    <div class="research-field">
+      <label for="top-picks-input">Morning top picks to monitor</label>
+      <input type="text" id="top-picks-input" placeholder="Example: NVDA, CRWV, PLTR, RDDT">
+    </div>
+    <div class="research-actions">
+      <button class="action" id="save-top-picks">Save top picks</button>
+      <button class="action" id="load-watchlist-picks">Use watchlist</button>
+      <button class="action" id="refresh-research-prices">Refresh research prices</button>
+    </div>
+  </div>
+
+  <div class="research-grid">
+    <div class="research-card">
+      <div class="head">
+        <h2>Skilled Research Memo</h2>
+        <span class="sub" id="research-asof">Latest saved memo</span>
+      </div>
+      <div class="research-body">
+        <p class="research-read" id="research-banker-read"></p>
+        <div class="research-tags" id="research-tags"></div>
+
+        <div class="research-kicker">Your top picks</div>
+        <div class="top-picks-grid" id="top-picks-grid"></div>
+
+        <div class="research-kicker">Opportunity deep dives</div>
+        <div class="opportunity-list" id="opportunity-list"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="research-card">
+        <div class="head">
+          <h3>What To Watch Next</h3>
+          <span class="sub">Catalysts</span>
+        </div>
+        <div class="research-body">
+          <ol class="watch-next" id="watch-next-list"></ol>
+        </div>
+      </div>
+
+      <div class="research-card" style="margin-top:16px">
+        <div class="head">
+          <h3>Paste New $investment-research Memo</h3>
+          <span class="sub">Stored locally</span>
+        </div>
+        <div class="research-body">
+          <textarea class="memo-box" id="research-memo-input" placeholder="Paste the latest Codex research memo here after the automation runs. It will stay saved in this browser."></textarea>
+          <div class="research-actions" style="margin-top:8px">
+            <button class="action" id="save-research-memo">Save memo</button>
+            <button class="action" id="clear-research-memo">Clear memo</button>
+          </div>
+          <div class="saved-memo" id="saved-research-memo"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="table-wrap">
   <table id="main-table">
     <thead>
@@ -667,6 +921,122 @@ const MANUAL_EARNINGS = {
 
 const WASHINGTON_RE = /\b(fed\b|fomc|powell|treasury|yellen|bessent|tariff|sanction|white house|trump|biden|congress|senate|house bill|tax bill|sec\b|antitrust|cpi|inflation|interest rate|rate cut|rate hike|jobs report|nfp|fda approv)/i;
 
+const DEFAULT_TOP_PICKS = ['NVDA','CRWV','PLTR','RDDT','AVGO','MU'];
+
+const RESEARCH_REPORT = {
+  asOf: 'May 8, 2026 premarket update',
+  bankerRead: 'Premarket setup is event-driven: jobs data at 8:30am ET is the macro pivot, oil/Iran headlines remain the inflation-risk swing factor, and AI infrastructure names are splitting between contracted-demand winners and capex/leverage casualties. Your heat list today is hot in NVDA, PLTR, MSFT and TSLA; cold/risk-on-watch in CRWV, MU, RDDT and SMH until jobs/yields and post-earnings commentary settle.',
+  tags: ['Jobs report 8:30 ET', 'AI infrastructure', 'Oil/Iran risk', 'Earnings reactions', 'Top-pick heat map'],
+  opportunities: [
+    {
+      symbol: 'NVDA',
+      setup: 'HOT - AI bellwether holding up while the market sorts winners from capital-intensive laggards',
+      hypothesis: 'Nvidia remains the cleanest liquid read-through for AI infrastructure demand, especially as partners like CoreWeave and IREN validate demand but expose financing/capex risk.',
+      bulls: 'Bulls argue hyperscaler and AI cloud capex remains enormous, Nvidia is still the scarce compute supplier, and partnership/news flow keeps reinforcing ecosystem control.',
+      bears: 'Bears argue the stock is already priced for perfection, export controls and supply-chain policy remain live risks, and any jobs-report/yield spike could pressure long-duration AI multiples.',
+      street: 'Street/investor commentary is still broadly constructive, but the debate is shifting from demand existence to durability, margins, and whether AI capex returns justify the spending cycle.',
+      codex: 'Keep NVDA hot unless jobs/yields trigger a broader growth multiple reset. Best confirmation is continued AI infrastructure order strength; disproof is capex cuts or export-control pressure.',
+      sources: [
+        ['IBD market setup', 'https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-deal-nvidia-tesla-coreweave-rocket-lab-cloudflare-earnings-jobs-report/'],
+        ['MATCH Act policy risk', 'https://www.foreign.senate.gov/press/rep/release/risch-ricketts-kim-introduce-match-act-level-the-global-playing-field-for-us-tech']
+      ],
+      rank: 'HOT'
+    },
+    {
+      symbol: 'CRWV',
+      setup: 'COLD / HIGH-RISK - backlog story colliding with capex, losses and financing anxiety',
+      hypothesis: 'CRWV may become an opportunity only if the market is over-penalizing near-term losses relative to contracted AI demand; right now, price action says investors are demanding proof that backlog converts into equity value.',
+      bulls: 'Bulls focus on massive AI demand visibility, large backlog, customer validation, and the idea that CoreWeave is one of the few scaled AI cloud capacity providers.',
+      bears: 'Bears focus on widening losses, component-cost inflation, debt/interest burden, customer concentration, and heavy capex that could dilute equity economics.',
+      street: 'Street/investor commentary is split. Growth investors like demand visibility; skeptical investors are treating it like a financing vehicle with equity optionality.',
+      codex: 'Keep CRWV cold until it stabilizes. Watch for volume exhaustion, capex commentary, financing terms, and whether the jobs report moves yields against AI infrastructure multiples.',
+      sources: [
+        ['MarketWatch', 'https://www.marketwatch.com/story/coreweave-reports-unprecedented-100-billion-backlog-but-that-comes-at-a-cost-98b385c7'],
+        ['WSJ', 'https://www.wsj.com/business/earnings/coreweave-widens-first-quarter-loss-as-costs-outpace-revenue-growth-bdc8eb7d']
+      ],
+      rank: 'COLD / risk'
+    },
+    {
+      symbol: 'PLTR',
+      setup: 'HOT - AI/defense software bid with strong relative momentum',
+      hypothesis: 'PLTR stays hot when investors want direct AI implementation and government/defense exposure without the same capex burden as AI cloud infrastructure.',
+      bulls: 'Bulls argue Palantir has durable government demand, commercial AI adoption, high margins, and a narrative that improves when defense, national security and AI are all in focus.',
+      bears: 'Bears argue valuation already embeds extraordinary growth and the stock is vulnerable if software multiples compress after the jobs report.',
+      street: 'The debate is valuation versus quality. Momentum investors are rewarding relative strength; fundamental skeptics want proof that AI platform demand keeps compounding into revenue.',
+      codex: 'Keep PLTR hot but valuation-sensitive. A hot payroll/wage print could cool the multiple even if the company story remains intact.',
+      sources: [
+        ['IBD market setup', 'https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-deal-nvidia-tesla-coreweave-rocket-lab-cloudflare-earnings-jobs-report/'],
+        ['Jobs report preview', 'https://www.investopedia.com/april-2026-jobs-report-preview-nonfarm-payrolls-11968730']
+      ],
+      rank: 'HOT'
+    },
+    {
+      symbol: 'MU',
+      setup: 'COLD / WATCH - memory/HBM beneficiary but weak tape today',
+      hypothesis: 'MU can still be an AI supply-chain beneficiary through HBM and memory pricing, but today the stock is acting cold as semis digest Arm/AI supply concerns and macro-rate risk.',
+      bulls: 'Bulls point to AI memory demand, HBM scarcity, pricing cycle improvement and data-center content growth.',
+      bears: 'Bears worry memory remains cyclical, the stock has run hard, and any AI hardware de-rating can hit suppliers before fundamentals change.',
+      street: 'Investor commentary is constructive on the AI memory cycle, but near-term trading is tied to the broader semiconductor tape and jobs/yield reaction.',
+      codex: 'Keep MU cold-to-warm, not broken. It improves if SMH/NVDA stabilize after jobs; it weakens if semis broadly reject record-high levels.',
+      sources: [
+        ['IBD market setup', 'https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-deal-nvidia-tesla-coreweave-rocket-lab-cloudflare-earnings-jobs-report/'],
+        ['Reuters market context', 'https://www.investing.com/news/stock-market-news/sp-500-nasdaq-touch-fresh-peaks-as-oil-retreats-further-4668253']
+      ],
+      rank: 'COLD / watch'
+    },
+    {
+      symbol: 'TSLA',
+      setup: 'HOT - relative strength and resistance breakout attempt',
+      hypothesis: 'TSLA is hot when market breadth is narrow because it combines liquidity, retail attention, optionality and visible technical momentum.',
+      bulls: 'Bulls focus on technical breakout behavior, AI/robotaxi optionality, energy/storage narrative and the stock acting better than many other high-beta names.',
+      bears: 'Bears argue valuation still depends on optionality more than core auto fundamentals, and any risk-off/jobs-yield shock can reverse the momentum quickly.',
+      street: 'Commentary is momentum-heavy and highly split. Bulls are watching resistance and optionality; bears are watching delivery/margin quality and valuation.',
+      codex: 'Hot but tactical. Keep it hot while price holds breakout levels; downgrade to warm if it fades after the jobs report.',
+      sources: [
+        ['IBD market setup', 'https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-deal-nvidia-tesla-coreweave-rocket-lab-cloudflare-earnings-jobs-report/'],
+        ['Jobs volatility preview', 'https://www.businessinsider.com/stock-market-outlook-sp500-april-jobs-report-volatility-wall-street-2026-5']
+      ],
+      rank: 'HOT'
+    },
+    {
+      symbol: 'RDDT',
+      setup: 'COLD / WATCH - social platform growth story but weak tape today',
+      hypothesis: 'RDDT remains an AI/data/licensing and ads-platform watchlist name, but today it is not acting like leadership.',
+      bulls: 'Bulls focus on user growth, ad monetization, licensing/data value and Reddit as a unique AI-training/sentiment corpus.',
+      bears: 'Bears worry valuation, ad cyclicality, moderation/regulatory risk and the possibility that AI data value is already priced in.',
+      street: 'Commentary is narrative-rich but proof-point dependent. Investors want evidence that AI/data monetization becomes recurring revenue rather than a one-off story.',
+      codex: 'Cold-to-warm. Upgrade only if price action improves with volume or fresh monetization headlines hit.',
+      sources: [
+        ['Market setup', 'https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-iran-deal-nvidia-tesla-coreweave-rocket-lab-cloudflare-earnings-jobs-report/'],
+        ['Jobs report preview', 'https://www.kiplinger.com/investing/economy/jobs-report-april-2026-what-to-expect']
+      ],
+      rank: 'COLD / watch'
+    },
+    {
+      symbol: 'AKAM',
+      setup: 'WARM / OPPORTUNITY - AI infrastructure re-rating after large frontier-model cloud commitment',
+      hypothesis: 'AKAM may be mispriced if investors still view it mainly as CDN/security rather than distributed AI inference infrastructure.',
+      bulls: 'Bulls point to the reported multi-year AI cloud commitment and Akamai AI Grid/Nvidia work as evidence the platform can win inference workloads.',
+      bears: 'Bears argue the quarter itself was not explosive and one large customer does not prove a repeatable growth engine.',
+      street: 'Street/investor read appears newly constructive but proof-point driven: management needs to show pipeline breadth, margins and repeatability.',
+      codex: 'Warm opportunity. Best confirmation is more AI customers; weakest link is customer concentration and whether the revenue has attractive margins.',
+      sources: [
+        ['Barron\'s', 'https://www.barrons.com/articles/akamai-stock-price-earnings-ai-deal-38c5ee03'],
+        ['Akamai AI Grid', 'https://www.akamai.com/newsroom/press-release/akamai-launches-ai-grid-intelligent-orchestration-for-distributed-inference-across-4400-edge-locations']
+      ],
+      rank: 'WARM / opportunity'
+    }
+  ],
+  watchNext: [
+    '8:30am ET jobs report: consensus is roughly 55K-73K payroll growth with unemployment near 4.3%; wages/revisions matter as much as the headline.',
+    'If payrolls/wages run hot: watch NVDA, PLTR, TSLA, MU and SMH for multiple pressure through higher yields.',
+    'If payrolls are soft but not recessionary: AI/software momentum can stay hot and small caps may recover.',
+    'Oil/Iran headlines: crude volatility remains a direct feed into inflation expectations and Fed-cut pricing.',
+    'CRWV follow-through: look for selling exhaustion versus another leg lower from capex/debt concerns.',
+    'AKAM follow-through: watch whether the market treats the AI contract as a one-off or starts re-rating the business.'
+  ]
+};
+
 // ============================================================
 // State
 // ============================================================
@@ -684,6 +1054,7 @@ const state = {
   loadedTabs: new Set(),
   autoRefresh: false,
   autoTimer: null,
+  topPicks: [],
 };
 
 // ============================================================
@@ -938,6 +1309,103 @@ function renderMovers() {
       </div>`;
     }).join('');
   });
+}
+
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function parseTickers(value) {
+  return [...new Set(String(value || '')
+    .toUpperCase()
+    .split(/[^A-Z0-9.-]+/)
+    .map(s => s.trim())
+    .filter(Boolean)
+    .slice(0, 20))];
+}
+
+function loadTopPicks() {
+  let picks = DEFAULT_TOP_PICKS;
+  try {
+    const saved = JSON.parse(localStorage.getItem('top_picks') || 'null');
+    if (Array.isArray(saved) && saved.length) picks = saved;
+  } catch (e) {}
+  state.topPicks = picks;
+  const input = document.getElementById('top-picks-input');
+  if (input) input.value = picks.join(', ');
+}
+
+async function ensureTopPickData(force = false) {
+  const missing = state.topPicks.filter(sym => force || !state.data[sym]);
+  await Promise.all(missing.map(async sym => {
+    const d = await fetchHistory(sym, force);
+    if (d) state.data[sym] = d;
+  }));
+}
+
+function getOpportunity(symbol) {
+  return RESEARCH_REPORT.opportunities.find(o => o.symbol === symbol);
+}
+
+function renderResearch() {
+  const asof = document.getElementById('research-asof');
+  const bankerRead = document.getElementById('research-banker-read');
+  const tags = document.getElementById('research-tags');
+  const picksGrid = document.getElementById('top-picks-grid');
+  const oppList = document.getElementById('opportunity-list');
+  const watchNext = document.getElementById('watch-next-list');
+  const savedMemo = document.getElementById('saved-research-memo');
+  const memoInput = document.getElementById('research-memo-input');
+  if (!asof || !bankerRead || !tags || !picksGrid || !oppList || !watchNext) return;
+
+  asof.textContent = RESEARCH_REPORT.asOf;
+  bankerRead.textContent = RESEARCH_REPORT.bankerRead;
+  tags.innerHTML = RESEARCH_REPORT.tags.map(t => `<span class="research-tag">${escapeHtml(t)}</span>`).join('');
+
+  if (!state.topPicks.length) {
+    picksGrid.innerHTML = '<div class="mover-empty">Add your morning top picks above.</div>';
+  } else {
+    picksGrid.innerHTML = state.topPicks.map(sym => {
+      const d = state.data[sym];
+      const m = d ? rowMetrics(d) : null;
+      const opp = getOpportunity(sym);
+      const day = m ? fmtPct(m.dayChg) : '<span class="neutral">loading</span>';
+      const name = d?.name || (opp ? opp.setup : 'Loading...');
+      return `<div class="top-pick-card" data-sym="${escapeHtml(sym)}">
+        <div class="sym">${escapeHtml(sym)}</div>
+        <div class="name" title="${escapeHtml(name)}">${escapeHtml(name)}</div>
+        <div class="price">${m ? '$' + fmtPrice(m.price) : 'Price loading'} &nbsp; ${day}</div>
+        ${opp ? '<div class="research-hit">Research hit: ' + escapeHtml(opp.rank) + '</div>' : '<div class="research-hit neutral">No deep dive yet</div>'}
+      </div>`;
+    }).join('');
+  }
+
+  oppList.innerHTML = RESEARCH_REPORT.opportunities.map(o => {
+    const sources = o.sources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`).join('');
+    return `<div class="opportunity-card" id="research-${escapeHtml(o.symbol)}">
+      <div class="opportunity-head">
+        <div><span class="sym">${escapeHtml(o.symbol)}</span> <span class="setup">${escapeHtml(o.setup)}</span></div>
+        <span class="research-tag ${/speculative|risk/i.test(o.rank) ? 'risk' : /watch/i.test(o.rank) ? 'watch' : 'opportunity'}">${escapeHtml(o.rank)}</span>
+      </div>
+      <div class="opportunity-section"><div class="lbl">Hypothesis</div><div class="txt">${escapeHtml(o.hypothesis)}</div></div>
+      <div class="opportunity-section"><div class="lbl">Bulls</div><div class="txt">${escapeHtml(o.bulls)}</div></div>
+      <div class="opportunity-section"><div class="lbl">Bears</div><div class="txt">${escapeHtml(o.bears)}</div></div>
+      <div class="opportunity-section"><div class="lbl">Street read</div><div class="txt">${escapeHtml(o.street)}</div></div>
+      <div class="opportunity-section"><div class="lbl">My read</div><div class="txt">${escapeHtml(o.codex)}</div></div>
+      <div class="research-sources">${sources}</div>
+    </div>`;
+  }).join('');
+
+  watchNext.innerHTML = RESEARCH_REPORT.watchNext.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+
+  const memo = localStorage.getItem('research_memo') || '';
+  if (savedMemo) savedMemo.textContent = memo || 'No custom memo saved yet. Paste an automation report here after it runs.';
+  if (memoInput && !memoInput.value) memoInput.value = memo;
 }
 
 // News (Yahoo aggregates Bloomberg, Reuters, WSJ, etc.)
@@ -1223,6 +1691,10 @@ function fmtEarningsBadge(daysToEarnings) {
 
 function render() {
   const symbols = TABS[state.tab];
+  if (!symbols) {
+    renderResearch();
+    return;
+  }
   const rows = symbols.map(s => {
     const d = state.data[s];
     return d ? rowMetrics(d) : { symbol: s, name: '‚Ä¶', loading: true };
@@ -1468,6 +1940,10 @@ function toggleAutoRefresh() {
     btn.classList.add('on');
     state.autoTimer = setInterval(async () => {
       if (TABS[state.tab]) await loadTab(state.tab, true);
+      if (state.tab === 'research') {
+        await ensureTopPickData(true);
+        renderResearch();
+      }
       await Promise.all([fetchNews(true), fetchIndicators(true)]);
       if (state.tab === 'movers') await fetchMovers(true);
       if (state.tab === 'watchlist') await fetchEarnings(WATCHLIST, false);
@@ -1485,10 +1961,14 @@ function toggleAutoRefresh() {
 // ============================================================
 function applyTabVisibility() {
   const isMovers = state.tab === 'movers';
+  const isResearch = state.tab === 'research';
   document.getElementById('movers-view').style.display = isMovers ? 'block' : 'none';
-  document.getElementById('table-wrap').style.display = isMovers ? 'none' : 'block';
-  document.querySelector('.presets-row').style.display = isMovers ? 'none' : 'flex';
-  document.getElementById('watchlist-panels').style.display = isMovers ? 'none' : (state.tab === 'watchlist' ? 'grid' : 'none');
+  document.getElementById('research-view').style.display = isResearch ? 'block' : 'none';
+  document.getElementById('table-wrap').style.display = (isMovers || isResearch) ? 'none' : 'block';
+  document.querySelector('.presets-row').style.display = (isMovers || isResearch) ? 'none' : 'flex';
+  document.getElementById('compareChart-wrap').style.display = isResearch ? 'none' : '';
+  document.querySelector('.compare-bar').style.display = isResearch ? 'none' : 'flex';
+  document.getElementById('watchlist-panels').style.display = (isMovers || isResearch) ? 'none' : (state.tab === 'watchlist' ? 'grid' : 'none');
 }
 
 document.querySelectorAll('.tab').forEach(tab => {
@@ -1500,6 +1980,11 @@ document.querySelectorAll('.tab').forEach(tab => {
     applyTabVisibility();
     if (state.tab === 'movers') {
       await fetchMovers();
+      return;
+    }
+    if (state.tab === 'research') {
+      await ensureTopPickData();
+      renderResearch();
       return;
     }
     render();
@@ -1582,8 +2067,50 @@ document.getElementById('refresh').addEventListener('click', async () => {
   state.indicators = {};
   render(); renderMarketsStrip();
   const tasks = [fetchNews(true), fetchEarnings(WATCHLIST, true), fetchMovers(true), fetchIndicators(true)];
+  if (state.tab === 'research') tasks.push(ensureTopPickData(true));
   if (TABS[state.tab]) tasks.push(loadTab(state.tab, true));
   await Promise.all(tasks);
+  if (state.tab === 'research') renderResearch();
+});
+
+document.getElementById('save-top-picks').addEventListener('click', async () => {
+  const input = document.getElementById('top-picks-input');
+  state.topPicks = parseTickers(input.value);
+  localStorage.setItem('top_picks', JSON.stringify(state.topPicks));
+  await ensureTopPickData(true);
+  renderResearch();
+});
+
+document.getElementById('load-watchlist-picks').addEventListener('click', async () => {
+  state.topPicks = WATCHLIST.slice();
+  localStorage.setItem('top_picks', JSON.stringify(state.topPicks));
+  document.getElementById('top-picks-input').value = state.topPicks.join(', ');
+  await ensureTopPickData();
+  renderResearch();
+});
+
+document.getElementById('refresh-research-prices').addEventListener('click', async () => {
+  await ensureTopPickData(true);
+  renderResearch();
+});
+
+document.getElementById('top-picks-grid').addEventListener('click', e => {
+  const card = e.target.closest('.top-pick-card[data-sym]');
+  if (!card) return;
+  const opp = document.getElementById(`research-${card.dataset.sym}`);
+  if (opp) opp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+document.getElementById('save-research-memo').addEventListener('click', () => {
+  const memo = document.getElementById('research-memo-input').value.trim();
+  localStorage.setItem('research_memo', memo);
+  renderResearch();
+});
+
+document.getElementById('clear-research-memo').addEventListener('click', () => {
+  localStorage.removeItem('research_memo');
+  document.getElementById('research-memo-input').value = '';
+  renderResearch();
 });
 
 document.getElementById('export-csv').addEventListener('click', () => {
@@ -1678,6 +2205,7 @@ document.getElementById('markets-strip').addEventListener('click', async e => {
 // ============================================================
 // Init
 // ============================================================
+loadTopPicks();
 render();
 renderMarketsStrip();
 loadTab('watchlist');
