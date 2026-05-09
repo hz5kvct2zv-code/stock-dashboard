@@ -580,6 +580,37 @@
   .watch-signal.wait { background: rgba(245,158,11,0.16); color: var(--alert); border: 1px solid rgba(245,158,11,0.42); }
   .watch-signal.cool { background: rgba(239,68,68,0.14); color: var(--loss); border: 1px solid rgba(239,68,68,0.36); }
   .watch-signal.neutral { background: #111827; color: #9ca3af; border: 1px solid #1f2937; }
+  .action-board {
+    border: 1px solid #1f2937;
+    border-radius: 6px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .action-row {
+    align-items: center;
+    background: #0a0e1a;
+    border-top: 1px solid #111827;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 72px 1fr 78px 88px 170px;
+    min-height: 44px;
+    padding: 8px 10px;
+  }
+  .action-row:first-child { border-top: none; }
+  .action-row.hot { background: rgba(16,185,129,0.09); }
+  .action-row.watch { background: rgba(245,158,11,0.08); }
+  .action-row.cool { background: rgba(239,68,68,0.07); }
+  .action-row .sym { color: #f9fafb; font-weight: 800; }
+  .action-row .reason { color: #d1d5db; font-size: 12px; }
+  .action-row .metric { color: #9ca3af; font-size: 12px; text-align: right; }
+  .action-row .metric.gain { color: var(--gain); }
+  .action-row .metric.loss { color: var(--loss); }
+  .action-note {
+    color: #9ca3af;
+    font-size: 12px;
+    line-height: 1.45;
+    margin-top: 8px;
+  }
   .opportunity-list { display: flex; flex-direction: column; gap: 12px; }
   .opportunity-card {
     background: #0a0e1a;
@@ -876,7 +907,11 @@
         <div class="research-kicker">Your top picks</div>
         <div class="top-picks-grid" id="top-picks-grid"></div>
 
-        <div class="research-kicker">Opportunity deep dives</div>
+        <div class="research-kicker">Live action board</div>
+        <div class="action-board" id="action-board"></div>
+        <p class="action-note">This is the trading attention board: it ranks your priority names by Schwab-pasted live movement and flags clean 1-2%+ rises, big movers, cool-offs, and rebounds. Deep dives below are research context, not the alert engine.</p>
+
+        <div class="research-kicker">Research deep dives</div>
         <div class="opportunity-list" id="opportunity-list"></div>
       </div>
     </div>
@@ -1141,6 +1176,7 @@ const state = {
   autoTick: 0,
   topPicks: [],
   schwabOverrides: {},
+  intradayMarks: {},
   useSchwabOnly: true,
 };
 
@@ -1544,6 +1580,15 @@ function loadSchwabOverrides() {
   } catch (e) {
     state.schwabOverrides = {};
   }
+  try {
+    state.intradayMarks = JSON.parse(localStorage.getItem('intraday_marks') || '{}') || {};
+  } catch (e) {
+    state.intradayMarks = {};
+  }
+}
+
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
 }
 
 function parseSchwabOverrides(text) {
@@ -1591,6 +1636,28 @@ function applySchwabOverrides() {
   });
 }
 
+function recordIntradayMarks(quotes) {
+  const dayKey = todayKey();
+  Object.entries(quotes || {}).forEach(([sym, quote]) => {
+    if (!quote || !Number.isFinite(quote.price)) return;
+    const old = state.intradayMarks[sym];
+    const freshDay = !old || old.dayKey !== dayKey;
+    const firstPrice = freshDay ? quote.price : old.firstPrice;
+    const lowPrice = freshDay ? quote.price : Math.min(old.lowPrice ?? quote.price, quote.price);
+    const highPrice = freshDay ? quote.price : Math.max(old.highPrice ?? quote.price, quote.price);
+    state.intradayMarks[sym] = {
+      dayKey,
+      firstPrice,
+      lowPrice,
+      highPrice,
+      lastPrice: quote.price,
+      firstTime: freshDay ? Date.now() : old.firstTime,
+      lastTime: Date.now(),
+    };
+  });
+  try { localStorage.setItem('intraday_marks', JSON.stringify(state.intradayMarks)); } catch (e) {}
+}
+
 function renderSchwabOverrideSummary() {
   const el = document.getElementById('schwab-override-summary');
   const input = document.getElementById('schwab-override-input');
@@ -1618,8 +1685,15 @@ function getWatchSignal(m) {
     return { cls: 'neutral', text: 'Paste Schwab row to activate alert' };
   }
   const day = m.dayChg;
+  const fromFirst = m.fromFirstPastePct;
   const cooledByHistory = (m.r1m != null && m.r1m <= 0) || (m.pctFromHigh != null && m.pctFromHigh <= -5);
   const nearHigh = m.pctFromHigh != null && m.pctFromHigh > -1;
+  if (fromFirst != null && fromFirst >= 1 && day != null && day < 0) {
+    return { cls: 'alert', text: 'Alert: recovering while still red' };
+  }
+  if ((day != null && day >= 2) || (fromFirst != null && fromFirst >= 1.5)) {
+    return { cls: 'alert', text: 'Pay attention: clean upward move' };
+  }
   if (day != null && day >= 0.75 && cooledByHistory) {
     return { cls: 'alert', text: 'Alert: turning up after cool-off' };
   }
@@ -1627,7 +1701,7 @@ function getWatchSignal(m) {
     return { cls: 'wait', text: 'Strong but extended - wait for cool-off' };
   }
   if (day != null && day >= 1) {
-    return { cls: 'wait', text: 'Upward momentum - wait for setup' };
+    return { cls: 'alert', text: 'Early upward momentum' };
   }
   if (day != null && day <= -1) {
     return { cls: 'cool', text: 'Cooling off - watch for turn' };
@@ -1673,6 +1747,62 @@ function getOpportunity(symbol) {
   return RESEARCH_REPORT.opportunities.find(o => o.symbol === symbol);
 }
 
+function actionRank(m) {
+  if (!m || m.source !== 'Schwab pasted') return -999;
+  const day = m.dayChg ?? 0;
+  const fromFirst = m.fromFirstPastePct ?? 0;
+  const fromLow = m.fromLowSeenPct ?? 0;
+  let score = 0;
+  if (day >= 2) score += 100;
+  else if (day >= 1) score += 70;
+  else if (day >= 0.25) score += 35;
+  if (fromFirst >= 1.5) score += 80;
+  else if (fromFirst >= 1) score += 55;
+  if (fromLow >= 1.5) score += 50;
+  if (day < 0 && fromFirst >= 1) score += 90;
+  if (day <= -1) score -= 20;
+  return score + day;
+}
+
+function renderActionBoard() {
+  const el = document.getElementById('action-board');
+  if (!el) return;
+  const rows = PRIORITY_WATCH
+    .map(sym => {
+      const d = state.data[sym];
+      const m = d ? rowMetrics(d) : null;
+      const signal = getWatchSignal(m);
+      return { sym, d, m, signal, rank: actionRank(m) };
+    })
+    .sort((a, b) => b.rank - a.rank || (b.m?.dayChg ?? -99) - (a.m?.dayChg ?? -99));
+
+  if (!rows.some(r => r.m?.source === 'Schwab pasted')) {
+    el.innerHTML = '<div class="action-row"><div class="sym">WAIT</div><div class="reason">Paste Schwab rows first. Without Schwab live rows, the site cannot know what is moving right now.</div><div class="metric"></div><div class="metric"></div><div class="watch-signal neutral">No live broker feed</div></div>';
+    return;
+  }
+
+  el.innerHTML = rows.map(({ sym, m, signal }) => {
+    const day = m?.dayChg;
+    const fromFirst = m?.fromFirstPastePct;
+    const hot = signal.cls === 'alert';
+    const cls = hot ? 'hot' : signal.cls === 'cool' ? 'cool' : signal.cls === 'wait' ? 'watch' : '';
+    const reason = hot
+      ? 'Move is active now. Check chart, volume, news, and risk before acting.'
+      : signal.cls === 'cool'
+        ? 'Cooling off. Watch for stabilization and a turn back up.'
+        : signal.cls === 'wait'
+          ? 'Strong move, but do not chase blindly. Look for a pullback or clean hold.'
+          : 'No clean alert yet.';
+    return `<div class="action-row ${cls}">
+      <div class="sym">${escapeHtml(sym)}</div>
+      <div class="reason">${escapeHtml(reason)}</div>
+      <div class="metric">${m?.price != null ? '$' + fmtPrice(m.price) : 'Schwab needed'}</div>
+      <div class="metric ${day >= 0 ? 'gain' : 'loss'}">${day == null ? '-' : (day > 0 ? '+' : '') + day.toFixed(2) + '%'}</div>
+      <div class="watch-signal ${signal.cls}">${escapeHtml(signal.text)}</div>
+    </div>`;
+  }).join('');
+}
+
 function renderResearch() {
   applySchwabOverrides();
   const asof = document.getElementById('research-asof');
@@ -1712,6 +1842,8 @@ function renderResearch() {
       </div>`;
     }).join('');
   }
+
+  renderActionBoard();
 
   oppList.innerHTML = RESEARCH_REPORT.opportunities.map(o => {
     const sources = o.sources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`).join('');
@@ -1925,6 +2057,9 @@ function rowMetrics(d) {
   const high52 = closes52.length ? Math.max(...closes52) : null;
   const low52 = closes52.length ? Math.min(...closes52) : null;
   const pctFromHigh = high52 && livePrice ? ((livePrice - high52) / high52) * 100 : null;
+  const mark = state.intradayMarks[d.symbol] || null;
+  const fromFirstPastePct = mark?.firstPrice && livePrice ? ((livePrice - mark.firstPrice) / mark.firstPrice) * 100 : null;
+  const fromLowSeenPct = mark?.lowPrice && livePrice ? ((livePrice - mark.lowPrice) / mark.lowPrice) * 100 : null;
   const r1m = pctReturn(d.closes, 4);
   const r1y = pctReturn(d.closes, 52);
   const r3y = pctReturn(d.closes, 156);
@@ -1937,6 +2072,8 @@ function rowMetrics(d) {
     price: livePrice,
     source: hasSchwab ? 'Schwab pasted' : 'Schwab needed',
     dayChg,
+    fromFirstPastePct,
+    fromLowSeenPct,
     r1w: pctReturn(d.closes, 1),
     r1m, r1y, r3y,
     high52, low52, pctFromHigh,
@@ -2463,6 +2600,7 @@ document.getElementById('save-schwab-overrides').addEventListener('click', () =>
   const parsed = parseSchwabOverrides(input?.value || '');
   state.schwabOverrides = parsed;
   localStorage.setItem('schwab_overrides', JSON.stringify(parsed));
+  recordIntradayMarks(parsed);
   applySchwabOverrides();
   maybeNotifyTrendAlerts();
   render();
@@ -2471,7 +2609,9 @@ document.getElementById('save-schwab-overrides').addEventListener('click', () =>
 document.getElementById('clear-schwab-overrides').addEventListener('click', async () => {
   const oldSymbols = Object.keys(state.schwabOverrides || {});
   state.schwabOverrides = {};
+  state.intradayMarks = {};
   localStorage.removeItem('schwab_overrides');
+  localStorage.removeItem('intraday_marks');
   oldSymbols.forEach(sym => { delete state.data[sym]; });
   const input = document.getElementById('schwab-override-input');
   if (input) input.value = '';
@@ -2602,6 +2742,9 @@ document.getElementById('markets-strip').addEventListener('click', async e => {
 // ============================================================
 loadTopPicks();
 loadSchwabOverrides();
+if (Object.keys(state.schwabOverrides || {}).length && !Object.keys(state.intradayMarks || {}).length) {
+  recordIntradayMarks(state.schwabOverrides);
+}
 document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === state.tab));
 applyTabVisibility();
 render();
