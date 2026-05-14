@@ -2232,6 +2232,8 @@
       <div class="access-inner">
         <span class="access-label">Report link</span>
         <a class="dashboard-link" id="dashboard-link" href="">Open this dashboard</a>
+        <span class="access-label">Overnight tracker</span>
+        <a class="dashboard-link" href="overnight.html">Open hourly watchlist</a>
       </div>
     </div>
   </header>
@@ -2263,12 +2265,13 @@
   <script>
     const data = JSON.parse(document.getElementById("dashboard-data").textContent);
     const tabs = [
-      ["latest", "Latest"],
+      ["latest", "Overview"],
       ["brief", "Daily Brief"],
       ["movers", "Movers"],
       ["opportunities", "Opportunities"],
       ["watchlist", "Watchlist"],
       ["calendar", "Calendar"],
+      ["themes", "Themes"],
       ["sources", "Sources"]
     ];
     const state = { tab: "latest", query: "" };
@@ -2517,6 +2520,11 @@
       return `<section class="news-grid">${cards || empty("No matching watchlist items.")}</section>`;
     }
 
+    function renderThemes() {
+      const cards = entries("themes").map((entry) => renderStoryCard(entry, "Theme")).join("");
+      return `<section class="news-grid">${cards || empty("No matching themes.")}</section>`;
+    }
+
     function renderTimeline(limit = Infinity) {
       const items = entries("calendar").slice(0, limit);
       if (!items.length) return empty("No matching calendar items.");
@@ -2651,6 +2659,7 @@
         opportunities: renderOpportunities,
         watchlist: renderWatchlist,
         calendar: renderCalendar,
+        themes: renderThemes,
         sources: renderSources
       };
       document.getElementById("content").innerHTML = (views[state.tab] || renderLatest)();
