@@ -1,0 +1,781 @@
+{
+  "title": "Investment Research Command Center",
+  "generated_at": "2026-05-11T17:14:00-07:00",
+  "as_of": "May 11, 2026 after close PT / May 12, 2026 UTC refresh",
+  "market_read": {
+    "stance": "event-driven",
+    "summary": "The tape is being pulled by an AI and semiconductor leadership wave while macro risk is concentrated around the April CPI release and this week's inflation data. The opportunity set is not broad-market beta; it is catalyst-specific: AI infrastructure, optical networking, memory, Nvidia earnings setup, and a few sharp single-name earnings or deal reactions.",
+    "key_points": [
+      "AI infrastructure remains the strongest equity signal, with Nvidia, Micron, Intel, Qualcomm, and Lumentum all appearing in the latest mover set.",
+      "Inflation is the immediate macro gatekeeper: BLS scheduled April CPI for May 12 at 8:30 AM ET, followed by PPI on May 13.",
+      "Oil and energy-linked inflation risk are central to the rates debate after the March CPI jump was driven heavily by gasoline and energy.",
+      "Nvidia's May 20 earnings are becoming the next major AI-trade catalyst, with investors watching Blackwell/Rubin demand, hyperscaler capex, CPU ramps, margins, and custom-chip competition.",
+      "The market appears more event-driven than uniformly risk-on: strong AI and M&A names are rallying, while earnings disappointments and guidance misses are still being punished."
+    ]
+  },
+  "indices": [
+    {
+      "label": "Market regime",
+      "value": "Event-driven",
+      "change": "AI leadership + CPI risk",
+      "detail": "Latest refresh"
+    },
+    {
+      "label": "S&P 500 tone",
+      "value": "Record-area rally",
+      "change": "Earnings-led melt-up narrative",
+      "detail": "MarketWatch notes new bullish S&P target discussion"
+    },
+    {
+      "label": "Macro tripwire",
+      "value": "CPI",
+      "change": "May 12, 8:30 AM ET",
+      "detail": "BLS calendar"
+    },
+    {
+      "label": "AI catalyst",
+      "value": "NVDA earnings",
+      "change": "May 20 after close",
+      "detail": "MarketWatch / earnings calendars"
+    }
+  ],
+  "signals": [
+    {
+      "title": "AI infrastructure is the dominant leadership signal",
+      "severity": "positive",
+      "summary": "The latest mover set is clustered around semiconductors, memory, optical networking, and Nvidia's upcoming earnings. That breadth matters: leadership is no longer just GPU exposure, but memory, optical links, CPUs, and data-center buildout suppliers.",
+      "tickers": [
+        "NVDA",
+        "MU",
+        "INTC",
+        "QCOM",
+        "LITE",
+        "COHR",
+        "GLW"
+      ],
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Latest mover set showing AI/chip and optical-networking leadership"
+        },
+        {
+          "title": "Stocks to Watch: Moderna, Lumentum, Intel, Fox",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-11-2026/card/stocks-to-watch-moderna-intel-midcap-financial-qDw92ojiI2JH8bZvjhmR",
+          "publisher": "The Wall Street Journal",
+          "date": "2026-05-11",
+          "note": "Confirms Lumentum, Intel, Micron, Fox, and Moderna stock reactions"
+        },
+        {
+          "title": "Nvidia has added an Oracle's worth of market cap in just four trading days",
+          "url": "https://www.marketwatch.com/story/nvidia-has-added-an-oracles-worth-of-market-cap-in-just-four-trading-days-253f4fe8",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Frames Nvidia's recent rally and broader AI supply-chain read-through"
+        }
+      ]
+    },
+    {
+      "title": "Inflation data is the rates-risk gatekeeper",
+      "severity": "watch",
+      "summary": "BLS scheduled April CPI for May 12 and PPI for May 13. With March CPI already elevated by energy, the dashboard should treat every growth and semiconductor signal as conditional on whether rates stay contained.",
+      "tickers": [
+        "SPY",
+        "QQQ",
+        "IWM",
+        "TLT"
+      ],
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official May 2026 CPI, PPI, import/export price release schedule"
+        },
+        {
+          "title": "Consumer Price Index News Release - 2026 M03 Results",
+          "url": "https://www.bls.gov/news.release/cpi.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-04-10",
+          "note": "March CPI context: headline +0.9% month over month, energy +10.9%, gasoline +21.2%"
+        },
+        {
+          "title": "What to Expect From the April CPI Report",
+          "url": "https://www.kiplinger.com/investing/economy/cpi-report-april-2026-what-to-expect",
+          "publisher": "Kiplinger",
+          "date": "2026-05-10",
+          "note": "Consensus setup for April CPI amid energy-price pressure"
+        }
+      ]
+    },
+    {
+      "title": "Single-name reactions are still sharp",
+      "severity": "neutral",
+      "summary": "The latest tape is rewarding clean catalysts and punishing disappointments: Lumentum and Beazer surged on index inclusion and M&A, while Mosaic and Constellation Energy weakened on earnings quality or guidance concerns.",
+      "tickers": [
+        "LITE",
+        "BZH",
+        "MOS",
+        "CEG",
+        "MNDY",
+        "MRNA"
+      ],
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Mover details for Lumentum, Beazer, Mosaic, Constellation, Monday.com, and Moderna"
+        }
+      ]
+    }
+  ],
+  "movers": [
+    {
+      "ticker": "LITE",
+      "name": "Lumentum",
+      "price": "Latest source: not independently verified in this run",
+      "change": "+17%",
+      "volume": "Not sourced",
+      "catalyst": "Led the S&P 500 after selection to join the Nasdaq 100; optical networking peers also showed strength.",
+      "interpretation": "Index-inclusion buying plus AI/data-center optical demand makes this more than a one-day mechanical move. The risk is chasing a forced-flow pop without confirming sustainable demand and margin expansion.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Lumentum led the S&P 500 with a 17% gain"
+        },
+        {
+          "title": "Stocks to Watch: Moderna, Lumentum, Intel, Fox",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-11-2026/card/stocks-to-watch-moderna-intel-midcap-financial-qDw92ojiI2JH8bZvjhmR",
+          "publisher": "The Wall Street Journal",
+          "date": "2026-05-11",
+          "note": "Links move to data-center optical demand and Nasdaq 100 addition"
+        }
+      ]
+    },
+    {
+      "ticker": "QCOM",
+      "name": "Qualcomm",
+      "price": "Latest source: not independently verified in this run",
+      "change": "+8.4%",
+      "volume": "Not sourced",
+      "catalyst": "Chip strength and AI-chip optimism supported the move.",
+      "interpretation": "The market is widening the AI trade to edge, smartphone recovery, and custom silicon. The key follow-up is whether estimates move or this remains theme sympathy.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Qualcomm rose 8.4%"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "price": "Latest source: not independently verified in this run",
+      "change": "+6.5%",
+      "volume": "Not sourced",
+      "catalyst": "Memory names rallied with AI infrastructure demand and tight supply narratives.",
+      "interpretation": "Micron is the cleanest memory-cycle expression in this dashboard pass. The thesis depends on HBM pricing, disciplined supply, and hyperscaler capex durability.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Micron rose 6.5%"
+        },
+        {
+          "title": "Semiconductor Rally Drives S&P 500 Index Toward 7,450 as Breadth Weakens",
+          "url": "https://www.fxempire.com/forecasts/article/semiconductor-rally-drives-sp-500-index-toward-7450-as-breadth-weakens-1596710",
+          "publisher": "FXEmpire",
+          "date": "2026-05-08",
+          "note": "Attributes semiconductor rally to AI memory demand and tight supply"
+        }
+      ]
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel",
+      "price": "Latest source: not independently verified in this run",
+      "change": "+3.6%",
+      "volume": "Not sourced",
+      "catalyst": "Chip rally plus Apple chip-manufacturing news/speculation.",
+      "interpretation": "The market is paying for foundry optionality and AI-cycle catch-up. This is higher-risk than memory because the fundamental bridge requires manufacturing execution.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Intel rose 3.6% after Apple chip manufacturing news"
+        },
+        {
+          "title": "Stocks to Watch: Moderna, Lumentum, Intel, Fox",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-11-2026/card/stocks-to-watch-moderna-intel-midcap-financial-qDw92ojiI2JH8bZvjhmR",
+          "publisher": "The Wall Street Journal",
+          "date": "2026-05-11",
+          "note": "Confirms Intel and Micron rose almost 4% amid AI enthusiasm"
+        }
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "price": "Latest source: not independently verified in this run",
+      "change": "+2.0%",
+      "volume": "Not sourced",
+      "catalyst": "Closed at a record high ahead of May 20 earnings; MarketWatch notes a roughly 14% four-day rally and major market-cap expansion.",
+      "interpretation": "The setup is now catalyst-heavy into earnings. A good print likely needs confirmation across Blackwell/Rubin demand, hyperscaler capex, CPU expansion, margins, and custom-chip competition.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Nvidia rose 2% and closed at a record high ahead of May 20 earnings"
+        },
+        {
+          "title": "Nvidia has added an Oracle's worth of market cap in just four trading days",
+          "url": "https://www.marketwatch.com/story/nvidia-has-added-an-oracles-worth-of-market-cap-in-just-four-trading-days-253f4fe8",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Frames Nvidia's four-day rally and AI capex narrative"
+        }
+      ]
+    },
+    {
+      "ticker": "BZH",
+      "name": "Beazer Homes",
+      "price": "Latest source: not independently verified in this run",
+      "change": "+34%",
+      "volume": "Not sourced",
+      "catalyst": "Dream Finders Homes offered approximately $704 million for Beazer.",
+      "interpretation": "This is a deal-spread and housing-cycle read-through, not a broad homebuilder thesis by itself. Watch financing, regulatory timing, and whether the bid resets valuation for smaller builders.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Beazer rose 34% after Dream Finders' takeover offer"
+        }
+      ]
+    },
+    {
+      "ticker": "MNDY",
+      "name": "Monday.com",
+      "price": "$76.91 close in source",
+      "change": "+6.7%",
+      "volume": "Not sourced",
+      "catalyst": "Q1 earnings and revenue beat expectations, though shares faded from an intraday high.",
+      "interpretation": "This is a useful enterprise-software test case: strong near-term numbers, but the market is still debating AI disruption to acquisition channels and workflow software durability.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Monday.com rose 6.7% to $76.91 after Q1 beat"
+        }
+      ]
+    },
+    {
+      "ticker": "MRNA",
+      "name": "Moderna",
+      "price": "Latest source: not independently verified in this run",
+      "change": "-2.7%",
+      "volume": "Not sourced",
+      "catalyst": "Early hantavirus-treatment enthusiasm faded and shares closed lower.",
+      "interpretation": "Biotech headline sensitivity is high here. The dashboard should keep this as a watch item until clinical, regulatory, or commercial evidence becomes less speculative.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Moderna fell 2.7% after early gains"
+        },
+        {
+          "title": "Stocks to Watch: Moderna, Lumentum, Intel, Fox",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-11-2026/card/stocks-to-watch-moderna-intel-midcap-financial-qDw92ojiI2JH8bZvjhmR",
+          "publisher": "The Wall Street Journal",
+          "date": "2026-05-11",
+          "note": "Confirms Moderna fell nearly 3% despite hantavirus-treatment relevance"
+        }
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "name": "Memory and AI supply-chain broadening",
+      "ticker": "MU",
+      "setup": "Micron and other semiconductor names are rallying as the AI trade broadens from GPUs into HBM, memory, networking, semicap equipment, and data-center components.",
+      "mispricing": "The market may still be underestimating operating leverage if AI memory tightness persists and hyperscaler capex remains elevated through Nvidia's earnings cycle.",
+      "catalysts": [
+        "April CPI and PPI confirming or undermining rates backdrop",
+        "Nvidia earnings on May 20",
+        "Hyperscaler capex commentary",
+        "HBM pricing and supply updates"
+      ],
+      "bull_case": [
+        "AI buildout creates durable memory demand beyond near-term inventory cycles.",
+        "Tight supply supports pricing and margin expansion.",
+        "Nvidia earnings could validate capex durability across the supply chain."
+      ],
+      "bear_case": [
+        "Rising yields compress multiples before estimates can catch up.",
+        "Supply response or customer inventory digestion caps memory pricing.",
+        "AI capex expectations are already crowded and vulnerable to any guidance wobble."
+      ],
+      "disconfirming_evidence": [
+        "HBM spot or contract pricing weakens.",
+        "Hyperscaler capex language turns more cautious.",
+        "Nvidia guide points to bottlenecks or digestion rather than acceleration."
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Latest Micron and chip mover evidence"
+        },
+        {
+          "title": "Semiconductor Rally Drives S&P 500 Index Toward 7,450 as Breadth Weakens",
+          "url": "https://www.fxempire.com/forecasts/article/semiconductor-rally-drives-sp-500-index-toward-7450-as-breadth-weakens-1596710",
+          "publisher": "FXEmpire",
+          "date": "2026-05-08",
+          "note": "Earlier semiconductor rally context and breadth caveat"
+        }
+      ]
+    },
+    {
+      "name": "Optical networking as second-order AI beneficiary",
+      "ticker": "LITE",
+      "setup": "Lumentum surged on Nasdaq 100 inclusion and data-center optical demand, with optical peers also strong.",
+      "mispricing": "Investors may still be sorting which non-GPU infrastructure names have direct AI revenue pull-through rather than sympathy exposure.",
+      "catalysts": [
+        "Index inclusion flows",
+        "Data-center optical demand commentary",
+        "Peer results from Coherent and Corning",
+        "Cloud capex updates"
+      ],
+      "bull_case": [
+        "AI cluster networking intensity raises optical component demand.",
+        "Index inclusion improves liquidity and ownership base.",
+        "Peer strength suggests a broader demand pocket."
+      ],
+      "bear_case": [
+        "Index inclusion creates a temporary flow-driven overshoot.",
+        "Optical demand is cyclical and may be harder to forecast than GPU demand.",
+        "Margin or capacity constraints could blunt revenue upside."
+      ],
+      "disconfirming_evidence": [
+        "Post-inclusion reversal without new estimate revisions.",
+        "Data-center optical order commentary weakens.",
+        "Peers fail to confirm sustained demand."
+      ],
+      "confidence": "medium-low",
+      "sources": [
+        {
+          "title": "Stocks to Watch: Moderna, Lumentum, Intel, Fox",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-11-2026/card/stocks-to-watch-moderna-intel-midcap-financial-qDw92ojiI2JH8bZvjhmR",
+          "publisher": "The Wall Street Journal",
+          "date": "2026-05-11",
+          "note": "Connects Lumentum's move with data-center optical demand and Nasdaq 100 inclusion"
+        },
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Lumentum and optical peers' gains"
+        }
+      ]
+    },
+    {
+      "name": "Nvidia earnings as AI-trade truth serum",
+      "ticker": "NVDA",
+      "setup": "Nvidia has rallied sharply into its May 20 earnings report, making the print a key validation event for the AI complex.",
+      "mispricing": "The opportunity is not simply that Nvidia is strong; it is whether earnings commentary reprices the entire AI supply chain, especially memory, networking, CPUs, and power/cooling.",
+      "catalysts": [
+        "Nvidia Q1 FY2027 earnings after close on May 20",
+        "Blackwell and Rubin demand commentary",
+        "Hyperscaler capex and non-hyperscaler demand",
+        "Gross margin and supply-chain constraint updates"
+      ],
+      "bull_case": [
+        "Hyperscaler capex remains aggressive and broadens demand.",
+        "Blackwell/Rubin roadmap supports multi-year revenue visibility.",
+        "Margins remain resilient despite component constraints."
+      ],
+      "bear_case": [
+        "Expectations have risen quickly after the recent rally.",
+        "Custom ASIC competition from hyperscalers pressures terminal assumptions.",
+        "Memory, networking, or power bottlenecks delay revenue conversion."
+      ],
+      "disconfirming_evidence": [
+        "Guidance fails to clear elevated expectations.",
+        "Management flags customer digestion.",
+        "Gross margin outlook weakens materially."
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-10",
+          "note": "Lists key Nvidia earnings watch items"
+        },
+        {
+          "title": "Nvidia has added an Oracle's worth of market cap in just four trading days",
+          "url": "https://www.marketwatch.com/story/nvidia-has-added-an-oracles-worth-of-market-cap-in-just-four-trading-days-253f4fe8",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Quantifies recent rally and market-cap expansion"
+        }
+      ]
+    },
+    {
+      "name": "Small-cap homebuilder M&A read-through",
+      "ticker": "BZH",
+      "setup": "Beazer Homes jumped after Dream Finders Homes made a takeover offer, putting smaller homebuilder valuation and consolidation into focus.",
+      "mispricing": "The market may need to reprice subscale builders if strategic buyers see value despite a rates-sensitive housing backdrop.",
+      "catalysts": [
+        "Deal response from Beazer",
+        "Financing terms",
+        "Housing-rate backdrop after CPI",
+        "Peer valuation reaction"
+      ],
+      "bull_case": [
+        "Consolidation premium supports other smaller builders.",
+        "Strategic buyers may value land, backlog, and local scale differently from public markets.",
+        "Any easing in rates would improve sentiment."
+      ],
+      "bear_case": [
+        "High mortgage rates and CPI risk pressure housing demand.",
+        "Deal may be idiosyncratic rather than sector-wide.",
+        "Financing or board resistance may limit closing certainty."
+      ],
+      "disconfirming_evidence": [
+        "Peers do not react.",
+        "Offer terms are rejected without improved bid.",
+        "Inflation data pushes rates higher."
+      ],
+      "confidence": "low-medium",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Reports Beazer's 34% move and Dream Finders takeover offer"
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "name": "April CPI",
+      "ticker": "",
+      "why": "This is the key rates and multiple event for the current dashboard. A hot print could pressure long-duration growth even if AI fundamentals stay strong.",
+      "next_event": "Consumer Price Index for April 2026",
+      "date": "2026-05-12 8:30 AM ET",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official CPI release schedule"
+        }
+      ]
+    },
+    {
+      "name": "April PPI",
+      "ticker": "",
+      "why": "Producer inflation can confirm whether CPI pressure is broadening or mostly energy-driven.",
+      "next_event": "Producer Price Index for April 2026",
+      "date": "2026-05-13 8:30 AM ET",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official PPI release schedule"
+        }
+      ]
+    },
+    {
+      "name": "Nvidia earnings",
+      "ticker": "NVDA",
+      "why": "The print can validate or puncture the AI infrastructure chain, especially memory, optical networking, CPU attach, and capex-exposed suppliers.",
+      "next_event": "Q1 FY2027 earnings after close",
+      "date": "2026-05-20",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-10",
+          "note": "Nvidia earnings watch items"
+        },
+        {
+          "title": "Nvidia Earnings Date and Reports 2026",
+          "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/earnings/",
+          "publisher": "MarketBeat",
+          "date": "2026-05-07",
+          "note": "Earnings date and prior-quarter context"
+        }
+      ]
+    },
+    {
+      "name": "Rates-sensitive software",
+      "ticker": "MNDY",
+      "why": "Monday.com's beat was rewarded, but the AI disruption debate remains central for workflow and enterprise software names.",
+      "next_event": "Post-earnings estimate revisions and AI commentary",
+      "date": "This week",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Monday.com Q1 beat and AI-disruption concern"
+        }
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-05-12",
+      "time": "8:30 AM ET / 5:30 AM PT",
+      "event": "April CPI and Real Earnings",
+      "market_relevance": "Immediate rates and growth-multiple event; especially important for long-duration AI, software, housing, and small caps.",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official release calendar"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "time": "8:30 AM ET / 5:30 AM PT",
+      "event": "April Producer Price Index",
+      "market_relevance": "Checks whether inflation pressure is flowing through producer channels after energy shock.",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official PPI release calendar"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "time": "8:30 AM ET / 5:30 AM PT",
+      "event": "U.S. Import and Export Price Indexes",
+      "market_relevance": "Useful for tariff, dollar, supply-chain, and inflation pass-through read-throughs.",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official release calendar"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "After market close",
+      "event": "Nvidia earnings",
+      "market_relevance": "Potential validation event for AI infrastructure, memory, optical networking, custom silicon, and data-center capex.",
+      "sources": [
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-10",
+          "note": "Nvidia earnings setup"
+        }
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "name": "AI infrastructure broadening",
+      "summary": "The investable story is expanding from Nvidia-only exposure into HBM, optical networking, CPUs, semicap equipment, servers, and power/cooling constraints.",
+      "exposure": [
+        "Semiconductors",
+        "Memory",
+        "Optical networking",
+        "Servers",
+        "Data centers",
+        "Power and cooling"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Nvidia has added an Oracle's worth of market cap in just four trading days",
+          "url": "https://www.marketwatch.com/story/nvidia-has-added-an-oracles-worth-of-market-cap-in-just-four-trading-days-253f4fe8",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "AI capex and supply-chain framing"
+        },
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Latest stock-level evidence"
+        }
+      ]
+    },
+    {
+      "name": "Inflation versus multiples",
+      "summary": "The core macro tension is whether inflation data lets the earnings and AI melt-up continue or forces yields higher enough to compress long-duration equity multiples.",
+      "exposure": [
+        "Rates",
+        "Growth equities",
+        "Software",
+        "Small caps",
+        "Housing",
+        "Consumer discretionary"
+      ],
+      "confidence": "medium-high",
+      "sources": [
+        {
+          "title": "Consumer Price Index News Release - 2026 M03 Results",
+          "url": "https://www.bls.gov/news.release/cpi.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-04-10",
+          "note": "March CPI energy shock context"
+        },
+        {
+          "title": "What to Expect From the April CPI Report",
+          "url": "https://www.kiplinger.com/investing/economy/cpi-report-april-2026-what-to-expect",
+          "publisher": "Kiplinger",
+          "date": "2026-05-10",
+          "note": "April CPI expectations and Fed implication"
+        }
+      ]
+    },
+    {
+      "name": "Catalyst-specific dispersion",
+      "summary": "The latest market action is not simply broad risk appetite; idiosyncratic catalysts such as index inclusion, M&A, earnings beats, guidance shortfalls, and policy/macro data are driving large differences across stocks.",
+      "exposure": [
+        "Event-driven equities",
+        "Earnings revisions",
+        "M&A",
+        "Guidance risk",
+        "Index inclusion"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+          "publisher": "Barron's",
+          "date": "2026-05-11",
+          "note": "Single-name catalyst dispersion"
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "title": "These Stocks Are Today's Movers: Nvidia, Lumentum, Intel, Micron, Qualcomm, Tesla, Moderna, Circle Internet, and More",
+      "url": "https://www.barrons.com/articles/stock-movers-47067d8d",
+      "publisher": "Barron's",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "Stocks to Watch: Moderna, Lumentum, Intel, Fox",
+      "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-11-2026/card/stocks-to-watch-moderna-intel-midcap-financial-qDw92ojiI2JH8bZvjhmR",
+      "publisher": "The Wall Street Journal",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "Nvidia has added an Oracle's worth of market cap in just four trading days",
+      "url": "https://www.marketwatch.com/story/nvidia-has-added-an-oracles-worth-of-market-cap-in-just-four-trading-days-253f4fe8",
+      "publisher": "MarketWatch",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+      "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+      "publisher": "MarketWatch",
+      "date": "2026-05-10"
+    },
+    {
+      "title": "Schedule of Selected Releases for May 2026",
+      "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-06"
+    },
+    {
+      "title": "Consumer Price Index News Release - 2026 M03 Results",
+      "url": "https://www.bls.gov/news.release/cpi.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-04-10"
+    },
+    {
+      "title": "What to Expect From the April CPI Report",
+      "url": "https://www.kiplinger.com/investing/economy/cpi-report-april-2026-what-to-expect",
+      "publisher": "Kiplinger",
+      "date": "2026-05-10"
+    },
+    {
+      "title": "Semiconductor Rally Drives S&P 500 Index Toward 7,450 as Breadth Weakens",
+      "url": "https://www.fxempire.com/forecasts/article/semiconductor-rally-drives-sp-500-index-toward-7450-as-breadth-weakens-1596710",
+      "publisher": "FXEmpire",
+      "date": "2026-05-08"
+    }
+  ],
+  "freshness": {
+    "research_run": {
+      "as_of": "May 11, 2026 5:14 PM PT",
+      "status": "current manual refresh"
+    },
+    "prices": {
+      "as_of": "Latest sourced mover percentages from May 11 articles; live quote API was unavailable in this run",
+      "status": "partial"
+    },
+    "news": {
+      "as_of": "May 11, 2026 after close",
+      "status": "current"
+    },
+    "macro_calendar": {
+      "as_of": "BLS May 2026 schedule",
+      "status": "current"
+    },
+    "theses": {
+      "as_of": "Built from latest source set",
+      "status": "current"
+    }
+  }
+}

@@ -1,0 +1,1429 @@
+{
+  "title": "Daily Institutional Market Research Dashboard",
+  "generated_at": "2026-05-13T05:45:24-07:00",
+  "as_of": "May 13, 2026 5:45 AM PT / 8:45 AM ET, premarket refresh after CPI and around scheduled PPI release",
+  "market_read": {
+    "stance": "event-driven",
+    "headline": "Hot Inflation Meets a Renewed AI Supply-Chain Bid",
+    "summary": "The tape is event-driven rather than cleanly risk-on: S&P 500 and Nasdaq futures are firming after the prior day's CPI/rates shock, but the durable constraints are still inflation, oil, Treasury supply, and Fed uncertainty. The clearest opportunity set is dispersion inside AI infrastructure: memory, optical, custom silicon, and China-access optionality are being repriced while upcoming Cisco, Cerebras, Fervo, Treasury, and Nvidia events can quickly disconfirm the move.",
+    "key_points": [
+      "Premarket sources show S&P 500 futures modestly higher while Dow futures are mixed; Barron's reported S&P 500 futures +0.19%, Dow futures -0.29%, VIX futures -2.06%, and the 10-year yield near 4.469%.",
+      "BLS reported April CPI +0.6% month over month and +3.8% year over year on May 12, with energy up 17.9% year over year; that keeps the rates backdrop restrictive.",
+      "The accessible BLS PPI page still showed March data and a May 13 scheduled release, so April PPI is treated as pending/stale until the official April release is reachable.",
+      "The latest FOMC statement kept the fed funds target at 3.50%-3.75% and cited elevated inflation and Middle East uncertainty; Kevin Warsh's Fed-board confirmation adds policy-transition uncertainty.",
+      "AI/chip leadership broadened in premarket: Reuters-linked coverage pointed to Nvidia, AMD, Intel, Qualcomm, Micron, optical, and storage strength as Jensen Huang joined the China delegation and memory supply tightened.",
+      "The IPO window is a major capital-markets test: Fervo is set to debut today after upsizing terms, while Cerebras is expected to price today and trade May 14 after materially raising its range.",
+      "Live price capture was incomplete: the finance quote tool returned no usable data, so this dashboard uses source-reported delayed/overnight quotes and explicitly labels missing or delayed price fields."
+    ],
+    "what_changed_since_prior_snapshot": [
+      "Shifted from May 12 after-close CPI/auction stress to May 13 premarket AI/chip rebound and China-policy optionality.",
+      "Added current IPO/restructuring focus on Fervo's upsized May 13 IPO, Cerebras's upsized May 14 listing, and Spirit's restructuring as a stale watch item requiring confirmation.",
+      "Added explicit failed-live-price and pending-PPI freshness warnings instead of carrying forward stale precision."
+    ],
+    "research_frame": "Scenario analysis and market research for decision support only, not personalized investment advice."
+  },
+  "indices": [
+    {
+      "label": "S&P 500 futures",
+      "value": "+0.19%",
+      "change": "Premarket",
+      "detail": "Barron's premarket snapshot; exact live quote not independently pulled"
+    },
+    {
+      "label": "Dow futures",
+      "value": "-0.29%",
+      "change": "Premarket",
+      "detail": "Mixed tape versus growth/AI strength"
+    },
+    {
+      "label": "VIX futures",
+      "value": "-2.06%",
+      "change": "Lower",
+      "detail": "Volatility eased in the premarket snapshot"
+    },
+    {
+      "label": "10-year Treasury yield",
+      "value": "4.469%",
+      "change": "Slightly lower",
+      "detail": "Still high enough to constrain duration-sensitive equities"
+    },
+    {
+      "label": "WTI crude",
+      "value": "$101.07",
+      "change": "-0.10%",
+      "detail": "Third-party morning snapshot; oil remains the CPI transmission channel"
+    },
+    {
+      "label": "Gold",
+      "value": "$4,712",
+      "change": "+0.18%",
+      "detail": "Safe-haven bid remains relevant while Middle East risk persists"
+    },
+    {
+      "label": "Fed funds target",
+      "value": "3.50%-3.75%",
+      "change": "Held Apr. 29",
+      "detail": "FOMC cited elevated inflation and Middle East uncertainty"
+    },
+    {
+      "label": "April CPI",
+      "value": "3.8% YoY",
+      "change": "+0.6% MoM",
+      "detail": "Energy drove a large share of the monthly increase"
+    }
+  ],
+  "signals": [
+    {
+      "title": "Inflation keeps the Fed and rates as the gating variable",
+      "severity": "negative",
+      "summary": "April CPI accelerated to 3.8% year over year and core CPI rose 0.4% month over month. With the Fed on hold at 3.50%-3.75%, equities can rally on AI catalysts, but duration and multiple expansion remain vulnerable to PPI, retail sales, and Treasury supply.",
+      "tickers": [
+        "SPY",
+        "QQQ",
+        "IWM",
+        "TLT"
+      ],
+      "sources": [
+        {
+          "title": "Consumer Price Index Summary - 2026 M04 Results",
+          "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Primary source for April CPI headline, core, energy, food, and shelter detail"
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Primary source for current policy stance and inflation uncertainty language"
+        }
+      ]
+    },
+    {
+      "title": "PPI is the immediate macro data risk",
+      "severity": "watch",
+      "summary": "The April PPI release is scheduled for May 13 at 8:30 AM ET, but the accessible BLS release still showed March data during this run. Treat the section as pending: a hot PPI would extend the CPI shock; a soft one would reduce rates stress but may not fully offset oil-driven CPI pressure.",
+      "tickers": [
+        "SPY",
+        "QQQ",
+        "DXY",
+        "TLT"
+      ],
+      "sources": [
+        {
+          "title": "Schedule of Releases for the Producer Price Index",
+          "url": "https://www.bls.gov/schedule/news_release/ppi.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Official release schedule for April 2026 PPI"
+        },
+        {
+          "title": "Producer Price Index Home",
+          "url": "https://www.bls.gov/ppi/",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Accessible page still showed March latest numbers during this run"
+        }
+      ]
+    },
+    {
+      "title": "AI infrastructure is broadening beyond Nvidia",
+      "severity": "positive",
+      "summary": "Premarket reporting pointed to strength in Micron, Sandisk, Western Digital, Seagate, Coherent, Lumentum, Corning, Marvell, Intel, AMD, Qualcomm, and Nvidia. The mechanism is a mix of memory tightness, optical interconnect demand, China-trade optionality, and analyst target hikes.",
+      "tickers": [
+        "NVDA",
+        "AMD",
+        "MU",
+        "SNDK",
+        "WDC",
+        "STX",
+        "COHR",
+        "LITE",
+        "GLW",
+        "MRVL",
+        "QCOM",
+        "INTC"
+      ],
+      "sources": [
+        {
+          "title": "AI chip stocks surge again as Nvidia's Huang joins Trump on visit to China",
+          "url": "https://finance.yahoo.com/news/ai-chip-stocks-surge-again-114249160.html",
+          "publisher": "Investing.com via Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Premarket AI chip, memory, optical, and storage move detail"
+        },
+        {
+          "title": "AI Stocks Nvidia, AMD, Broadcom Nab Price-Target Hikes",
+          "url": "https://www.investors.com/news/technology/ai-stocks-nvidia-amd-broadcom-price-target-hikes/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-13",
+          "note": "Street price-target hikes and AI demand commentary for NVDA, AMD, AVGO, INTC, DELL, and SMCI"
+        }
+      ]
+    },
+    {
+      "title": "China trip creates policy optionality for semis",
+      "severity": "watch",
+      "summary": "Reuters-linked reporting said Nvidia CEO Jensen Huang joined President Trump's China delegation, with H200 China sales still constrained by permissions. This is a catalyst for optionality, not a confirmed policy change; the disconfirming evidence would be no movement on export approvals or rare-earth concessions.",
+      "tickers": [
+        "NVDA",
+        "QCOM",
+        "MU",
+        "INTC",
+        "AMD",
+        "TSM"
+      ],
+      "sources": [
+        {
+          "title": "Nvidia's Jensen Huang joins Trump's China visit",
+          "url": "https://ca.investing.com/news/stock-market-news/nvidias-jensen-huang-joins-trumps-china-visit-4632830",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-13",
+          "note": "Reported Huang participation and H200 China context"
+        },
+        {
+          "title": "S&P 500, Nasdaq futures rise ahead of key data, Trump's China visit",
+          "url": "https://za.investing.com/news/stock-market-news/sp-500-nasdaq-futures-rise-ahead-of-key-data-trumps-china-visit-4276387",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-13",
+          "note": "Market framing around China visit, rare-earth truce extension, and futures"
+        }
+      ]
+    },
+    {
+      "title": "IPO window is testing risk appetite outside mega-cap tech",
+      "severity": "watch",
+      "summary": "Fervo's geothermal IPO and Cerebras's AI-chip IPO are both upsized versus earlier terms. Strong opens would confirm investor appetite for energy-transition and AI-infrastructure new issues; weak aftermarket trading would warn that public buyers are resisting high-growth valuation resets.",
+      "tickers": [
+        "FRVO",
+        "CBRS",
+        "IPO"
+      ],
+      "sources": [
+        {
+          "title": "Fervo Energy Announces Upsized Proposed Initial Public Offering",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/fervo-energy-announces-upsized-proposed-121000577.html",
+          "publisher": "Fervo Energy via GlobeNewswire/Yahoo Finance",
+          "date": "2026-05-11",
+          "note": "Primary company announcement for upsized FRVO offering"
+        },
+        {
+          "title": "Cerebras Boosts IPO Price, Seeking to Raise $4.8 Billion",
+          "url": "https://www.wsj.com/tech/ai/cerebras-boosts-ipo-price-seeking-to-raise-4-8-billion-2e202c02",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-12",
+          "note": "Reported Cerebras upsized range and listing timing"
+        }
+      ]
+    },
+    {
+      "title": "Cisco is the after-close AI networking test",
+      "severity": "watch",
+      "summary": "Cisco reports after the close with options implying a large post-earnings move and investors focused on AI orders, supply shortages, margins, and full-year outlook. A clean print would support the networking leg of the AI infrastructure trade; a guide-down would challenge the broadening thesis.",
+      "tickers": [
+        "CSCO",
+        "ANET",
+        "MRVL",
+        "AVGO",
+        "GLW"
+      ],
+      "sources": [
+        {
+          "title": "How Much Is Cisco Stock Expected to Move After Earnings This Week?",
+          "url": "https://www.investopedia.com/how-much-cisco-stock-is-expected-to-move-after-earnings-csco-11969558",
+          "publisher": "Investopedia",
+          "date": "2026-05-13",
+          "note": "Options-implied move and Cisco earnings expectations"
+        },
+        {
+          "title": "Cisco (CSCO) Q3 FY26 Earnings Preview: The May 13 AI Test",
+          "url": "https://www.techi.com/cisco-csco-q3-fy26-earnings-preview-may-13/",
+          "publisher": "TECHi",
+          "date": "2026-05-11",
+          "note": "AI order and guidance setup"
+        }
+      ]
+    }
+  ],
+  "movers": [
+    {
+      "ticker": "NXT",
+      "name": "Nextpower Inc. Class A",
+      "price": "Live quote unavailable",
+      "change": "+14.3% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Led Barron's premarket gainer screen as futures firmed.",
+      "interpretation": "Screen-driven momentum item; needs primary catalyst verification before treating as fundamental.",
+      "sources": [
+        {
+          "title": "S&P 500 Futures Up in Premarket Trading; Nextpower, Tower Semiconductor Lead",
+          "url": "https://www.barrons.com/articles/s-p-500-futures-up-in-premarket-trading-nextpower-tower-semiconductor-lead-8685e830",
+          "publisher": "Barron's",
+          "date": "2026-05-13",
+          "note": "Premarket gainer list and index context"
+        }
+      ]
+    },
+    {
+      "ticker": "TSEM",
+      "name": "Tower Semiconductor",
+      "price": "Live quote unavailable",
+      "change": "+13.2% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Semiconductor strength and premarket gainer leadership.",
+      "interpretation": "Potential beneficiary of renewed semiconductor risk appetite; needs company-specific catalyst check.",
+      "sources": [
+        {
+          "title": "S&P 500 Futures Up in Premarket Trading; Nextpower, Tower Semiconductor Lead",
+          "url": "https://www.barrons.com/articles/s-p-500-futures-up-in-premarket-trading-nextpower-tower-semiconductor-lead-8685e830",
+          "publisher": "Barron's",
+          "date": "2026-05-13",
+          "note": "Premarket gainer list"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "price": "Live quote unavailable",
+      "change": "+5.4% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Memory supply tightness after Samsung labor talks collapsed, plus AI infrastructure demand.",
+      "interpretation": "Fundamental read-through is positive for HBM and memory pricing, but the setup is cyclical and can reverse if supply normalizes or AI capex slows.",
+      "sources": [
+        {
+          "title": "AI chip stocks surge again as Nvidia's Huang joins Trump on visit to China",
+          "url": "https://finance.yahoo.com/news/ai-chip-stocks-surge-again-114249160.html",
+          "publisher": "Investing.com via Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Premarket Micron move and Samsung/SK Hynix supply context"
+        }
+      ]
+    },
+    {
+      "ticker": "COHR",
+      "name": "Coherent",
+      "price": "Live quote unavailable",
+      "change": "+6.7% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Optical and photonic component makers rallied as AI data-center interconnect demand gained attention.",
+      "interpretation": "Second-order AI infrastructure exposure with more valuation sensitivity than direct GPU leaders; watch Cisco and hyperscaler capex commentary.",
+      "sources": [
+        {
+          "title": "AI chip stocks surge again as Nvidia's Huang joins Trump on visit to China",
+          "url": "https://finance.yahoo.com/news/ai-chip-stocks-surge-again-114249160.html",
+          "publisher": "Investing.com via Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Premarket optical component move"
+        }
+      ]
+    },
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "price": "$220.78 close May 12; $223.90 overnight Yahoo snapshot",
+      "change": "+1.41% overnight / roughly +2% premarket by news reports",
+      "volume": "157.9M May 12 Yahoo volume",
+      "catalyst": "Jensen Huang joined the China delegation; analysts raised price targets into May 20 earnings.",
+      "interpretation": "China optionality and GB300/Blackwell demand keep the bull case alive, but the setup is crowded and the May 20 guide is the real validation event.",
+      "sources": [
+        {
+          "title": "NVIDIA Corporation (NVDA) Stock Price, News, Quote & History",
+          "url": "https://finance.yahoo.com/quote/NVDA/",
+          "publisher": "Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Delayed close and overnight quote snapshot"
+        },
+        {
+          "title": "AI Stocks Nvidia, AMD, Broadcom Nab Price-Target Hikes",
+          "url": "https://www.investors.com/news/technology/ai-stocks-nvidia-amd-broadcom-price-target-hikes/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-13",
+          "note": "Analyst target-hike context"
+        }
+      ]
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices",
+      "price": "$448.29 close May 12 TECHi/Yahoo-derived snapshot",
+      "change": "+1.8% to +2.9% premarket by reports",
+      "volume": "38.17M May 12 Yahoo-derived volume",
+      "catalyst": "AI chip rally and Mizuho target hike after recent earnings-driven reset.",
+      "interpretation": "AMD remains the highest-signal non-Nvidia accelerator debate: upside needs MI-series data-center execution, while the bear case is valuation after a sharp recent rerating.",
+      "sources": [
+        {
+          "title": "Advanced Micro Devices, Inc. (AMD) Stock Price, Quote, Chart & Forecast",
+          "url": "https://www.techi.com/quote/AMD/",
+          "publisher": "TECHi",
+          "date": "2026-05-13",
+          "note": "Delayed quote and profile data"
+        },
+        {
+          "title": "Intel, AMD, Qualcomm Stocks Rise as AI Chip Rally Reignites",
+          "url": "https://www.barrons.com/articles/intel-stock-price-qualcomm-amd-chips-f4cb5cfc",
+          "publisher": "Barron's",
+          "date": "2026-05-13",
+          "note": "Premarket AMD move and AI-chip rally framing"
+        }
+      ]
+    },
+    {
+      "ticker": "QCOM",
+      "name": "Qualcomm",
+      "price": "Live quote unavailable",
+      "change": "+3.7% to +4.0% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Rebound after the prior day's sharp drop, supported by China-trip sentiment and data-center processor optionality.",
+      "interpretation": "A tactical rebound more than a clean fundamental reset; confirmation requires evidence that data-center expansion offsets smartphone pressure.",
+      "sources": [
+        {
+          "title": "Intel, AMD, Qualcomm Stocks Rise as AI Chip Rally Reignites",
+          "url": "https://www.barrons.com/articles/intel-stock-price-qualcomm-amd-chips-f4cb5cfc",
+          "publisher": "Barron's",
+          "date": "2026-05-13",
+          "note": "Qualcomm rebound and data-center processor context"
+        }
+      ]
+    },
+    {
+      "ticker": "WMT",
+      "name": "Walmart",
+      "price": "Live quote unavailable",
+      "change": "Slipped premarket by news reports",
+      "volume": "Not independently verified",
+      "catalyst": "Reported layoff or relocation of about 1,000 corporate workers as global tech/product teams are reorganized.",
+      "interpretation": "Margin-efficiency and tech-platform story, but not an obvious positive if it signals complexity or demand pressure ahead of retail-sales data.",
+      "sources": [
+        {
+          "title": "Read the memo: Walmart cuts or reorganizes 1,000 jobs",
+          "url": "https://www.businessinsider.com/read-the-memo-walmart-cuts-reorganizes-1000-jobs-2026-5",
+          "publisher": "Business Insider",
+          "date": "2026-05-13",
+          "note": "Reported Walmart job cuts/reorganization"
+        },
+        {
+          "title": "Stocks to Watch Wednesday: Nvidia, Walmart, Micron, Samsung",
+          "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-05-13-2026/card/stocks-to-watch-wednesday-nvidia-walmart-micron-samsung-cjmvEKA85Qj64XvhyuO6",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-13",
+          "note": "Premarket Walmart stock-reaction context"
+        }
+      ]
+    },
+    {
+      "ticker": "LOAR",
+      "name": "Loar Holdings",
+      "price": "Live quote unavailable",
+      "change": "-9.9% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Listed among the largest premarket decliners.",
+      "interpretation": "Risk-off or company-specific pressure; needs filing/earnings check before treating as a durable short thesis.",
+      "sources": [
+        {
+          "title": "S&P 500 Futures Up in Premarket Trading; Nextpower, Tower Semiconductor Lead",
+          "url": "https://www.barrons.com/articles/s-p-500-futures-up-in-premarket-trading-nextpower-tower-semiconductor-lead-8685e830",
+          "publisher": "Barron's",
+          "date": "2026-05-13",
+          "note": "Premarket decliner list"
+        }
+      ]
+    },
+    {
+      "ticker": "REZI",
+      "name": "Resideo Technologies",
+      "price": "Live quote unavailable",
+      "change": "-8.8% premarket",
+      "volume": "Not independently verified",
+      "catalyst": "Listed among the largest premarket decliners.",
+      "interpretation": "Potential housing/industrial sensitivity in a high-rate tape; needs company-specific source follow-up.",
+      "sources": [
+        {
+          "title": "S&P 500 Futures Up in Premarket Trading; Nextpower, Tower Semiconductor Lead",
+          "url": "https://www.barrons.com/articles/s-p-500-futures-up-in-premarket-trading-nextpower-tower-semiconductor-lead-8685e830",
+          "publisher": "Barron's",
+          "date": "2026-05-13",
+          "note": "Premarket decliner list"
+        }
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "name": "Memory and optical AI supply chain",
+      "ticker": "MU / SNDK / WDC / STX / COHR / LITE / GLW / MRVL",
+      "setup": "AI infrastructure demand is broadening from GPUs into HBM, storage, optics, networking, and interconnect suppliers.",
+      "mispricing": "The market may still be underpricing second-order beneficiaries if memory shortages and optical bottlenecks persist through the next hyperscaler capex cycle.",
+      "catalysts": [
+        "Cisco earnings after the May 13 close",
+        "Nvidia earnings on May 20",
+        "Samsung labor/supply updates",
+        "Hyperscaler capex commentary and AI revenue conversion"
+      ],
+      "bull_case": [
+        "Samsung/SK Hynix/Micron tightness supports HBM and memory pricing.",
+        "Optical interconnect demand expands as AI clusters scale.",
+        "Analyst target hikes show Street estimates are still moving higher for AI infrastructure leaders.",
+        "China-trip optionality could reduce policy overhang for selected semiconductor names."
+      ],
+      "bear_case": [
+        "A hot PPI or weak Treasury auction pushes yields higher and compresses AI multiples.",
+        "Hyperscalers may slow capex if AI monetization lags infrastructure spend.",
+        "Supply disruptions can help near-term pricing but damage customer delivery schedules.",
+        "Secondary AI names can rerate faster than earnings revisions justify."
+      ],
+      "disconfirming_evidence": [
+        "Cisco guides cautiously on AI orders or margins.",
+        "Nvidia May 20 guidance disappoints or points to customer digestion.",
+        "Memory spot pricing weakens or Samsung labor risk resolves quickly.",
+        "The Trump-Xi summit produces no meaningful semiconductor or rare-earth easing."
+      ],
+      "confidence": "medium",
+      "commentary_mosaic": [
+        {
+          "source_group": "Street analysts",
+          "stance": "bullish but selective",
+          "main_argument": "IBD reported target hikes for NVDA, AMD, AVGO, INTC, DELL, and SMCI tied to GB300, agentic AI, and AI revenue growth.",
+          "evidence_quality": "reported analyst commentary",
+          "what_it_implies": "Estimate revisions still favor core AI infrastructure, but selectivity matters."
+        },
+        {
+          "source_group": "Market reporters",
+          "stance": "constructive near term",
+          "main_argument": "Premarket move breadth across memory, storage, and optical names suggests investors are rotating into bottleneck suppliers.",
+          "evidence_quality": "high-quality market report",
+          "what_it_implies": "AI trade is broadening, not only chasing Nvidia."
+        },
+        {
+          "source_group": "Social/retail proxy",
+          "stance": "bullish but lower-confidence",
+          "main_argument": "Stocktwits coverage from May 10 framed NVDA, MU, and QCOM highs as investor confidence in AI infrastructure, memory, and edge computing.",
+          "evidence_quality": "forum/social sentiment proxy",
+          "what_it_implies": "Retail sentiment supports the rally but should not override earnings evidence."
+        }
+      ],
+      "sources": [
+        {
+          "title": "AI chip stocks surge again as Nvidia's Huang joins Trump on visit to China",
+          "url": "https://finance.yahoo.com/news/ai-chip-stocks-surge-again-114249160.html",
+          "publisher": "Investing.com via Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Premarket memory/optical/storage rally"
+        },
+        {
+          "title": "AI Stocks Nvidia, AMD, Broadcom Nab Price-Target Hikes",
+          "url": "https://www.investors.com/news/technology/ai-stocks-nvidia-amd-broadcom-price-target-hikes/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-13",
+          "note": "Street target-hike mosaic"
+        },
+        {
+          "title": "NVDA, MU, QCOM Stocks Hit 52-Week Highs Last Week",
+          "url": "https://stocktwits.com/news-articles/markets/equity/nvda-mu-qcom-stocks-hit-52-week-highs-last-week-what-is-behind-the-surge/cZX9AfGReW9",
+          "publisher": "Stocktwits",
+          "date": "2026-05-10",
+          "note": "Retail/social sentiment proxy for AI infrastructure narrative"
+        }
+      ]
+    },
+    {
+      "name": "Nvidia China optionality into May 20 earnings",
+      "ticker": "NVDA",
+      "setup": "Nvidia is near record levels with delayed/overnight sources showing strength while CEO Jensen Huang joined the China delegation.",
+      "mispricing": "The market may be giving Nvidia some value for reopening China access, but the more durable value driver is whether Blackwell/GB300 demand converts into a stronger Q2 guide.",
+      "catalysts": [
+        "Trump-Xi semiconductor/export-control headlines",
+        "May 20 Nvidia fiscal Q1 FY2027 results",
+        "Hyperscaler capex commentary",
+        "Any update on H200/H20 China restrictions"
+      ],
+      "bull_case": [
+        "GB300/Blackwell demand and supply-chain commitments support another estimate raise.",
+        "A China access improvement would be incremental upside rather than the core thesis.",
+        "Nvidia's systems, networking, and software stack can defend margin versus custom silicon."
+      ],
+      "bear_case": [
+        "Expectations are elevated after record-close behavior and target hikes.",
+        "Custom ASICs and Broadcom/Cerebras alternatives pressure long-run multiples.",
+        "Export controls may remain unchanged despite delegation optics."
+      ],
+      "disconfirming_evidence": [
+        "May 20 guide is merely in line or gross margin signals pressure.",
+        "China policy remains restrictive with no H200/H20 clearance.",
+        "Hyperscalers flag AI ROI scrutiny or slower capex."
+      ],
+      "confidence": "medium",
+      "commentary_mosaic": [
+        {
+          "source_group": "Street analysts",
+          "stance": "bullish",
+          "main_argument": "Susquehanna and Citi target hikes, as reported by IBD, emphasize GB300/data-center demand and AI revenue growth.",
+          "evidence_quality": "reported analyst commentary",
+          "what_it_implies": "The Street is still moving numbers higher into earnings."
+        },
+        {
+          "source_group": "Policy reporters",
+          "stance": "cautiously constructive",
+          "main_argument": "Reuters-linked reports confirm Huang's China trip participation but note H200 sales are still constrained.",
+          "evidence_quality": "high-quality reported policy source",
+          "what_it_implies": "The policy catalyst is real but not yet monetized."
+        }
+      ],
+      "sources": [
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-First-Quarter-Financial-Results/default.aspx",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-04-29",
+          "note": "Primary source for May 20 earnings timing"
+        },
+        {
+          "title": "Nvidia's Jensen Huang joins Trump's China visit",
+          "url": "https://ca.investing.com/news/stock-market-news/nvidias-jensen-huang-joins-trumps-china-visit-4632830",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-13",
+          "note": "China delegation and H200 constraint context"
+        },
+        {
+          "title": "NVIDIA Corporation (NVDA) Stock Price, News, Quote & History",
+          "url": "https://finance.yahoo.com/quote/NVDA/",
+          "publisher": "Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Delayed close, overnight quote, volume, and earnings date"
+        }
+      ]
+    },
+    {
+      "name": "Cisco AI networking earnings setup",
+      "ticker": "CSCO",
+      "setup": "Cisco reports after the close with investors focused on AI infrastructure orders, memory costs, pricing, and whether guidance can move higher.",
+      "mispricing": "If Cisco proves AI networking demand is converting into revenue without margin damage, the market may rerate networking and optical suppliers beyond the GPU complex.",
+      "catalysts": [
+        "May 13 after-close earnings release",
+        "Full-year revenue/EPS outlook",
+        "AI order disclosures",
+        "Supply-shortage and memory-cost commentary"
+      ],
+      "bull_case": [
+        "AI infrastructure orders remain above prior targets.",
+        "Hyperscaler revenue conversion offsets legacy networking cyclicality.",
+        "A strong guide supports GLW/MRVL/ANET/AVGO read-throughs."
+      ],
+      "bear_case": [
+        "The stock already entered earnings near record levels.",
+        "Options imply a large move, so an in-line print may disappoint.",
+        "Higher memory costs or supply shortages could pressure margins."
+      ],
+      "disconfirming_evidence": [
+        "Cisco misses the $15.4B-$15.6B guided revenue band or avoids raising FY outlook.",
+        "AI orders slow sequentially.",
+        "Management flags margin pressure from components."
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "How Much Is Cisco Stock Expected to Move After Earnings This Week?",
+          "url": "https://www.investopedia.com/how-much-cisco-stock-is-expected-to-move-after-earnings-csco-11969558",
+          "publisher": "Investopedia",
+          "date": "2026-05-13",
+          "note": "Options-implied move and earnings estimates"
+        },
+        {
+          "title": "Cisco (CSCO) Q3 FY26 Earnings Preview: The May 13 AI Test",
+          "url": "https://www.techi.com/cisco-csco-q3-fy26-earnings-preview-may-13/",
+          "publisher": "TECHi",
+          "date": "2026-05-11",
+          "note": "AI order setup and company-guided range summary"
+        }
+      ]
+    },
+    {
+      "name": "Fervo geothermal IPO as 24/7 clean-power proxy",
+      "ticker": "FRVO",
+      "setup": "Fervo is expected to debut May 13 after upsizing its proposed offering to 70 million shares at $25-$26, above the earlier 55.6 million shares at $21-$24.",
+      "mispricing": "If public investors value Fervo as a scarce 24/7 clean-power and data-center power infrastructure asset rather than a conventional utility developer, initial demand may exceed traditional power multiples.",
+      "catalysts": [
+        "Final IPO pricing and first-day trading",
+        "Use-of-proceeds and project finance disclosures",
+        "Data-center power demand headlines",
+        "Any customer/offtake updates"
+      ],
+      "bull_case": [
+        "Upsized terms indicate strong book demand before trading.",
+        "Geothermal can screen as a scarce always-on clean-power resource for AI data centers.",
+        "Houston/oilfield drilling expertise can lower development risk if execution is proven."
+      ],
+      "bear_case": [
+        "StockAnalysis showed very limited trailing revenue and negative net income, so valuation is heavily future-project dependent.",
+        "Project execution, drilling risk, interconnection, and financing costs can overwhelm scarcity value.",
+        "IPO aftermarket weakness would signal investors are pushing back on growth-energy valuations."
+      ],
+      "disconfirming_evidence": [
+        "Final pricing below revised range.",
+        "Weak first-day trading or heavy stabilization.",
+        "Prospectus details reveal higher capital intensity, delays, or customer concentration than expected."
+      ],
+      "confidence": "low-medium",
+      "commentary_mosaic": [
+        {
+          "source_group": "Capital markets",
+          "stance": "constructive",
+          "main_argument": "The offering was upsized and repriced higher before launch.",
+          "evidence_quality": "company press release",
+          "what_it_implies": "Book demand appears strong, but post-IPO trading will be the cleaner test."
+        },
+        {
+          "source_group": "Local/industry commentary",
+          "stance": "bullish on ecosystem",
+          "main_argument": "Houston Chronicle opinion framed the IPO as a signal for Houston's energy-transition startup ecosystem.",
+          "evidence_quality": "opinion/commentary",
+          "what_it_implies": "Narrative support exists, but it is not valuation proof."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Fervo Energy Announces Upsized Proposed Initial Public Offering",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/fervo-energy-announces-upsized-proposed-121000577.html",
+          "publisher": "Fervo Energy via GlobeNewswire/Yahoo Finance",
+          "date": "2026-05-11",
+          "note": "Primary source for upsized proposed IPO terms"
+        },
+        {
+          "title": "Fervo Energy Company (FRVO) Stock Price & Overview",
+          "url": "https://stockanalysis.com/stocks/frvo/",
+          "publisher": "StockAnalysis",
+          "date": "2026-05-13",
+          "note": "IPO date and financial profile; terms appear stale versus company May 11 upsize"
+        },
+        {
+          "title": "What Fervo's $7 billion IPO says about Houston's future",
+          "url": "https://www.houstonchronicle.com/opinion/outlook/article/fervo-ipo-houston-energy-future-oil-gas-22255833.php",
+          "publisher": "Houston Chronicle",
+          "date": "2026-05-13",
+          "note": "Commentary on Fervo's ecosystem significance"
+        }
+      ]
+    },
+    {
+      "name": "Cerebras IPO as an inference and custom-silicon test",
+      "ticker": "CBRS",
+      "setup": "Cerebras is expected to price May 13 and trade May 14 after raising its IPO range to $150-$160 for 30 million shares, materially above its earlier terms.",
+      "mispricing": "The bull case is that public markets will pay a scarcity premium for inference and wafer-scale AI exposure; the bear case is that the valuation prices in flawless adoption against Nvidia and custom ASIC incumbents.",
+      "catalysts": [
+        "Final pricing May 13",
+        "First trade May 14",
+        "OpenAI/AWS demand validation",
+        "Post-IPO analyst initiation cycle"
+      ],
+      "bull_case": [
+        "Upsized range indicates strong institutional demand for non-Nvidia AI silicon.",
+        "Inference workloads are growing as AI moves from training to deployment.",
+        "OpenAI/AWS-related demand provides narrative credibility if filings support it."
+      ],
+      "bear_case": [
+        "IPO valuation may be stretched after a large range increase.",
+        "Customer concentration, export controls, and competitive pressure from Nvidia/Broadcom/AMD can compress multiples.",
+        "Retail enthusiasm for hot IPOs can separate first-day trading from durable fundamentals."
+      ],
+      "disconfirming_evidence": [
+        "IPO prices below the revised range.",
+        "First-day trade opens strong but fades quickly on volume.",
+        "Filings reveal unsustainable margin, concentration, or warrant economics."
+      ],
+      "confidence": "medium",
+      "commentary_mosaic": [
+        {
+          "source_group": "Financial press",
+          "stance": "bullish on demand, cautious on valuation",
+          "main_argument": "WSJ and IBD reported a sharply upsized range amid AI-stock enthusiasm.",
+          "evidence_quality": "high-quality financial press and filing-based reporting",
+          "what_it_implies": "Demand is strong, but the valuation hurdle moved higher."
+        },
+        {
+          "source_group": "Retail investor education",
+          "stance": "cautious",
+          "main_argument": "Kiplinger highlighted IPO volatility and the need to assess risk tolerance.",
+          "evidence_quality": "secondary educational commentary",
+          "what_it_implies": "Do not treat first-day momentum as thesis validation."
+        }
+      ],
+      "sources": [
+        {
+          "title": "Cerebras Systems Announces Launch of Initial Public Offering",
+          "url": "https://www.cerebras.ai/press-release/cerebras-systems-announces-launch-of-initial-public-offering",
+          "publisher": "Cerebras",
+          "date": "2026-05-04",
+          "note": "Primary source for original IPO launch terms"
+        },
+        {
+          "title": "Cerebras Boosts IPO Price, Seeking to Raise $4.8 Billion",
+          "url": "https://www.wsj.com/tech/ai/cerebras-boosts-ipo-price-seeking-to-raise-4-8-billion-2e202c02",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-12",
+          "note": "Reported revised Cerebras terms"
+        },
+        {
+          "title": "Chipmaker Cerebras Upsizes IPO Amid AI Stocks Boom",
+          "url": "https://www.investors.com/news/technology/ai-stocks-cerebras-ipo-cbrs-stock/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "AI-stock boom and IPO valuation context"
+        }
+      ]
+    },
+    {
+      "name": "Walmart restructuring as a retail margin and AI-ops signal",
+      "ticker": "WMT",
+      "setup": "Walmart reportedly cut or relocated about 1,000 corporate roles while reorganizing global technology/product teams.",
+      "mispricing": "If the move reflects disciplined platform simplification rather than demand stress, margin expectations may prove resilient into retail-sales and earnings updates.",
+      "catalysts": [
+        "May 14 retail sales",
+        "Walmart company commentary",
+        "Consumer spending and gasoline-price data",
+        "Any follow-up on technology platform consolidation"
+      ],
+      "bull_case": [
+        "Reorganization can lower complexity and support operating leverage.",
+        "Walmart's scale and grocery mix help during inflationary consumer pressure.",
+        "Tech platform integration may lower marginal growth costs."
+      ],
+      "bear_case": [
+        "Cuts may signal internal complexity or slower discretionary demand.",
+        "Higher gasoline and food inflation can pressure consumers.",
+        "If restructuring is not AI-driven, immediate productivity upside may be limited."
+      ],
+      "disconfirming_evidence": [
+        "Retail sales disappoint on May 14.",
+        "Walmart issues cautious comp or margin commentary.",
+        "Further layoffs suggest broader demand or execution pressure."
+      ],
+      "confidence": "low-medium",
+      "sources": [
+        {
+          "title": "Read the memo: Walmart cuts or reorganizes 1,000 jobs",
+          "url": "https://www.businessinsider.com/read-the-memo-walmart-cuts-reorganizes-1000-jobs-2026-5",
+          "publisher": "Business Insider",
+          "date": "2026-05-13",
+          "note": "Reported memo and restructuring details"
+        },
+        {
+          "title": "Walmart Lays Off or Relocates About 1,000 Corporate Workers",
+          "url": "https://www.wsj.com/business/retail/walmart-layoffs-relocates-technology-jobs-23bbf322",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-13",
+          "note": "Reported layoffs/relocations and technology-team context"
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "name": "April PPI release",
+      "ticker": "",
+      "why": "The next inflation input after CPI can reset rates, dollar, and growth-stock multiples.",
+      "next_event": "Producer Price Index for April 2026",
+      "date": "2026-05-13",
+      "status": "pending official release in accessible sources",
+      "sources": [
+        {
+          "title": "Schedule of Releases for the Producer Price Index",
+          "url": "https://www.bls.gov/schedule/news_release/ppi.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Official schedule"
+        }
+      ]
+    },
+    {
+      "name": "30-year Treasury auction",
+      "ticker": "TLT",
+      "why": "After the weak 10-year auction, long-bond demand can either calm or intensify duration pressure.",
+      "next_event": "May refunding 30-year auction",
+      "date": "2026-05-13",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+          "url": "https://home.treasury.gov/news/press-releases/sb0489",
+          "publisher": "U.S. Department of the Treasury",
+          "date": "2026-05-06",
+          "note": "Treasury auction schedule and sizes"
+        }
+      ]
+    },
+    {
+      "name": "Cisco earnings",
+      "ticker": "CSCO",
+      "why": "The after-close print is the cleanest same-day test for AI networking demand and margin quality.",
+      "next_event": "Q3 FY26 earnings after close",
+      "date": "2026-05-13",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "How Much Is Cisco Stock Expected to Move After Earnings This Week?",
+          "url": "https://www.investopedia.com/how-much-cisco-stock-is-expected-to-move-after-earnings-csco-11969558",
+          "publisher": "Investopedia",
+          "date": "2026-05-13",
+          "note": "Earnings timing and expected move"
+        }
+      ]
+    },
+    {
+      "name": "Fervo Energy IPO",
+      "ticker": "FRVO",
+      "why": "A strong debut would support scarcity value for 24/7 clean-power infrastructure; weak trading would warn on IPO-window fragility.",
+      "next_event": "Nasdaq debut",
+      "date": "2026-05-13",
+      "status": "watch - source terms conflict, use company upsize as primary",
+      "sources": [
+        {
+          "title": "Fervo Energy Announces Upsized Proposed Initial Public Offering",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/fervo-energy-announces-upsized-proposed-121000577.html",
+          "publisher": "Fervo Energy via GlobeNewswire/Yahoo Finance",
+          "date": "2026-05-11",
+          "note": "Primary upsize terms"
+        },
+        {
+          "title": "Fervo Energy",
+          "url": "https://www.ipox.com/ipo-calendar/fervo-energy",
+          "publisher": "IPOX",
+          "date": "2026-05-13",
+          "note": "IPO calendar terms appear stale versus May 11 company update"
+        }
+      ]
+    },
+    {
+      "name": "Cerebras IPO",
+      "ticker": "CBRS",
+      "why": "The deal tests whether investors will pay a large premium for non-Nvidia inference silicon.",
+      "next_event": "Pricing May 13; trading expected May 14",
+      "date": "2026-05-14",
+      "status": "watch - revised terms sourced from press, original terms from company",
+      "sources": [
+        {
+          "title": "Cerebras Boosts IPO Price, Seeking to Raise $4.8 Billion",
+          "url": "https://www.wsj.com/tech/ai/cerebras-boosts-ipo-price-seeking-to-raise-4-8-billion-2e202c02",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-12",
+          "note": "Revised range and expected trading timing"
+        },
+        {
+          "title": "Cerebras Systems Announces Launch of Initial Public Offering",
+          "url": "https://www.cerebras.ai/press-release/cerebras-systems-announces-launch-of-initial-public-offering",
+          "publisher": "Cerebras",
+          "date": "2026-05-04",
+          "note": "Primary original offering launch"
+        }
+      ]
+    },
+    {
+      "name": "Nvidia earnings",
+      "ticker": "NVDA",
+      "why": "May 20 guidance is the highest-signal confirmation point for the AI infrastructure bull case.",
+      "next_event": "Fiscal Q1 FY2027 results",
+      "date": "2026-05-20",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-First-Quarter-Financial-Results/default.aspx",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-04-29",
+          "note": "Primary earnings timing"
+        }
+      ]
+    },
+    {
+      "name": "Spirit Airlines restructuring",
+      "ticker": "Private / reorganized entity",
+      "why": "Potential route and capacity redistribution has read-through for JetBlue and ultra-low-cost carrier capacity, but some current public reports conflict with company restructuring disclosures.",
+      "next_event": "Emergence or court milestone confirmation",
+      "date": "2026-early-summer",
+      "status": "stale/conflicting - confirm before use",
+      "sources": [
+        {
+          "title": "Spirit Airlines Announces Restructuring Support Agreement and Plan of Reorganization",
+          "url": "https://ir.spirit.com/news/news-details/2026/Spirit-Airlines-Announces-Restructuring-Support-Agreement-and-Plan-of-Reorganization/",
+          "publisher": "Spirit Airlines Investor Relations",
+          "date": "2026-03-13",
+          "note": "Company source for restructuring plan and early-summer emergence expectation"
+        },
+        {
+          "title": "JetBlue Insiders Sell Stock as Spirit Airlines Goes Under",
+          "url": "https://www.barrons.com/articles/jetblue-insider-stock-sale-55b3d263",
+          "publisher": "Barron's",
+          "date": "2026-05-09",
+          "note": "Conflicting/current report requiring follow-up confirmation"
+        }
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-05-13",
+      "time": "5:30 AM PT / 8:30 AM ET",
+      "event": "April Producer Price Index",
+      "market_relevance": "Immediate test of whether CPI-driven rates pressure extends into producer prices.",
+      "sources": [
+        {
+          "title": "Schedule of Releases for the Producer Price Index",
+          "url": "https://www.bls.gov/schedule/news_release/ppi.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Official release schedule"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "time": "After close",
+      "event": "Cisco Q3 FY26 earnings",
+      "market_relevance": "AI networking, optics, memory-cost, and margin read-through for infrastructure suppliers.",
+      "sources": [
+        {
+          "title": "How Much Is Cisco Stock Expected to Move After Earnings This Week?",
+          "url": "https://www.investopedia.com/how-much-cisco-stock-is-expected-to-move-after-earnings-csco-11969558",
+          "publisher": "Investopedia",
+          "date": "2026-05-13",
+          "note": "Earnings timing and setup"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "time": "Regular session",
+      "event": "Fervo Energy expected Nasdaq debut",
+      "market_relevance": "Tests IPO demand for clean-power/data-center-adjacent infrastructure.",
+      "sources": [
+        {
+          "title": "Fervo Energy Announces Upsized Proposed Initial Public Offering",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/fervo-energy-announces-upsized-proposed-121000577.html",
+          "publisher": "Fervo Energy via GlobeNewswire/Yahoo Finance",
+          "date": "2026-05-11",
+          "note": "Upsized offering terms"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "time": "Pricing expected",
+      "event": "Cerebras IPO pricing",
+      "market_relevance": "Measures public-market appetite for high-valuation AI inference silicon.",
+      "sources": [
+        {
+          "title": "Cerebras Boosts IPO Price, Seeking to Raise $4.8 Billion",
+          "url": "https://www.wsj.com/tech/ai/cerebras-boosts-ipo-price-seeking-to-raise-4-8-billion-2e202c02",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-12",
+          "note": "Revised terms and pricing timing"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "time": "5:30 AM PT / 8:30 AM ET",
+      "event": "April retail sales and import/export price data",
+      "market_relevance": "Consumer and inflation follow-through after CPI; especially important for WMT/TGT/consumer discretionary.",
+      "sources": [
+        {
+          "title": "United States Economic Calendar for May 13, 2026",
+          "url": "https://forex.tradingcharts.com/economic_calendar/2026-05-13.html?code=USD",
+          "publisher": "TradingCharts",
+          "date": "2026-05-13",
+          "note": "Economic calendar showing May 14 retail sales and price-index events"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "1:20 PM PT results / 2:00 PM PT call",
+      "event": "Nvidia fiscal Q1 FY2027 results",
+      "market_relevance": "Highest-signal event for AI capex, Blackwell/GB300 demand, margins, and China-policy sensitivity.",
+      "sources": [
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-First-Quarter-Financial-Results/default.aspx",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-04-29",
+          "note": "Primary earnings timing"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "11:00 AM PT / 2:00 PM ET",
+      "event": "FOMC minutes",
+      "market_relevance": "Shows how divided the committee is after the April 29 hold and before the chair transition.",
+      "sources": [
+        {
+          "title": "Economic Calendar - May 2026",
+          "url": "https://www.thomsoninvestmentgroup.com/economic-calendar-may-2026",
+          "publisher": "Thomson Investment Group",
+          "date": "2026-05-13",
+          "note": "Calendar source for May 20 FOMC minutes"
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Latest policy statement that the minutes will expand upon"
+        }
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "name": "Rates and inflation still gate the equity multiple",
+      "summary": "The CPI shock, pending PPI, and long-bond auction mean macro can overpower single-name AI strength if yields move higher.",
+      "exposure": [
+        "Long-duration growth",
+        "Small caps",
+        "Treasuries",
+        "Dollar",
+        "Oil-sensitive consumer names"
+      ],
+      "confidence": "high",
+      "sources": [
+        {
+          "title": "Consumer Price Index Summary - 2026 M04 Results",
+          "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Official inflation data"
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Official policy stance"
+        }
+      ]
+    },
+    {
+      "name": "AI infrastructure is moving from GPU scarcity to system bottlenecks",
+      "summary": "Memory, optical, storage, networking, power, and cooling are becoming the marginal bottlenecks investors are paying for.",
+      "exposure": [
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "MU",
+        "SNDK",
+        "WDC",
+        "STX",
+        "COHR",
+        "LITE",
+        "GLW",
+        "MRVL",
+        "CSCO"
+      ],
+      "confidence": "medium-high",
+      "sources": [
+        {
+          "title": "AI chip stocks surge again as Nvidia's Huang joins Trump on visit to China",
+          "url": "https://finance.yahoo.com/news/ai-chip-stocks-surge-again-114249160.html",
+          "publisher": "Investing.com via Yahoo Finance",
+          "date": "2026-05-13",
+          "note": "Premarket breadth across AI infrastructure suppliers"
+        },
+        {
+          "title": "Nvidia Is Buying the Chip Supply Chain",
+          "url": "https://www.wsj.com/tech/nvidia-is-buying-the-chip-supply-chain-871db5e3",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-13",
+          "note": "Supply-chain commitment and component scarcity framing"
+        }
+      ]
+    },
+    {
+      "name": "China and export controls are optionality, not base-case earnings",
+      "summary": "The Trump-Xi summit can move semiconductor sentiment, but company guides and actual approvals matter more than delegation optics.",
+      "exposure": [
+        "NVDA",
+        "QCOM",
+        "MU",
+        "AMD",
+        "INTC",
+        "TSM",
+        "ASML"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Nvidia's Jensen Huang joins Trump's China visit",
+          "url": "https://ca.investing.com/news/stock-market-news/nvidias-jensen-huang-joins-trumps-china-visit-4632830",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-13",
+          "note": "Huang participation and H200 constraint"
+        },
+        {
+          "title": "S&P 500, Nasdaq futures rise ahead of key data, Trump's China visit",
+          "url": "https://za.investing.com/news/stock-market-news/sp-500-nasdaq-futures-rise-ahead-of-key-data-trumps-china-visit-4276387",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-13",
+          "note": "Summit and rare-earth truce context"
+        }
+      ]
+    },
+    {
+      "name": "IPO window reopened for scarce growth stories",
+      "summary": "Fervo and Cerebras both show stronger-than-initial terms, suggesting investor demand for clean power and AI infrastructure IPOs is active despite rates risk.",
+      "exposure": [
+        "FRVO",
+        "CBRS",
+        "IPO ETF",
+        "AI infrastructure private-market comps",
+        "Clean power infrastructure"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Fervo Energy Announces Upsized Proposed Initial Public Offering",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/fervo-energy-announces-upsized-proposed-121000577.html",
+          "publisher": "Fervo Energy via GlobeNewswire/Yahoo Finance",
+          "date": "2026-05-11",
+          "note": "Fervo upsized terms"
+        },
+        {
+          "title": "Cerebras Boosts IPO Price, Seeking to Raise $4.8 Billion",
+          "url": "https://www.wsj.com/tech/ai/cerebras-boosts-ipo-price-seeking-to-raise-4-8-billion-2e202c02",
+          "publisher": "Wall Street Journal",
+          "date": "2026-05-12",
+          "note": "Cerebras revised IPO terms"
+        }
+      ]
+    },
+    {
+      "name": "Consumer and retail are caught between jobs, gasoline, and efficiency drives",
+      "summary": "Walmart's restructuring and the next retail-sales print matter because CPI showed pressure from energy and food while the Fed remains constrained.",
+      "exposure": [
+        "WMT",
+        "TGT",
+        "XLY",
+        "XLP",
+        "Retail sales",
+        "Gasoline"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Read the memo: Walmart cuts or reorganizes 1,000 jobs",
+          "url": "https://www.businessinsider.com/read-the-memo-walmart-cuts-reorganizes-1000-jobs-2026-5",
+          "publisher": "Business Insider",
+          "date": "2026-05-13",
+          "note": "Walmart restructuring detail"
+        },
+        {
+          "title": "Consumer Price Index Summary - 2026 M04 Results",
+          "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Energy, food, and shelter inflation detail"
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "title": "Consumer Price Index Summary - 2026 M04 Results",
+      "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Schedule of Releases for the Producer Price Index",
+      "url": "https://www.bls.gov/schedule/news_release/ppi.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Producer Price Index Home",
+      "url": "https://www.bls.gov/ppi/",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Federal Reserve issues FOMC statement",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+      "publisher": "Federal Reserve",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "Implementation Note issued April 29, 2026",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a1.htm",
+      "publisher": "Federal Reserve",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "S&P 500 Futures Up in Premarket Trading; Nextpower, Tower Semiconductor Lead",
+      "url": "https://www.barrons.com/articles/s-p-500-futures-up-in-premarket-trading-nextpower-tower-semiconductor-lead-8685e830",
+      "publisher": "Barron's",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "5 Things to Know Before the Stock Market Opens",
+      "url": "https://www.investopedia.com/5-things-to-know-before-the-stock-market-opens-may-13-2026-11973563",
+      "publisher": "Investopedia",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Nvidia's Jensen Huang joins Trump's China visit",
+      "url": "https://ca.investing.com/news/stock-market-news/nvidias-jensen-huang-joins-trumps-china-visit-4632830",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "S&P 500, Nasdaq futures rise ahead of key data, Trump's China visit",
+      "url": "https://za.investing.com/news/stock-market-news/sp-500-nasdaq-futures-rise-ahead-of-key-data-trumps-china-visit-4276387",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "AI chip stocks surge again as Nvidia's Huang joins Trump on visit to China",
+      "url": "https://finance.yahoo.com/news/ai-chip-stocks-surge-again-114249160.html",
+      "publisher": "Investing.com via Yahoo Finance",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "AI Stocks Nvidia, AMD, Broadcom Nab Price-Target Hikes",
+      "url": "https://www.investors.com/news/technology/ai-stocks-nvidia-amd-broadcom-price-target-hikes/",
+      "publisher": "Investor's Business Daily",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Intel, AMD, Qualcomm Stocks Rise as AI Chip Rally Reignites",
+      "url": "https://www.barrons.com/articles/intel-stock-price-qualcomm-amd-chips-f4cb5cfc",
+      "publisher": "Barron's",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "NVIDIA Corporation (NVDA) Stock Price, News, Quote & History",
+      "url": "https://finance.yahoo.com/quote/NVDA/",
+      "publisher": "Yahoo Finance",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Advanced Micro Devices, Inc. (AMD) Stock Price, Quote, Chart & Forecast",
+      "url": "https://www.techi.com/quote/AMD/",
+      "publisher": "TECHi",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+      "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Sets-Conference-Call-for-First-Quarter-Financial-Results/default.aspx",
+      "publisher": "NVIDIA Investor Relations",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "How Much Is Cisco Stock Expected to Move After Earnings This Week?",
+      "url": "https://www.investopedia.com/how-much-cisco-stock-is-expected-to-move-after-earnings-csco-11969558",
+      "publisher": "Investopedia",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Cisco (CSCO) Q3 FY26 Earnings Preview: The May 13 AI Test",
+      "url": "https://www.techi.com/cisco-csco-q3-fy26-earnings-preview-may-13/",
+      "publisher": "TECHi",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "Read the memo: Walmart cuts or reorganizes 1,000 jobs",
+      "url": "https://www.businessinsider.com/read-the-memo-walmart-cuts-reorganizes-1000-jobs-2026-5",
+      "publisher": "Business Insider",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Fervo Energy Announces Upsized Proposed Initial Public Offering",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/fervo-energy-announces-upsized-proposed-121000577.html",
+      "publisher": "Fervo Energy via GlobeNewswire/Yahoo Finance",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "Fervo Energy",
+      "url": "https://www.ipox.com/ipo-calendar/fervo-energy",
+      "publisher": "IPOX",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Fervo Energy Company (FRVO) Stock Price & Overview",
+      "url": "https://stockanalysis.com/stocks/frvo/",
+      "publisher": "StockAnalysis",
+      "date": "2026-05-13"
+    },
+    {
+      "title": "Cerebras Systems Announces Launch of Initial Public Offering",
+      "url": "https://www.cerebras.ai/press-release/cerebras-systems-announces-launch-of-initial-public-offering",
+      "publisher": "Cerebras",
+      "date": "2026-05-04"
+    },
+    {
+      "title": "Cerebras Boosts IPO Price, Seeking to Raise $4.8 Billion",
+      "url": "https://www.wsj.com/tech/ai/cerebras-boosts-ipo-price-seeking-to-raise-4-8-billion-2e202c02",
+      "publisher": "Wall Street Journal",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Chipmaker Cerebras Upsizes IPO Amid AI Stocks Boom",
+      "url": "https://www.investors.com/news/technology/ai-stocks-cerebras-ipo-cbrs-stock/",
+      "publisher": "Investor's Business Daily",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Spirit Airlines Announces Restructuring Support Agreement and Plan of Reorganization",
+      "url": "https://ir.spirit.com/news/news-details/2026/Spirit-Airlines-Announces-Restructuring-Support-Agreement-and-Plan-of-Reorganization/",
+      "publisher": "Spirit Airlines Investor Relations",
+      "date": "2026-03-13"
+    },
+    {
+      "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+      "url": "https://home.treasury.gov/news/press-releases/sb0489",
+      "publisher": "U.S. Department of the Treasury",
+      "date": "2026-05-06"
+    },
+    {
+      "title": "Economic Calendar - May 2026",
+      "url": "https://www.thomsoninvestmentgroup.com/economic-calendar-may-2026",
+      "publisher": "Thomson Investment Group",
+      "date": "2026-05-13"
+    }
+  ],
+  "freshness": {
+    "prices": {
+      "as_of": "2026-05-13 5:45 AM PT",
+      "status": "partial/stale",
+      "note": "The finance quote tool returned no usable data. Dashboard uses source-reported delayed closes, overnight quotes, and premarket percentage moves where available."
+    },
+    "news": {
+      "as_of": "2026-05-13 5:45 AM PT",
+      "status": "current",
+      "note": "Current news pass includes market, macro, policy, AI/chips, earnings, IPO, restructuring, and commentary sources."
+    },
+    "filings": {
+      "as_of": "2026-05-13 5:45 AM PT",
+      "status": "partial",
+      "note": "Cerebras SEC S-1 was found for original filing, but revised terms are cited from financial press; Fervo revised terms use company press release."
+    },
+    "macro_calendar": {
+      "as_of": "2026-05-13 5:45 AM PT",
+      "status": "mixed",
+      "note": "CPI and FOMC are official/current. April PPI was scheduled but the accessible BLS PPI page still displayed March data during the run."
+    },
+    "ipo_terms": {
+      "as_of": "2026-05-13 5:45 AM PT",
+      "status": "source conflicts flagged",
+      "note": "Fervo IPO calendar pages showed stale original terms; company May 11 upsize is treated as primary. Cerebras original company release differs from reported May 12 revised range."
+    },
+    "theses": {
+      "as_of": "2026-05-13 5:45 AM PT",
+      "status": "current but scenario-based",
+      "note": "All opportunity cases are scenario analysis with disconfirming evidence, not personalized investment advice."
+    },
+    "failed_sources": [
+      "web.finance quote calls returned no usable response for requested tickers.",
+      "BLS PPI April 2026 release was not accessible in the crawl even though the release time had passed by the local run timestamp.",
+      "Some paywalled WSJ/Barron's items were available through search snippets only; primary sources were used where possible."
+    ]
+  }
+}

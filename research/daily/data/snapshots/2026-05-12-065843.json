@@ -1,0 +1,1079 @@
+{
+  "title": "Daily Institutional Market Research Dashboard",
+  "generated_at": "2026-05-12T06:48:51-07:00",
+  "as_of": "May 12, 2026 6:48 AM PT / 9:48 AM ET, source-windowed intraday refresh",
+  "market_read": {
+    "stance": "event-driven",
+    "headline": "Hot CPI, Oil Shock, AI/Chip Rotation",
+    "summary": "The market setup is event-driven rather than cleanly risk-on or risk-off: April CPI confirmed an energy-led inflation reacceleration, oil remains the macro shock channel after the U.S.-Iran cease-fire deteriorated, and the prior AI/chip leadership trade is rotating sharply as investors reassess stretched winners, Korea policy chatter, and Nvidia's May 20 earnings hurdle.",
+    "key_points": [
+      "BLS reported April CPI +0.6% month over month and +3.8% year over year; core CPI rose +0.4% month over month and +2.8% year over year.",
+      "Energy accounted for more than 40% of April's monthly CPI increase, and gasoline rose 28.4% year over year, keeping oil, rates, and consumer squeeze risk central.",
+      "The Fed's latest official stance is still wait-and-see: on April 29 it held the federal-funds target range at 3.50%-3.75% and cited elevated inflation and Middle East uncertainty.",
+      "Treasury supply is a same-day macro catalyst: Treasury is auctioning $42 billion of 10-year notes on May 12 and $25 billion of 30-year bonds on May 13.",
+      "AI infrastructure remains investable but more selective: chip names are cooling after record-area strength, Korea's AI-dividend comments hit memory sentiment, and Cerebras is testing the IPO window at a much richer proposed valuation.",
+      "Single-name dispersion is high: Zebra and Venture Global are being rewarded for earnings quality, while Hims & Hers, AST SpaceMobile, ZoomInfo, GitLab, and chip profit-taking are being punished."
+    ]
+  },
+  "indices": [
+    {
+      "label": "Market regime",
+      "value": "Event-driven",
+      "change": "CPI + oil + AI rotation",
+      "detail": "As of 6:48 AM PT"
+    },
+    {
+      "label": "S&P 500 futures",
+      "value": "Down premarket",
+      "change": "-0.2% to -0.4% in cited source windows",
+      "detail": "Sources differ by timestamp after CPI"
+    },
+    {
+      "label": "Nasdaq-100 futures",
+      "value": "Tech-led pressure",
+      "change": "-0.7% to -0.9% premarket",
+      "detail": "Chip/AI cooling after Monday strength"
+    },
+    {
+      "label": "10Y Treasury yield",
+      "value": "~4.40%",
+      "change": "Near 10-month high",
+      "detail": "MarketWatch morning read"
+    },
+    {
+      "label": "WTI crude",
+      "value": "$98-$102",
+      "change": "Up on Iran risk",
+      "detail": "Source windows vary across early U.S. morning"
+    },
+    {
+      "label": "Brent crude",
+      "value": "$104-$108",
+      "change": "Risk premium elevated",
+      "detail": "Hormuz/cease-fire risk remains unresolved"
+    },
+    {
+      "label": "CPI",
+      "value": "3.8% YoY",
+      "change": "+0.6% MoM headline",
+      "detail": "April 2026 BLS release"
+    },
+    {
+      "label": "Fed funds target",
+      "value": "3.50%-3.75%",
+      "change": "Held Apr. 29",
+      "detail": "Latest official FOMC statement"
+    }
+  ],
+  "signals": [
+    {
+      "title": "Inflation print tightens the Fed reaction function",
+      "severity": "negative",
+      "summary": "Headline CPI accelerated to 3.8% year over year and core rose 0.4% month over month. The likely mechanism is multiple compression pressure for long-duration equities if energy pass-through keeps inflation above target and prevents rate-cut optionality.",
+      "tickers": [
+        "SPY",
+        "QQQ",
+        "TLT",
+        "IWM"
+      ],
+      "sources": [
+        {
+          "title": "Consumer Price Index Summary - 2026 M04 Results",
+          "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Primary source for April CPI, core CPI, energy, shelter, and gasoline components"
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Latest official FOMC stance: hold range and monitor inflation, labor, and international developments"
+        }
+      ]
+    },
+    {
+      "title": "Oil is the macro transmission channel",
+      "severity": "watch",
+      "summary": "The U.S.-Iran cease-fire deterioration is flowing through crude, gasoline CPI, rates, and consumer-spending risk. Oil beneficiaries can work, but broad equity upside likely needs a de-escalation or evidence that energy pass-through is peaking.",
+      "tickers": [
+        "VG",
+        "XLE",
+        "OXY",
+        "CVX",
+        "DAL",
+        "UAL",
+        "WMT",
+        "TGT"
+      ],
+      "sources": [
+        {
+          "title": "Trump says Iran ceasefire is on life support as hopes for a deal fade",
+          "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/05/12/hopes-fade-for-iran-peace-deal-as-trump-says-ceasefire-on-life-support",
+          "publisher": "Reuters via Internazionale",
+          "date": "2026-05-12",
+          "note": "Reported conflict/cease-fire deterioration and Hormuz conditions"
+        },
+        {
+          "title": "Oil Prices Rise. U.S.-Iran Cease-Fire Is on 'Life Support,' Trump Says.",
+          "url": "https://www.barrons.com/articles/oil-price-today-trump-iran-ceasefire-1bf3c663",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "Market read-through to Brent and WTI risk premium"
+        }
+      ]
+    },
+    {
+      "title": "AI infrastructure remains leadership, but no longer one-way",
+      "severity": "watch",
+      "summary": "The chip complex entered Tuesday extended after a strong Monday. Korea's AI-dividend policy chatter, profit-taking in Micron/Intel/Qualcomm, and the Cerebras IPO valuation reset make AI a dispersion trade rather than a blanket beta trade.",
+      "tickers": [
+        "NVDA",
+        "MU",
+        "AMD",
+        "INTC",
+        "QCOM",
+        "LITE",
+        "SNDK",
+        "CBRS"
+      ],
+      "sources": [
+        {
+          "title": "Stock Market Today: Dow Steady, Techs Fall On $100 Oil, South Korea AI News; Inflation Jumps",
+          "url": "https://www.investors.com/market-trend/stock-market-today/stock-market-today-dow-jones-sp500-nasdaq-oil-prices-sandisk-cpi-inflation/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Premarket chip weakness, South Korea AI-policy read-through, CPI and oil context"
+        },
+        {
+          "title": "The hottest stock market in the world finally met its match: taxes",
+          "url": "https://www.marketwatch.com/story/the-hottest-stock-market-in-the-world-finally-met-its-match-taxes-55cf54c6",
+          "publisher": "MarketWatch",
+          "date": "2026-05-12",
+          "note": "Korea AI dividend comments and impact on Samsung/SK Hynix-led market"
+        },
+        {
+          "title": "Cerebras could be the next hot chip stock as demand swells ahead of its IPO",
+          "url": "https://www.marketwatch.com/story/cerebras-could-be-the-next-hot-chip-stock-as-demand-swells-ahead-of-its-ipo-f315ac46",
+          "publisher": "MarketWatch",
+          "date": "2026-05-12",
+          "note": "Cerebras IPO sizing, AI inference positioning, and OpenAI/AWS context"
+        }
+      ]
+    },
+    {
+      "title": "Treasury auction supply can amplify the CPI move",
+      "severity": "watch",
+      "summary": "CPI hit on the same day Treasury sells a new 10-year note. A weak 10-year auction would be a negative confirmation for duration and high-multiple growth; a clean auction would partially disconfirm the rates-stress setup.",
+      "tickers": [
+        "TLT",
+        "IEF",
+        "QQQ",
+        "IWM"
+      ],
+      "sources": [
+        {
+          "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+          "url": "https://home.treasury.gov/news/press-releases/sb0489",
+          "publisher": "U.S. Department of the Treasury",
+          "date": "2026-05-06",
+          "note": "Primary source for May refunding sizes and 10-year/30-year auction schedule"
+        },
+        {
+          "title": "Treasury yields flirt with 10-month high",
+          "url": "https://www.marketwatch.com/livecoverage/stock-market-today-dow-sp500-nasdaq-lower-chip-stocks-dip-oil-up-cpi-inflation/card/treasury-yields-flirt-with-10-month-high-h2C9f02VDAlerGodPG79",
+          "publisher": "MarketWatch",
+          "date": "2026-05-12",
+          "note": "Morning Treasury-yield context around inflation and oil risk"
+        }
+      ]
+    },
+    {
+      "title": "AI software restructuring is moving from narrative to labor action",
+      "severity": "neutral",
+      "summary": "GitLab's restructuring memo argues software will increasingly be built by machines directed by people. The market's negative reaction shows investors are not automatically rewarding AI-transition stories when execution disruption and workforce uncertainty are visible.",
+      "tickers": [
+        "GTLB",
+        "MSFT",
+        "GITHUB",
+        "TEAM",
+        "DDOG"
+      ],
+      "sources": [
+        {
+          "title": "GitLab Act 2",
+          "url": "https://about.gitlab.com/blog/gitlab-act-2/",
+          "publisher": "GitLab",
+          "date": "2026-05-11",
+          "note": "Primary company memo on restructuring, AI agents, and strategy"
+        },
+        {
+          "title": "GitLab employees are the latest to face layoffs limbo",
+          "url": "https://www.businessinsider.com/gitlab-layoffs-memo-2026-5",
+          "publisher": "Business Insider",
+          "date": "2026-05-12",
+          "note": "Reported market and workforce read-through"
+        }
+      ]
+    }
+  ],
+  "movers": [
+    {
+      "ticker": "HIMS",
+      "name": "Hims & Hers Health",
+      "price": "Premarket move sourced; live quote not independently verified",
+      "change": "-15% to -16% premarket",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Surprise Q1 loss and revenue miss as the company shifts away from compounded GLP-1 offerings toward branded weight-loss drugs.",
+      "interpretation": "The move looks fundamentally news-driven: investors are repricing the GLP-1 transition from high-growth compounding economics toward branded-drug margin pressure and regulatory/legal overhang. The counterpoint is raised FY revenue guidance and the possibility that restructuring costs prove temporary.",
+      "sources": [
+        {
+          "title": "Hims & Hers plunges after weight-loss pivot hits quarterly results",
+          "url": "https://whbl.com/2026/05/12/hims-hers-plunges-after-weight-loss-pivot-hits-quarterly-results/",
+          "publisher": "Reuters via WHBL",
+          "date": "2026-05-12",
+          "note": "Premarket decline, surprise loss, GLP-1 transition and FDA/DOJ context"
+        },
+        {
+          "title": "Hims & Hers Health, Inc. Reports First Quarter 2026 Financial Results",
+          "url": "https://markets.financialcontent.com/bpas/article/bizwire-2026-5-11-hims-and-hers-health-inc-reports-first-quarter-2026-financial-results",
+          "publisher": "Hims & Hers via Business Wire",
+          "date": "2026-05-11",
+          "note": "Company revenue, subscriber, and guidance disclosure"
+        }
+      ]
+    },
+    {
+      "ticker": "ASTS",
+      "name": "AST SpaceMobile",
+      "price": "Premarket move sourced; live quote not independently verified",
+      "change": "-9.6% to -11% premarket",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Q1 adjusted loss and revenue missed expectations despite company progress on launch schedule, FCC authorization, and speed tests.",
+      "interpretation": "The market is separating technical milestones from monetization timing. The bull case needs launch cadence and commercial contracts to overwhelm widening losses; the bear case is dilution and execution risk before revenue scale.",
+      "sources": [
+        {
+          "title": "AST SpaceMobile Earnings Miss, 2026 Revenue Guidance Affirmed. ASTS Stock Falls.",
+          "url": "https://www.investors.com/news/technology/asts-stock-ast-spacemobile-earnings-q12026/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Reported Q1 miss, revenue guidance, and stock reaction"
+        },
+        {
+          "title": "AST SpaceMobile Provides Business Update and First Quarter 2026 Results",
+          "url": "https://markets.financialcontent.com/stocks/article/bizwire-2026-5-11-ast-spacemobile-provides-business-update-and-first-quarter-2026-results",
+          "publisher": "AST SpaceMobile via Business Wire",
+          "date": "2026-05-11",
+          "note": "Company milestones: BlueBird launch plans, FCC authorization, speed tests"
+        }
+      ]
+    },
+    {
+      "ticker": "ZBRA",
+      "name": "Zebra Technologies",
+      "price": "$245.96 premarket cited by Barron's",
+      "change": "+13% to +14%",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Q1 EPS and revenue beat expectations, and management raised 2026 sales and EPS outlook.",
+      "interpretation": "This is the cleanest positive earnings-quality mover: automation, e-commerce, and physical-AI demand are showing up in numbers rather than just narrative. The main risk is that post-gap valuation begins discounting a full cyclical recovery.",
+      "sources": [
+        {
+          "title": "Zebra Stock Soars on Earnings. The Automation Business Is Turning.",
+          "url": "https://www.barrons.com/articles/zebra-technologies-earnings-stock-price-8864bad3",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "EPS, revenue, guidance, premarket move, and automation framing"
+        },
+        {
+          "title": "Zebra's Q1 CY2026: Beats On Revenue, Stock Jumps 14.2%",
+          "url": "https://markets.financialcontent.com/stocks/article/stockstory-2026-5-12-zebras-nasdaqzbra-q1-cy2026-beats-on-revenue-stock-jumps-142",
+          "publisher": "StockStory via FinancialContent",
+          "date": "2026-05-12",
+          "note": "Q1 sales, adjusted EPS, and adjusted EBITDA beat details"
+        }
+      ]
+    },
+    {
+      "ticker": "VG",
+      "name": "Venture Global",
+      "price": "Premarket move sourced; live quote not independently verified",
+      "change": "+9% to +9.3% premarket",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Q1 revenue rose 59% year over year and LNG cargo volumes hit a quarterly record while global gas/oil disruption remains in focus.",
+      "interpretation": "This is a macro-plus-earnings mover. LNG exposure screens as a beneficiary of energy supply disruption, but upside can fade quickly if Hormuz risk premium collapses or contract/margin quality disappoints.",
+      "sources": [
+        {
+          "title": "Venture Global Reports First Quarter 2026 Results",
+          "url": "https://investors.ventureglobal.com/news/news-details/2026/Venture-Global-Reports-First-Quarter-2026-Results/default.aspx",
+          "publisher": "Venture Global",
+          "date": "2026-05-12",
+          "note": "Company revenue, EBITDA, cargo, and LNG volume disclosure"
+        },
+        {
+          "title": "Stocks to Watch: GameStop, Venture Global, Wendy's, Hims & Hers",
+          "url": "https://www.wsj.com/livecoverage/cpi-inflation-report-stock-market-05-12-2026/card/stocks-to-watch-venture-global-hims-hers-gopro-wP2U1txYmovodxs2kjKw",
+          "publisher": "The Wall Street Journal",
+          "date": "2026-05-12",
+          "note": "Premarket mover context for Venture Global"
+        }
+      ]
+    },
+    {
+      "ticker": "GTLB",
+      "name": "GitLab",
+      "price": "After-hours/premarket move sourced; live quote not independently verified",
+      "change": "-7% to -13% in cited source windows",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Company announced an open restructuring process and AI-agent strategy reset while reaffirming financial guidance.",
+      "interpretation": "The negative reaction suggests investors are penalizing transition uncertainty even when AI is the stated destination. This is a commentary mosaic input for software: AI restructuring alone is not enough without clear margin and revenue proof.",
+      "sources": [
+        {
+          "title": "GitLab Act 2",
+          "url": "https://about.gitlab.com/blog/gitlab-act-2/",
+          "publisher": "GitLab",
+          "date": "2026-05-11",
+          "note": "Primary restructuring and AI-agent strategy memo"
+        },
+        {
+          "title": "GitLab employees are the latest to face layoffs limbo",
+          "url": "https://www.businessinsider.com/gitlab-layoffs-memo-2026-5",
+          "publisher": "Business Insider",
+          "date": "2026-05-12",
+          "note": "Reported employee and investor read-through"
+        }
+      ]
+    },
+    {
+      "ticker": "GTM",
+      "name": "ZoomInfo Technologies",
+      "price": "Ticker shown as GTM in source; live quote not independently verified",
+      "change": "-34% reported",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Guidance cut and restructuring program with a global workforce reduction.",
+      "interpretation": "The market is treating demand/guidance pressure as more important than cost cuts. For software and sales-tech, this is negative read-through for seat growth and AI-driven pricing assumptions.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Intel, Micron, GameStop, AST SpaceMobile, D-Wave Quantum, Hims & Hers, Plug Power, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-9191624b",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "Reported ZoomInfo decline after full-year revenue outlook cut"
+        },
+        {
+          "title": "ZoomInfo Technologies announces restructuring program with global workforce reduction",
+          "url": "https://m.in.investing.com/news/sec-filings/zoominfo-technologies-announces-restructuring-program-with-global-workforce-reduction-93CH-5396486?ampMode=1",
+          "publisher": "Investing.com",
+          "date": "2026-05-12",
+          "note": "SEC-filing summary for restructuring charges and workforce reduction"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "price": "Premarket move sourced; live quote not independently verified",
+      "change": "-2.7% premarket after prior rally",
+      "volume": "Not sourceable in current run",
+      "catalyst": "Profit-taking in chips after record-area strength and South Korea AI-dividend comments pressured global memory sentiment.",
+      "interpretation": "The HBM/memory bull thesis remains intact, but the name is vulnerable to rates, policy, and positioning after a fast rally. Watch whether Nvidia earnings re-accelerate the estimate revision cycle.",
+      "sources": [
+        {
+          "title": "These Stocks Are Today's Movers: Intel, Micron, GameStop, AST SpaceMobile, D-Wave Quantum, Hims & Hers, Plug Power, and More",
+          "url": "https://www.barrons.com/articles/stock-movers-9191624b",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "Reported Micron premarket decline after semiconductor rally"
+        },
+        {
+          "title": "Stock Market Today: Dow Steady, Techs Fall On $100 Oil, South Korea AI News; Inflation Jumps",
+          "url": "https://www.investors.com/market-trend/stock-market-today/stock-market-today-dow-jones-sp500-nasdaq-oil-prices-sandisk-cpi-inflation/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Chip-sector and Korea AI-dividend context"
+        }
+      ]
+    },
+    {
+      "ticker": "EBAY / GME",
+      "name": "eBay / GameStop",
+      "price": "Premarket moves sourced; live quote not independently verified",
+      "change": "EBAY roughly -1%; GME roughly -4%",
+      "volume": "Not sourceable in current run",
+      "catalyst": "eBay rejected GameStop's unsolicited $56 billion proposal, calling it neither credible nor attractive.",
+      "interpretation": "This is a deal-spread and credibility event, not a clean strategic-acquisition opportunity. The market is discounting financing uncertainty and execution risk for GameStop while removing near-term bid optionality for eBay.",
+      "sources": [
+        {
+          "title": "eBay Rejects Unsolicited Proposal from GameStop",
+          "url": "https://www.prnewswire.com/news-releases/ebay-rejects-unsolicited-proposal-from-gamestop-302769000.html",
+          "publisher": "eBay via PR Newswire",
+          "date": "2026-05-12",
+          "note": "Primary company response and rejection rationale"
+        },
+        {
+          "title": "EBay rejects GameStop's $56 billion takeover bid",
+          "url": "https://www.investors.com/news/technology/ebay-stock-gamestop-takeover-offer-reject/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Market reaction and deal terms"
+        }
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "name": "Energy security and LNG scarcity basket",
+      "ticker": "VG / XLE",
+      "setup": "Venture Global posted strong Q1 revenue and record cargo volumes at the same time Middle East/Hormuz risk is keeping a premium in oil and LNG-linked assets.",
+      "mispricing": "The market may still be treating VG as a single-company earnings beat rather than as a liquid expression of a larger energy-security regime if Iran disruption persists.",
+      "catalysts": [
+        "Follow-through after VG's Q1 call",
+        "Further updates on Iran cease-fire negotiations and Hormuz shipping",
+        "Oil/gas inventory and cargo pricing data",
+        "Any policy moves on gasoline tax suspension or strategic-energy supply"
+      ],
+      "bull_case": [
+        "Energy disruption extends, sustaining LNG pricing and geopolitical scarcity premium.",
+        "VG's record cargo volumes and revenue growth create an estimate-revision path.",
+        "Institutional commentary may rotate toward energy-security beneficiaries as inflation hedges."
+      ],
+      "bear_case": [
+        "Rapid de-escalation compresses crude and LNG risk premium.",
+        "High energy prices hurt demand and increase political intervention risk.",
+        "VG margins or contract quality disappoint after the initial revenue headline."
+      ],
+      "disconfirming_evidence": [
+        "Brent/WTI unwind despite no diplomatic progress.",
+        "VG gives cautious customer, margin, or volume commentary on the call.",
+        "Energy equities underperform crude for multiple sessions."
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Venture Global Reports First Quarter 2026 Results",
+          "url": "https://investors.ventureglobal.com/news/news-details/2026/Venture-Global-Reports-First-Quarter-2026-Results/default.aspx",
+          "publisher": "Venture Global",
+          "date": "2026-05-12",
+          "note": "Company financials and volume data"
+        },
+        {
+          "title": "Trump says Iran ceasefire is on life support as hopes for a deal fade",
+          "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/05/12/hopes-fade-for-iran-peace-deal-as-trump-says-ceasefire-on-life-support",
+          "publisher": "Reuters via Internazionale",
+          "date": "2026-05-12",
+          "note": "Geopolitical supply-risk catalyst"
+        }
+      ]
+    },
+    {
+      "name": "Physical AI and industrial automation quality screen",
+      "ticker": "ZBRA",
+      "setup": "Zebra's Q1 beat and raised outlook gives a tangible, earnings-backed industrial AI/automation read-through while many software AI stories are still in restructuring mode.",
+      "mispricing": "Investors may underweight Zebra as a real-economy automation beneficiary because the AI trade has been dominated by chips, servers, and cloud infrastructure.",
+      "catalysts": [
+        "Post-earnings estimate revisions",
+        "Management commentary on e-commerce, logistics, healthcare, and manufacturing automation demand",
+        "Customer capex signals from retail/logistics and industrial earnings"
+      ],
+      "bull_case": [
+        "Sales growth and margin beat support a durable recovery in automation spending.",
+        "Physical AI and asset-visibility demand create second-order AI exposure outside crowded semis.",
+        "Raised full-year guidance may pull in generalist investors looking for non-chip AI beneficiaries."
+      ],
+      "bear_case": [
+        "The stock gaps too far and discounts the guide raise immediately.",
+        "Automation demand is cyclical and could weaken if higher oil/rates pressure end customers.",
+        "Acquisition integration or supply-chain costs dilute the margin story."
+      ],
+      "disconfirming_evidence": [
+        "Shares fade the earnings gap on heavy volume.",
+        "Analysts treat the beat as backlog catch-up rather than new demand.",
+        "Customer commentary from retailers/logistics companies turns cautious."
+      ],
+      "confidence": "medium-high",
+      "sources": [
+        {
+          "title": "Zebra Stock Soars on Earnings. The Automation Business Is Turning.",
+          "url": "https://www.barrons.com/articles/zebra-technologies-earnings-stock-price-8864bad3",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "Earnings beat, guidance raise, and automation framing"
+        }
+      ]
+    },
+    {
+      "name": "AI infrastructure dispersion into Nvidia earnings",
+      "ticker": "NVDA / MU / LITE / AMD / QCOM",
+      "setup": "The AI complex is selling off from an extended position after Korea policy chatter and hot CPI, while Nvidia's May 20 earnings remain the next major confirmation event for the supply chain.",
+      "mispricing": "A broad chip pullback may create a better entry point for companies with actual HBM, optical networking, GPU, or data-center demand leverage, but only if Nvidia confirms demand, margins, and hyperscaler capex.",
+      "catalysts": [
+        "Nvidia May 20 earnings and guidance",
+        "Hyperscaler capex commentary",
+        "Memory/HBM pricing updates",
+        "Cerebras IPO pricing and first-day trade as sentiment gauge"
+      ],
+      "bull_case": [
+        "Nvidia validates Blackwell/Rubin and data-center CPU demand.",
+        "Hyperscaler AI capex stays near peak levels despite inflation/rates.",
+        "Pullback resets crowded positioning without breaking estimate revisions."
+      ],
+      "bear_case": [
+        "CPI and yields compress high-multiple AI names before earnings.",
+        "Cerebras IPO valuation stokes bubble commentary and drains attention from public semis.",
+        "Korea or U.S. policy actions introduce new tax/export-control uncertainty."
+      ],
+      "disconfirming_evidence": [
+        "SOX/semis fail to stabilize even as yields stop rising.",
+        "Nvidia pre-earnings options imply extreme expectations with no corresponding estimate revisions.",
+        "Memory spot pricing or HBM commentary weakens."
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Nvidia earnings setup, Blackwell/Rubin, CPUs, capex, custom-chip risk, and margins"
+        },
+        {
+          "title": "Stock Market Today: Dow Steady, Techs Fall On $100 Oil, South Korea AI News; Inflation Jumps",
+          "url": "https://www.investors.com/market-trend/stock-market-today/stock-market-today-dow-jones-sp500-nasdaq-oil-prices-sandisk-cpi-inflation/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Chip pullback and macro context"
+        }
+      ]
+    },
+    {
+      "name": "Hims GLP-1 transition reset",
+      "ticker": "HIMS / NVO / LLY",
+      "setup": "Hims is down sharply after GLP-1 transition costs and surprise losses, while branded incumbents Novo Nordisk and Eli Lilly may benefit from regulators restricting compounded alternatives.",
+      "mispricing": "The market may be over-penalizing HIMS if branded GLP-1 demand scales and restructuring costs are temporary, but the cleaner risk-adjusted angle may be monitoring whether NVO/LLY retain pricing/share as compounding fades.",
+      "catalysts": [
+        "HIMS earnings call details on branded GLP-1 economics",
+        "FDA/DOJ follow-up on compounded GLP-1 rules",
+        "NVO/LLY obesity-drug supply and pricing updates",
+        "Subscriber and monthly revenue per subscriber trends"
+      ],
+      "bull_case": [
+        "HIMS raised revenue guidance and may turn transition costs into a compliant branded distribution model.",
+        "NVO/LLY could capture durable demand as compounded copycat options narrow.",
+        "If demand remains high, the sector may absorb branded pricing better than feared."
+      ],
+      "bear_case": [
+        "HIMS loses the economics that powered the compounding growth story.",
+        "Regulatory/legal overhang persists and raises customer-acquisition costs.",
+        "Consumers balk at branded pricing or supply constraints limit conversion."
+      ],
+      "disconfirming_evidence": [
+        "HIMS subscriber growth decelerates further or churn rises.",
+        "Gross margin fails to stabilize over the next two quarters.",
+        "NVO/LLY report softer obesity demand or pricing pressure."
+      ],
+      "confidence": "low-medium",
+      "sources": [
+        {
+          "title": "Hims & Hers plunges after weight-loss pivot hits quarterly results",
+          "url": "https://whbl.com/2026/05/12/hims-hers-plunges-after-weight-loss-pivot-hits-quarterly-results/",
+          "publisher": "Reuters via WHBL",
+          "date": "2026-05-12",
+          "note": "Transition, regulatory, and earnings-miss context"
+        },
+        {
+          "title": "Hims & Hers Health, Inc. Reports First Quarter 2026 Financial Results",
+          "url": "https://markets.financialcontent.com/bpas/article/bizwire-2026-5-11-hims-and-hers-health-inc-reports-first-quarter-2026-financial-results",
+          "publisher": "Hims & Hers via Business Wire",
+          "date": "2026-05-11",
+          "note": "Primary company guidance and subscriber disclosure"
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "name": "Cerebras Systems IPO",
+      "ticker": "CBRS",
+      "why": "Largest AI-chip IPO test of the year; valuation, customer concentration, and first-day demand will shape AI infrastructure sentiment.",
+      "next_event": "IPO pricing/trading window",
+      "date": "2026-05-13 to 2026-05-14",
+      "status": "high-priority watch",
+      "sources": [
+        {
+          "title": "Chipmaker Cerebras Upsizes IPO Amid AI Stocks Boom",
+          "url": "https://www.investors.com/news/technology/ai-stocks-cerebras-ipo-cbrs-stock/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Upsized offering, valuation, timing, and AI-chip context"
+        },
+        {
+          "title": "Cerebras Raises IPO Price. Chip Stocks Are Still Hot.",
+          "url": "https://www.barrons.com/articles/cerebras-ipo-price-chip-stocks-765a22b8",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "Offering terms, valuation, backlog, concentration and governance risks"
+        }
+      ]
+    },
+    {
+      "name": "Fervo Energy IPO",
+      "ticker": "FRVO",
+      "why": "Geothermal/data-center power scarcity angle; large offering but minimal revenue and heavy capex make it a financing-window test.",
+      "next_event": "Expected IPO",
+      "date": "2026-05-13",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Fervo Energy Company (FRVO) Stock Price & Overview",
+          "url": "https://stockanalysis.com/stocks/frvo/",
+          "publisher": "Stock Analysis",
+          "date": "2026-05-08",
+          "note": "IPO date, price range, shares, deal size, and profile sourced from S-1 data"
+        },
+        {
+          "title": "Fervo Energy Company (FRVO) Financials & Income Statement",
+          "url": "https://stockanalysis.com/stocks/frvo/financials/",
+          "publisher": "Stock Analysis",
+          "date": "2026-05-05",
+          "note": "S-1-derived financials showing early revenue base and losses"
+        }
+      ]
+    },
+    {
+      "name": "10-year Treasury auction",
+      "ticker": "TLT",
+      "why": "Same-day CPI plus duration supply can confirm or fade the rates-stress narrative.",
+      "next_event": "$42B 10-year note auction",
+      "date": "2026-05-12 10:00 AM PT / 1:00 PM ET",
+      "status": "watch today",
+      "sources": [
+        {
+          "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+          "url": "https://home.treasury.gov/news/press-releases/sb0489",
+          "publisher": "U.S. Department of the Treasury",
+          "date": "2026-05-06",
+          "note": "Treasury auction schedule and size"
+        }
+      ]
+    },
+    {
+      "name": "Producer Price Index",
+      "ticker": "SPY / QQQ",
+      "why": "PPI can confirm whether CPI energy pressure is flowing through producer costs and margins.",
+      "next_event": "April PPI release",
+      "date": "2026-05-13 5:30 AM PT / 8:30 AM ET",
+      "status": "watch tomorrow",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official BLS release calendar"
+        }
+      ]
+    },
+    {
+      "name": "Nvidia earnings",
+      "ticker": "NVDA",
+      "why": "Next major AI supply-chain catalyst; demand, margins, CPUs, hyperscaler capex, and custom-chip competition all matter.",
+      "next_event": "Fiscal Q1 earnings expected after close",
+      "date": "2026-05-20",
+      "status": "major catalyst",
+      "sources": [
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Key watch items into Nvidia earnings"
+        },
+        {
+          "title": "May 2026 Earnings Calendar",
+          "url": "https://earningslabs.com/calendar/2026/05",
+          "publisher": "Earnings Labs",
+          "date": "2026-05-06",
+          "note": "Earnings calendar showing Nvidia on May 20"
+        }
+      ]
+    },
+    {
+      "name": "Spirit Airlines restructuring emergence",
+      "ticker": "Private / distressed credit",
+      "why": "Airline restructuring watch item intersects with oil shock, consumer pressure, and low-cost carrier capacity.",
+      "next_event": "Expected late-spring or early-summer emergence",
+      "date": "2026-Q2",
+      "status": "stale-but-relevant",
+      "sources": [
+        {
+          "title": "Spirit Airlines Reaches Agreement in Principle on Key Terms of Restructuring Support Agreement with Its Secured Creditors",
+          "url": "https://ir.spirit.com/news/news-details/2026/Spirit-Airlines-Reaches-Agreement-in-Principle-on-Key-Terms-of-Restructuring-Support-Agreement-with-Its-Secured-Creditors/default.aspx",
+          "publisher": "Spirit Aviation Holdings",
+          "date": "2026-02-24",
+          "note": "Company restructuring update; no fresher source found in this run"
+        }
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-05-12",
+      "time": "5:30 AM PT / 8:30 AM ET",
+      "event": "April CPI released",
+      "market_relevance": "Printed +0.6% MoM headline, +3.8% YoY, +0.4% MoM core; raises pressure on rates and growth multiples.",
+      "sources": [
+        {
+          "title": "Consumer Price Index Summary - 2026 M04 Results",
+          "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Official CPI release"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "time": "10:00 AM PT / 1:00 PM ET",
+      "event": "$42B 10-year Treasury note auction",
+      "market_relevance": "Tests duration demand after CPI and near 10-month-high yields.",
+      "sources": [
+        {
+          "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+          "url": "https://home.treasury.gov/news/press-releases/sb0489",
+          "publisher": "U.S. Department of the Treasury",
+          "date": "2026-05-06",
+          "note": "Auction size and timing"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "time": "5:30 AM PT / 8:30 AM ET",
+      "event": "April PPI",
+      "market_relevance": "Producer inflation follow-up to CPI; important for margins, rates, and Fed expectations.",
+      "sources": [
+        {
+          "title": "Schedule of Selected Releases for May 2026",
+          "url": "https://www.bls.gov/schedule/2026/05_sched_list.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-06",
+          "note": "Official BLS calendar"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "time": "10:00 AM PT / 1:00 PM ET",
+      "event": "$25B 30-year Treasury bond auction",
+      "market_relevance": "Long-end supply test; weak demand would pressure duration-sensitive equities and TLT.",
+      "sources": [
+        {
+          "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+          "url": "https://home.treasury.gov/news/press-releases/sb0489",
+          "publisher": "U.S. Department of the Treasury",
+          "date": "2026-05-06",
+          "note": "Auction size and timing"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "time": "Market open window",
+      "event": "Cerebras expected IPO trading",
+      "market_relevance": "AI-chip IPO demand and valuation discipline read-through for semis and private AI marks.",
+      "sources": [
+        {
+          "title": "Chipmaker Cerebras Upsizes IPO Amid AI Stocks Boom",
+          "url": "https://www.investors.com/news/technology/ai-stocks-cerebras-ipo-cbrs-stock/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "IPO timing and terms"
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "After market close",
+      "event": "Nvidia earnings expected",
+      "market_relevance": "Key validation point for AI infrastructure demand, margins, and hyperscaler capex durability.",
+      "sources": [
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Nvidia earnings watch items"
+        }
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "name": "Rates and energy are now a single macro trade",
+      "summary": "April CPI shows energy pressure is not just a commodity headline; it is feeding into the inflation narrative and rates. Duration-sensitive assets need oil stabilization, cleaner Treasury auctions, or softer follow-on inflation data.",
+      "exposure": [
+        "TLT",
+        "QQQ",
+        "IWM",
+        "XLE",
+        "Airlines",
+        "Retail consumers"
+      ],
+      "confidence": "high",
+      "sources": [
+        {
+          "title": "Consumer Price Index Summary - 2026 M04 Results",
+          "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Energy and CPI details"
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Policy stance and uncertainty framing"
+        }
+      ]
+    },
+    {
+      "name": "AI/chips: from momentum to underwriting",
+      "summary": "Nvidia earnings, Cerebras IPO pricing, memory policy noise, and high-multiple pressure are forcing investors to underwrite customer concentration, valuation, margins, and supply-chain bottlenecks rather than simply buying AI association.",
+      "exposure": [
+        "NVDA",
+        "MU",
+        "AMD",
+        "INTC",
+        "QCOM",
+        "LITE",
+        "CBRS",
+        "SNDK"
+      ],
+      "confidence": "medium-high",
+      "sources": [
+        {
+          "title": "Cerebras Raises IPO Price. Chip Stocks Are Still Hot.",
+          "url": "https://www.barrons.com/articles/cerebras-ipo-price-chip-stocks-765a22b8",
+          "publisher": "Barron's",
+          "date": "2026-05-12",
+          "note": "Cerebras IPO terms and risk factors"
+        },
+        {
+          "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+          "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+          "publisher": "MarketWatch",
+          "date": "2026-05-11",
+          "note": "Nvidia earnings setup"
+        }
+      ]
+    },
+    {
+      "name": "Policy risk is showing up in technology multiples",
+      "summary": "South Korea's AI-dividend comments show that governments may try to redistribute or tax AI gains. That is a second-order risk for memory, semis, and any company whose margin expansion is politically visible.",
+      "exposure": [
+        "Samsung",
+        "SK Hynix",
+        "MU",
+        "NVDA",
+        "AI infrastructure ETFs"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "The hottest stock market in the world finally met its match: taxes",
+          "url": "https://www.marketwatch.com/story/the-hottest-stock-market-in-the-world-finally-met-its-match-taxes-55cf54c6",
+          "publisher": "MarketWatch",
+          "date": "2026-05-12",
+          "note": "Korea AI-dividend commentary and equity-market impact"
+        }
+      ]
+    },
+    {
+      "name": "Software AI restructuring is not automatically bullish",
+      "summary": "GitLab and ZoomInfo show a harsher market standard for AI transition stories: investors want revenue durability and margin proof, not just headcount actions or agentic-era language.",
+      "exposure": [
+        "GTLB",
+        "GTM",
+        "CRM",
+        "DDOG",
+        "TEAM",
+        "MSFT"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "GitLab Act 2",
+          "url": "https://about.gitlab.com/blog/gitlab-act-2/",
+          "publisher": "GitLab",
+          "date": "2026-05-11",
+          "note": "Primary AI restructuring memo"
+        },
+        {
+          "title": "ZoomInfo Technologies announces restructuring program with global workforce reduction",
+          "url": "https://m.in.investing.com/news/sec-filings/zoominfo-technologies-announces-restructuring-program-with-global-workforce-reduction-93CH-5396486?ampMode=1",
+          "publisher": "Investing.com",
+          "date": "2026-05-12",
+          "note": "ZoomInfo restructuring filing summary"
+        }
+      ]
+    },
+    {
+      "name": "IPO window is open but selective",
+      "summary": "Cerebras and Fervo are testing two hot capital-markets narratives: AI compute and power scarcity. The opportunity is not simply IPO enthusiasm; it is watching whether public investors accept premium valuations despite customer concentration, early revenue, and capex intensity.",
+      "exposure": [
+        "CBRS",
+        "FRVO",
+        "AI infrastructure",
+        "Geothermal/power",
+        "Private AI marks"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Chipmaker Cerebras Upsizes IPO Amid AI Stocks Boom",
+          "url": "https://www.investors.com/news/technology/ai-stocks-cerebras-ipo-cbrs-stock/",
+          "publisher": "Investor's Business Daily",
+          "date": "2026-05-12",
+          "note": "Cerebras IPO test"
+        },
+        {
+          "title": "Fervo Energy Company (FRVO) Stock Price & Overview",
+          "url": "https://stockanalysis.com/stocks/frvo/",
+          "publisher": "Stock Analysis",
+          "date": "2026-05-08",
+          "note": "Fervo IPO terms and profile"
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "title": "Consumer Price Index Summary - 2026 M04 Results",
+      "url": "https://www.bls.gov/news.release/cpi.nr0.htm?form=MG0AV3",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Federal Reserve issues FOMC statement",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+      "publisher": "Federal Reserve",
+      "date": "2026-04-29"
+    },
+    {
+      "title": "Quarterly Refunding Statement of Deputy Assistant Secretary for Federal Finance Brian Smith",
+      "url": "https://home.treasury.gov/news/press-releases/sb0489",
+      "publisher": "U.S. Department of the Treasury",
+      "date": "2026-05-06"
+    },
+    {
+      "title": "Stock Market Today: Dow Steady, Techs Fall On $100 Oil, South Korea AI News; Inflation Jumps",
+      "url": "https://www.investors.com/market-trend/stock-market-today/stock-market-today-dow-jones-sp500-nasdaq-oil-prices-sandisk-cpi-inflation/",
+      "publisher": "Investor's Business Daily",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "These Stocks Are Today's Movers: Intel, Micron, GameStop, AST SpaceMobile, D-Wave Quantum, Hims & Hers, Plug Power, and More",
+      "url": "https://www.barrons.com/articles/stock-movers-9191624b",
+      "publisher": "Barron's",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Hims & Hers plunges after weight-loss pivot hits quarterly results",
+      "url": "https://whbl.com/2026/05/12/hims-hers-plunges-after-weight-loss-pivot-hits-quarterly-results/",
+      "publisher": "Reuters via WHBL",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "AST SpaceMobile Provides Business Update and First Quarter 2026 Results",
+      "url": "https://markets.financialcontent.com/stocks/article/bizwire-2026-5-11-ast-spacemobile-provides-business-update-and-first-quarter-2026-results",
+      "publisher": "AST SpaceMobile via Business Wire",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "Zebra Stock Soars on Earnings. The Automation Business Is Turning.",
+      "url": "https://www.barrons.com/articles/zebra-technologies-earnings-stock-price-8864bad3",
+      "publisher": "Barron's",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Venture Global Reports First Quarter 2026 Results",
+      "url": "https://investors.ventureglobal.com/news/news-details/2026/Venture-Global-Reports-First-Quarter-2026-Results/default.aspx",
+      "publisher": "Venture Global",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "eBay Rejects Unsolicited Proposal from GameStop",
+      "url": "https://www.prnewswire.com/news-releases/ebay-rejects-unsolicited-proposal-from-gamestop-302769000.html",
+      "publisher": "eBay via PR Newswire",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "GitLab Act 2",
+      "url": "https://about.gitlab.com/blog/gitlab-act-2/",
+      "publisher": "GitLab",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "As Nvidia earnings draw closer, here are 5 things investors need to watch",
+      "url": "https://www.marketwatch.com/story/as-nvidia-earnings-draw-closer-here-are-5-things-investors-need-to-watch-d11d8136",
+      "publisher": "MarketWatch",
+      "date": "2026-05-11"
+    },
+    {
+      "title": "Cerebras could be the next hot chip stock as demand swells ahead of its IPO",
+      "url": "https://www.marketwatch.com/story/cerebras-could-be-the-next-hot-chip-stock-as-demand-swells-ahead-of-its-ipo-f315ac46",
+      "publisher": "MarketWatch",
+      "date": "2026-05-12"
+    },
+    {
+      "title": "Fervo Energy Company (FRVO) Stock Price & Overview",
+      "url": "https://stockanalysis.com/stocks/frvo/",
+      "publisher": "Stock Analysis",
+      "date": "2026-05-08"
+    },
+    {
+      "title": "Spirit Airlines Reaches Agreement in Principle on Key Terms of Restructuring Support Agreement with Its Secured Creditors",
+      "url": "https://ir.spirit.com/news/news-details/2026/Spirit-Airlines-Reaches-Agreement-in-Principle-on-Key-Terms-of-Restructuring-Support-Agreement-with-Its-Secured-Creditors/default.aspx",
+      "publisher": "Spirit Aviation Holdings",
+      "date": "2026-02-24"
+    }
+  ],
+  "freshness": {
+    "prices": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "partial",
+      "note": "Live quote feed was not available in this run; mover prices are source-windowed from cited premarket/live-news items and marked where not independently verified."
+    },
+    "news": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "fresh",
+      "note": "Primary and major financial-news sources checked for CPI, Fed, Treasury, oil, movers, earnings, IPOs, and policy."
+    },
+    "filings": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "partial",
+      "note": "Company releases and filing summaries used. Full SEC filing review was not completed for every mover."
+    },
+    "macro_calendar": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "fresh",
+      "note": "BLS CPI/PPI schedule, Treasury refunding schedule, and latest FOMC statement included."
+    },
+    "ipo_restructuring": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "mixed",
+      "note": "Cerebras and Fervo IPO items are fresh. Spirit restructuring item is stale but retained because no fresher source was found in this run."
+    },
+    "commentary_mosaic": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "partial",
+      "note": "Mosaic includes Street/news commentary and company commentary; Reddit/social sentiment was not included because high-quality corroborated chatter was not found in the available scan window."
+    },
+    "source_conflicts": {
+      "as_of": "May 12, 2026 6:48 AM PT",
+      "status": "noted",
+      "note": "Equity-index and oil levels differed across source timestamps after CPI; dashboard uses directional ranges and source-window labels instead of false precision."
+    }
+  }
+}

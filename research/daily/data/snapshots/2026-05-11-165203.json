@@ -1,0 +1,208 @@
+{
+  "title": "Daily Investment Dashboard",
+  "generated_at": "2026-05-11T16:51:42-07:00",
+  "as_of": "Example data",
+  "market_read": {
+    "stance": "mixed",
+    "summary": "Large-cap AI leadership is firm, rates are the swing factor, and single-name earnings are creating sharper dispersion than the index tape suggests.",
+    "key_points": [
+      "Policy and rates are the main macro constraint on risk appetite.",
+      "AI infrastructure demand remains a durable theme, but valuation discipline matters.",
+      "Several movers look catalyst-driven rather than broad beta-driven."
+    ]
+  },
+  "indices": [
+    {
+      "label": "S&P 500 futures",
+      "value": "5,245",
+      "change": "+0.3%",
+      "detail": "Premarket"
+    },
+    {
+      "label": "10Y Treasury",
+      "value": "4.41%",
+      "change": "+3 bps",
+      "detail": "Rates higher"
+    },
+    {
+      "label": "VIX",
+      "value": "15.8",
+      "change": "-0.4",
+      "detail": "Volatility contained"
+    },
+    {
+      "label": "WTI crude",
+      "value": "$79.20",
+      "change": "+0.8%",
+      "detail": "Energy bid"
+    }
+  ],
+  "signals": [
+    {
+      "title": "AI capex beneficiaries still screen well",
+      "severity": "positive",
+      "summary": "Cloud and chip commentary continues to point to elevated infrastructure demand, but power, memory, and networking constraints are the details to watch.",
+      "tickers": [
+        "NVDA",
+        "AVGO",
+        "MU",
+        "DELL"
+      ],
+      "sources": [
+        {
+          "title": "Example hyperscaler capex commentary",
+          "publisher": "Company transcript",
+          "date": "2026-05-11",
+          "url": "https://example.com",
+          "note": "Supports AI infrastructure demand signal"
+        }
+      ]
+    },
+    {
+      "title": "Rates-sensitive software remains fragile",
+      "severity": "watch",
+      "summary": "Long-duration names could struggle if yields continue to rise into upcoming inflation data.",
+      "tickers": [
+        "CRM",
+        "SNOW",
+        "DDOG"
+      ],
+      "sources": []
+    }
+  ],
+  "movers": [
+    {
+      "ticker": "ABCD",
+      "name": "Example Semiconductors",
+      "price": "$48.30",
+      "change": "+12.4%",
+      "volume": "3.1x avg",
+      "catalyst": "Raised guidance and announced a new AI accelerator customer.",
+      "interpretation": "Move appears earnings-driven with a possible estimate-revision tailwind.",
+      "sources": [
+        {
+          "title": "Example earnings release",
+          "url": "https://example.com",
+          "date": "2026-05-11"
+        }
+      ]
+    },
+    {
+      "ticker": "WXYZ",
+      "name": "Example Retail",
+      "price": "$21.10",
+      "change": "-8.7%",
+      "volume": "2.4x avg",
+      "catalyst": "Comparable sales missed consensus and management narrowed margin guidance.",
+      "interpretation": "The likely debate is whether the miss is macro-driven or company-specific.",
+      "sources": [
+        {
+          "title": "Example company release",
+          "url": "https://example.com",
+          "date": "2026-05-11"
+        }
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "name": "Memory cycle recovery",
+      "ticker": "MU",
+      "setup": "HBM demand and disciplined supply could support a stronger pricing cycle.",
+      "mispricing": "The market may still be underweighting operating leverage if AI memory demand proves durable.",
+      "catalysts": [
+        "Earnings revisions",
+        "HBM supply updates",
+        "Hyperscaler capex guidance"
+      ],
+      "bull_case": [
+        "Pricing tightness improves margins",
+        "AI demand absorbs incremental capacity"
+      ],
+      "bear_case": [
+        "Cyclical supply response arrives quickly",
+        "China or export controls pressure demand"
+      ],
+      "disconfirming_evidence": [
+        "Spot pricing weakens",
+        "Customer inventory builds"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Example industry report",
+          "url": "https://example.com",
+          "date": "2026-05-11"
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "name": "Inflation print",
+      "ticker": "",
+      "why": "Could reset rate expectations and long-duration equity multiples.",
+      "next_event": "CPI release",
+      "date": "2026-05-13",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Example economic calendar",
+          "url": "https://example.com",
+          "date": "2026-05-11"
+        }
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-05-13",
+      "time": "5:30 AM PT",
+      "event": "CPI",
+      "market_relevance": "Rates, dollar, and growth multiples.",
+      "sources": [
+        {
+          "title": "Example BLS calendar",
+          "url": "https://example.com",
+          "date": "2026-05-11"
+        }
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "name": "AI infrastructure supply chain",
+      "summary": "The opportunity is moving from GPU scarcity into memory, networking, power, and cooling bottlenecks.",
+      "exposure": [
+        "Semis",
+        "Servers",
+        "Power equipment",
+        "Data centers"
+      ],
+      "confidence": "medium-high",
+      "sources": []
+    }
+  ],
+  "citations": [
+    {
+      "title": "Example primary source index",
+      "publisher": "Dashboard demo",
+      "date": "2026-05-11",
+      "url": "https://example.com"
+    }
+  ],
+  "freshness": {
+    "prices": {
+      "as_of": "Example data",
+      "status": "demo"
+    },
+    "news": {
+      "as_of": "Example data",
+      "status": "demo"
+    },
+    "theses": {
+      "as_of": "Example data",
+      "status": "demo"
+    }
+  }
+}

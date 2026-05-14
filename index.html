@@ -47,6 +47,23 @@
   header h1 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
   header .meta { font-size: 11px; color: #9ca3af; }
   .header-left { display: flex; align-items: center; gap: 14px; }
+  .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+  .daily-report-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    border: 1px solid var(--schwab-navy);
+    border-radius: 999px;
+    background: rgba(0,160,223,0.16);
+    color: #e0f2fe;
+    padding: 7px 11px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .daily-report-link:hover { background: rgba(0,160,223,0.26); color: #fff; }
   .logo {
     width: 44px; height: 44px;
     flex-shrink: 0;
@@ -776,7 +793,10 @@
       <div class="meta">Watchlist + DOW 30 + NASDAQ-100 + S&P 100 ¬∑ Schwab-only live numbers ¬∑ Yahoo for history/news</div>
     </div>
   </div>
-  <div class="meta" id="status">Loading‚Ä¶</div>
+  <div class="header-actions">
+    <a class="daily-report-link" href="./research/daily/">Daily 5:30 AM Research Report</a>
+    <div class="meta" id="status">Loading‚Ä¶</div>
+  </div>
 </header>
 
 <div class="news-ticker" id="news-ticker">
