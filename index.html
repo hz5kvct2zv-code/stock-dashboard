@@ -1197,6 +1197,7 @@ const state = {
   topPicks: [],
   schwabOverrides: {},
   intradayMarks: {},
+  publishedMemo: '',
   useSchwabOnly: true,
 };
 
@@ -1767,6 +1768,18 @@ function getOpportunity(symbol) {
   return RESEARCH_REPORT.opportunities.find(o => o.symbol === symbol);
 }
 
+async function loadPublishedResearchMemo() {
+  try {
+    const res = await fetch(`research/latest.md?ts=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) return;
+    const text = await res.text();
+    state.publishedMemo = text.trim();
+    if (state.tab === 'research') renderResearch();
+  } catch (e) {
+    console.warn('published research memo unavailable:', e.message);
+  }
+}
+
 function actionRank(m) {
   if (!m || m.source !== 'Schwab pasted') return -999;
   const day = m.dayChg ?? 0;
@@ -1884,7 +1897,7 @@ function renderResearch() {
   watchNext.innerHTML = RESEARCH_REPORT.watchNext.map(item => `<li>${escapeHtml(item)}</li>`).join('');
 
   const memo = localStorage.getItem('research_memo') || '';
-  if (savedMemo) savedMemo.textContent = memo || 'No custom memo saved yet. Paste an automation report here after it runs.';
+  if (savedMemo) savedMemo.textContent = memo || state.publishedMemo || 'No custom memo saved yet. Paste an automation report here after it runs.';
   if (memoInput && !memoInput.value) memoInput.value = memo;
   renderSchwabOverrideSummary();
   maybeNotifyTrendAlerts();
@@ -2769,6 +2782,7 @@ document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.da
 applyTabVisibility();
 render();
 renderMarketsStrip();
+loadPublishedResearchMemo();
 if (state.tab === 'research') ensureTopPickData().then(renderResearch);
 else loadTab('watchlist');
 fetchNews();
