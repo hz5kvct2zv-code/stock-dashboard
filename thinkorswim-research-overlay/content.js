@@ -1,5 +1,5 @@
 (() => {
-  const PRIORITY = ['RDDT','TSLA','SMH','PLTR','ORCL','NFLX','NEM','MU','MSFT','INTC','GOOGL','CRWV','CRCL','AXON','AVGO','AMZN','ABNB','AAPL'];
+  const PRIORITY = ['NVDA','SMH','RDDT','TSLA','PLTR','ORCL','NFLX','NEM','MU','MSFT','INTC','GOOGL','CRWV','CRCL','AXON','AVGO','AMZN','ABNB','AAPL'];
   const STORAGE_KEY = 'codex_schwab_watch_state_v1';
   const ALERT_KEY = 'codex_schwab_watch_alerts_v1';
   const SCAN_MS = 5000;
