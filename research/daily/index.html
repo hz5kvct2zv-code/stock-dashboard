@@ -3,87 +3,3846 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daily Investment Research Report - May 18, 2026</title>
+  <title>Daily Institutional Market Research Dashboard</title>
   <style>
-    :root { color-scheme: light; --ink:#151922; --muted:#5d6676; --line:#d8dee9; --bg:#f5f7fb; --panel:#fff; --red:#b42318; --green:#0f7b4f; --amber:#9a6700; --blue:#1f6feb; }
+    :root {
+      color-scheme: light;
+      --paper: #f2f0ea;
+      --surface: #fffdf8;
+      --ink: #101010;
+      --muted: #66645f;
+      --soft: #85827b;
+      --line: #d9d4c8;
+      --line-strong: #1d1b18;
+      --accent: #f2b705;
+      --accent-2: #aa2634;
+      --teal: #0b756f;
+      --green: #1d7a4d;
+      --red: #a72a25;
+      --amber: #9b6a00;
+      --blue: #235d9f;
+      --shadow: 0 18px 48px rgba(18, 18, 18, 0.10);
+      --serif: Georgia, "Times New Roman", ui-serif, serif;
+      --sans: Aptos, "Helvetica Neue", Arial, ui-sans-serif, system-ui, sans-serif;
+      --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+
     * { box-sizing: border-box; }
-    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--bg); color:var(--ink); }
-    main { width:min(1120px, calc(100vw - 32px)); margin:0 auto; padding:28px 0 48px; }
-    header { border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:18px; }
-    h1 { margin:0 0 8px; font-size:clamp(30px, 5vw, 54px); letter-spacing:0; line-height:1; }
-    h2 { margin:0 0 10px; font-size:20px; }
-    p { line-height:1.48; }
-    .banner { background:var(--red); color:#fff; border:3px solid #7a130d; padding:14px 16px; margin:0 0 16px; font-weight:900; text-transform:uppercase; letter-spacing:.03em; }
-    .ok { background:#e8f5ef; color:var(--green); border:1px solid #a8d9c2; border-radius:999px; padding:5px 10px; font-size:12px; font-weight:850; display:inline-flex; width:fit-content; }
-    .grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px; }
-    .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; }
-    .controls { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:10px; margin:16px 0; }
-    .control { min-height:140px; background:var(--panel); border:1px solid #222; border-radius:8px; padding:13px; }
-    .control h3 { margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; }
-    .metric { display:grid; grid-template-columns:1fr auto; gap:8px; border-top:1px solid var(--line); padding:7px 0; font-size:12px; }
-    .metric:first-of-type { border-top:0; }
-    .metric b { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .pill { display:inline-flex; border-radius:999px; padding:4px 8px; font-size:11px; font-weight:900; background:#edf4ff; color:var(--blue); text-transform:uppercase; }
-    .pill.risk { background:#fff0ee; color:var(--red); }
-    .pill.watch { background:#fff7db; color:var(--amber); }
-    .pill.good { background:#eef8f2; color:var(--green); }
-    table { width:100%; border-collapse:collapse; background:#fff; }
-    th, td { padding:10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
-    th { background:#111; color:#fff; font-size:11px; text-transform:uppercase; }
-    a { color:var(--blue); font-weight:800; }
-    .muted { color:var(--muted); }
-    @media (max-width: 850px) { .grid, .controls { grid-template-columns:1fr; } }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(16, 16, 16, 0.055), transparent 220px),
+        var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.48;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+    .site-top {
+      background: #0f0f0f;
+      color: #fff;
+      border-bottom: 4px solid var(--accent);
+    }
+
+    .top-inner {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, auto);
+      gap: 20px;
+      align-items: center;
+      min-height: 78px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3vw, 44px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .edition {
+      border-left: 1px solid rgba(255,255,255,0.22);
+      padding-left: 12px;
+      color: #e8e1cf;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .timestamp {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      max-width: 620px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .timestamp span {
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      padding: 7px 9px;
+      color: #f8f4e8;
+    }
+
+    .access-strip {
+      border-top: 1px solid rgba(255,255,255,0.16);
+      background: #191816;
+      color: #fff8df;
+    }
+
+    .access-inner {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 9px 0;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .access-label {
+      color: var(--accent);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .dashboard-link {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .shell {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 18px 0 46px;
+    }
+
+    .market-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+    }
+
+    .urgent-banner {
+      display: none;
+      margin: 0 0 12px;
+      border: 3px solid var(--red);
+      background: #b42318;
+      color: #fff;
+      padding: 14px 16px;
+      font-weight: 950;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 16px 36px rgba(167, 42, 37, 0.22);
+    }
+
+    .urgent-banner.show { display: block; }
+
+    .report-controls {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0 14px;
+    }
+
+    .control-card {
+      min-height: 150px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+      padding: 13px;
+      box-shadow: 0 8px 22px rgba(17, 17, 17, 0.055);
+    }
+
+    .control-card h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .control-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      padding: 6px 0;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+    }
+
+    .metric-row:first-of-type { border-top: 0; }
+
+    .metric-value {
+      font-family: var(--mono);
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .meter {
+      height: 9px;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      margin: 8px 0;
+    }
+
+    .meter-fill {
+      height: 100%;
+      background: var(--red);
+    }
+
+    .meter-fill.positive { background: var(--green); }
+    .meter-fill.watch { background: var(--amber); }
+    .meter-fill.neutral { background: var(--blue); }
+
+    .quote-tile {
+      min-height: 82px;
+      padding: 13px 14px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .quote-tile:last-child { border-right: 0; }
+
+    .eyebrow {
+      color: var(--soft);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .quote-value {
+      margin-top: 6px;
+      font-family: var(--serif);
+      font-size: clamp(21px, 2.1vw, 31px);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .quote-note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      margin: 14px 0 18px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: rgba(242, 240, 234, 0.92);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 28px rgba(17, 17, 17, 0.08);
+    }
+
+    .search {
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 13px;
+      font: 650 14px var(--sans);
+      outline: none;
+    }
+
+    .search:focus { border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(170, 38, 52, 0.12); }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+
+    .tab {
+      height: 38px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      background: #fff;
+      color: var(--ink);
+      padding: 0 12px;
+      font: 850 12px var(--sans);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: var(--ink);
+      color: #fff;
+      box-shadow: inset 0 -3px 0 var(--accent);
+    }
+
+    .front-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(330px, 0.58fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .lead-story {
+      min-height: 430px;
+      background:
+        linear-gradient(135deg, rgba(242, 183, 5, 0.22), transparent 45%),
+        linear-gradient(180deg, #fffdf8, #f9f6ee);
+      border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 3vw, 34px);
+    }
+
+    .lead-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .lead-kicker::before {
+      content: "";
+      width: 34px;
+      height: 5px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .lead-title {
+      margin: 16px 0 12px;
+      max-width: 950px;
+      font-family: var(--serif);
+      font-size: clamp(38px, 6vw, 78px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .lead-summary {
+      max-width: 850px;
+      color: #2a2926;
+      font-size: clamp(17px, 1.5vw, 22px);
+      line-height: 1.42;
+    }
+
+    .lead-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .lead-point {
+      position: relative;
+      padding-left: 18px;
+      color: #33312d;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .lead-point::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      background: var(--accent-2);
+      border-radius: 50%;
+    }
+
+    .right-rail {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rail-card, .panel, .story-card, .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(17, 17, 17, 0.055);
+    }
+
+    .rail-card, .panel { padding: 16px; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 12px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid var(--line-strong);
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.05;
+    }
+
+    .mini-count {
+      font-family: var(--sans);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .news-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .list-item {
+      display: grid;
+      gap: 6px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+    }
+
+    .list-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .list-item:hover .item-title { color: var(--accent-2); }
+
+    .item-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .item-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .meta-row, .tag-row, .source-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .pill, .tag, .source {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+    }
+
+    .pill.positive { color: var(--green); border-color: rgba(29, 122, 77, 0.28); background: #eef8f2; }
+    .pill.negative { color: var(--red); border-color: rgba(167, 42, 37, 0.28); background: #fff0ee; }
+    .pill.watch { color: var(--amber); border-color: rgba(155, 106, 0, 0.32); background: #fff7db; }
+    .pill.neutral { color: var(--blue); border-color: rgba(35, 93, 159, 0.28); background: #edf4ff; }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: #f5f2e9;
+      color: #5c5750;
+    }
+
+    .source {
+      border: 1px solid rgba(11, 117, 111, 0.22);
+      background: #ebf8f6;
+      color: var(--teal);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .content-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .story-card {
+      position: relative;
+      min-height: 210px;
+      padding: 16px;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .story-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .story-card:hover::before { opacity: 1; }
+
+    .story-card h3 {
+      margin: 10px 0 8px;
+      font-family: var(--serif);
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .story-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .story-footer {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .memo-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.55fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .memo-article {
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 34px);
+    }
+
+    .memo-title {
+      margin: 8px 0 10px;
+      font-family: var(--serif);
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .memo-summary {
+      margin: 0 0 18px;
+      color: #2a2926;
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.45;
+    }
+
+    .memo-section {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .memo-section h3 {
+      margin: 0 0 8px;
+      font-family: var(--serif);
+      font-size: 25px;
+      line-height: 1.05;
+    }
+
+    .memo-section p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .memo-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      margin-top: 14px;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      padding: 0 12px;
+      background: #111;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.55fr);
+      gap: 18px;
+    }
+
+    .freshness-row, .timeline-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .freshness-row:last-child, .timeline-row:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .timeline-date {
+      color: var(--accent-2);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border-color: var(--line-strong);
+    }
+
+    table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+      background: var(--surface);
+    }
+
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+    }
+
+    tbody tr { cursor: pointer; }
+    tbody tr:hover { background: #fff7df; }
+    tr:last-child td { border-bottom: 0; }
+
+    .ticker {
+      font-family: var(--mono);
+      font-weight: 950;
+      letter-spacing: 0.02em;
+    }
+
+    .move {
+      font-family: var(--serif);
+      font-size: 23px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .mini {
+      background: #f8f5ec;
+      border: 1px solid var(--line);
+      padding: 12px;
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--ink);
+    }
+
+    ul.clean {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .empty {
+      padding: 28px;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.5);
+      text-align: center;
+    }
+
+    .reader-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      background: rgba(13, 13, 13, 0.56);
+      padding: 24px;
+      overflow: auto;
+    }
+
+    .reader-overlay.open {
+      display: block;
+    }
+
+    .reader-panel {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      box-shadow: 0 30px 100px rgba(0,0,0,0.34);
+    }
+
+    .reader-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding: 22px;
+      border-bottom: 4px solid var(--accent);
+      background: #111;
+      color: #fff;
+    }
+
+    .reader-header h2 {
+      margin: 8px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 56px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .close-reader {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: transparent;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .reader-body {
+      padding: 22px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .reader-lede {
+      color: #292824;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .reader-section {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .reader-section h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    @media (max-width: 1100px) {
+      .front-grid, .memo-shell, .two-column { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .report-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .market-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .quote-tile:nth-child(2) { border-right: 0; }
+      .quote-tile:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    }
+
+    @media (max-width: 760px) {
+      .top-inner, .controls { grid-template-columns: 1fr; }
+      .timestamp, .tabs { justify-content: flex-start; }
+      .brand { white-space: normal; }
+      .edition { display: none; }
+      .report-controls { grid-template-columns: 1fr; }
+      .lead-points, .news-grid, .market-strip, .split { grid-template-columns: 1fr; }
+      .quote-tile { border-right: 0; border-bottom: 1px solid var(--line); }
+      .quote-tile:last-child { border-bottom: 0; }
+      .shell, .top-inner, .access-inner { width: min(100vw - 20px, 720px); }
+      .reader-overlay { padding: 10px; }
+      .reader-header, .reader-body { padding: 16px; }
+    }
   </style>
 </head>
 <body>
-<main>
-  <div class="banner">Last updated: May 18, 2026 4:44 PM PT. If this date is not today, do not trade from this thesis.</div>
-  <header>
-    <span class="ok">Daily report published</span>
-    <h1>Daily Institutional Market Research Dashboard</h1>
-    <p class="muted">May 18, 2026 4:44 PM PT - report controls added. This GitHub Pages copy replaces the stale May 14 daily page and points to the same research view used in the local dashboard.</p>
-    <p><a href="https://hz5kvct2zv-code.github.io/stock-dashboard/">Main stock dashboard</a> | <a href="data/latest.json">Daily report JSON</a></p>
+  <script id="dashboard-data" type="application/json">{
+  "title": "Daily Institutional Market Research Dashboard",
+  "generated_at": "2026-05-20T10:05:56-07:00",
+  "as_of": "May 20, 2026 10:05 AM PT",
+  "market_read": {
+    "stance": "event-driven",
+    "headline": "Chip breadth is repairing into NVDA earnings, but the NVDA May 14 reference remains unreclaimed and H200/China is still unresolved.",
+    "summary": "The U.S. tape has shifted from yesterday’s chip-led risk-off to an event-driven semiconductor rebound. Reuters’ 10:30 a.m. ET update showed Nasdaq and SOX leadership, with Marvell, Intel and Micron confirming better chip breadth ahead of Nvidia results. The risk-management read is still not clean risk-on: NVDA remains below the user’s $237.57 May 14 reference on the latest local tracker mark, Fed minutes and a 20-year auction sit in the same session, and H200/China headlines still describe approval without confirmed deliveries. This is investment research and scenario analysis, not personalized buy/sell advice.",
+    "key_points": [
+      "Reuters: the Nasdaq led U.S. gains as chips rebounded ahead of Nvidia earnings; SOX advanced, with MRVL, INTC and MU higher in the update.",
+      "NVDA trade-watch: local tracker mark of $224.07 at 4:33 AM PT remains about $13.50 below the $237.57 May 14 reference, or roughly -5.7%; Reuters later showed NVDA positive intraday but no clean public live high/low was sourceable.",
+      "SMH trade-watch: local tracker mark of $554.32 was +0.63% versus its 1:00 AM baseline and +1.49% day change; this supports a wobbling/repair attempt but not a fully working scenario until NVDA clears the reference and peers hold.",
+      "H200/China: what changed is not revenue confirmation; U.S. clearances exist for roughly 10 Chinese firms, but accessible reporting still says deliveries are stalled and China-side approval/purchase intent remains the gating item.",
+      "Macro: 10-year yields eased from Tuesday’s 16-month high, oil fell hard from still-elevated levels, and markets await Fed minutes plus the 20-year auction for duration-risk confirmation.",
+      "Earnings dispersion is high: Target reported stronger growth and raised sales outlook, Lowe’s affirmed FY guidance, TJX raised outlook, while Intuit fell on Reuters-reported AI-focused workforce cuts.",
+      "AI infrastructure is broadening beyond GPU beta: Google/Blackstone TPU-cloud headlines validate custom compute and could pressure pure-play neocloud multiples such as CRWV while benefiting GOOGL/BX/Broadcom-style ecosystems."
+    ],
+    "nvda_trade_watch": {
+      "position_reference": "User May 14 reference area near $237.57.",
+      "current_premarket_price": "Local overnight tracker: NVDA $224.07 at 2026-05-20 4:33 AM PT. Reuters later showed NVDA positive intraday, but the current consolidated live price and premarket high/low were not sourceable from accessible public pages.",
+      "entry_area_status": "Failed to reclaim on sourceable tracker data. $224.07 is $13.50 below $237.57, roughly -5.7%.",
+      "overnight_high_low": "Not reliably sourceable. The local tracker captures point-in-time marks, not official premarket high/low ranges.",
+      "h200_china_change": "No verified shipment inflection. The Reuters/secondary-source mosaic still says approvals exist, but delivery/purchase execution is blocked or unconfirmed on the China side.",
+      "peer_confirmation": "Improving: Reuters showed MRVL, INTC, MU and SOX higher; local tracker showed SMH and MU positive. Confirmation is still event-dependent because NVDA earnings can reset the whole group after the close.",
+      "scenario_read": "Wobbling upward, not fully working. The setup upgrades only if NVDA reclaims and holds the $237-$238 area with SMH/SOX and memory/networking confirmation after earnings.",
+      "risk_management_note": "No buy/sell instruction. Treat this as thesis-integrity work: define event-risk tolerance, monitor the failed reference area, require peer confirmation, and mark H200 as optionality until deliveries or guidance are verified."
+    },
+    "research_frame": "Investment research and scenario analysis for learning and decision support; not personalized financial advice."
+  },
+  "daily_memo": {
+    "title": "Daily Investment Research Memo - May 20, 2026",
+    "as_of": "May 20, 2026 10:05 AM PT",
+    "summary": "Today is an event-driven chip-repair tape. NVDA and SMH are front and center: semis are confirming a rebound, but NVDA has not reclaimed the $237.57 May 14 reference on sourceable tracker data, and H200/China remains unresolved optionality rather than confirmed revenue.",
+    "doc_url": "",
+    "sections": [
+      {
+        "heading": "Banker read",
+        "tone": "macro",
+        "body": "The market is trying to repair yesterday’s chip-led weakness before Nvidia earnings, but the day still hinges on duration risk and the post-close AI demand signal. Falling oil and lower yields help, while the Fed minutes and 20-year auction can reprice the rates path before or after the chip event.",
+        "bullets": [
+          "Reuters’ intraday update showed U.S. indexes higher and the semiconductor index up meaningfully.",
+          "Fed minutes are due today after a split April 29 hold at a 3.50%-3.75% target range.",
+          "April CPI and PPI remain hot enough that lower oil/yields need confirmation, not one-session extrapolation."
+        ],
+        "sources": [
+          {
+            "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+            "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+          },
+          {
+            "title": "Morning Bid: Nvidia vigil",
+            "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+          },
+          {
+            "title": "Federal Reserve issues FOMC statement",
+            "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+            "publisher": "Federal Reserve",
+            "date": "2026-04-29",
+            "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+          },
+          {
+            "title": "Consumer Price Index News Release - April 2026",
+            "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm",
+            "publisher": "U.S. Bureau of Labor Statistics",
+            "date": "2026-05-12",
+            "note": "Primary source: CPI +3.8% year over year in April."
+          },
+          {
+            "title": "Producer Price Index News Release - April 2026",
+            "url": "https://www.bls.gov/news.release/archives/ppi_05132026.htm",
+            "publisher": "U.S. Bureau of Labor Statistics",
+            "date": "2026-05-13",
+            "note": "Primary source: PPI final demand +6.0% year over year in April."
+          }
+        ]
+      },
+      {
+        "heading": "NVDA and SMH trade-watch",
+        "tone": "risk",
+        "body": "NVDA is the swing factor. The local tracker mark of $224.07 remains below the $237.57 reference, while Reuters’ later chip update shows improving peer breadth. SMH is supportive but not decisive: the setup is wobbling upward, not fully working, until NVDA reclaims the reference and the group holds after earnings.",
+        "bullets": [
+          "NVDA tracker mark: $224.07 at 4:33 AM PT; about -5.7% versus $237.57.",
+          "SMH tracker mark: $554.32 at 4:33 AM PT; +0.63% versus baseline and +1.49% day change.",
+          "Reliable official premarket high/low was not available from accessible public sources.",
+          "Reuters showed positive chip confirmation from MRVL, INTC, MU and SOX."
+        ],
+        "sources": [
+          {
+            "title": "Overnight Watchlist Trend Tracker",
+            "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+            "publisher": "Local dashboard tracker",
+            "date": "2026-05-20",
+            "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+          },
+          {
+            "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+            "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+          },
+          {
+            "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+            "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+            "publisher": "NVIDIA Investor Relations",
+            "date": "2026-05-17",
+            "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+          },
+          {
+            "title": "Nvidia reports after the bell tonight with options showing elevated volatility. What are you watching for?",
+            "url": "https://www.reddit.com/r/TradingPlaybook/comments/1ti5xe6/nvidia_reports_after_the_bell_tonight_with/",
+            "publisher": "Reddit r/TradingPlaybook",
+            "date": "2026-05-20",
+            "note": "Retail/social thread framing NVDA earnings as volatility event; sentiment source only, not a factual primary source."
+          }
+        ]
+      },
+      {
+        "heading": "H200 and export-control mosaic",
+        "tone": "watch",
+        "body": "The H200/China story remains a paper-approval-versus-execution debate. The bullish mechanism is restored China revenue optionality; the bear case is that Chinese authorities and buyers continue to favor domestic chips or resist U.S. inspection/fee terms. The dashboard should not treat H200 as booked revenue until shipments or company guidance confirm it.",
+        "bullets": [
+          "Reuters reported U.S. clearances for roughly 10 Chinese firms but no deliveries as of May 14.",
+          "Follow-on reporting still points to China-side blockage or hesitation.",
+          "A clear NVDA earnings comment on shipments, purchase orders, or revenue timing would change the view."
+        ],
+        "sources": [
+          {
+            "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+            "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-14",
+            "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+          },
+          {
+            "title": "US Approves Nvidia H200 Sales to China, But Shipments Remain Stalled",
+            "url": "https://www.techrepublic.com/article/news-nvidia-h200-ai-chip-sales-china-stalled/",
+            "publisher": "TechRepublic",
+            "date": "2026-05-15",
+            "note": "Summarizes Reuters H200 approval and China-side clearance/shipment friction."
+          },
+          {
+            "title": "Trump says China is blocking Nvidia H200 purchases despite US approval",
+            "url": "https://www.tomshardware.com/tech-industry/trump-says-china-is-blocking-h200-purchases",
+            "publisher": "Tom's Hardware",
+            "date": "2026-05-15",
+            "note": "Reports Trump comments that Beijing is not approving purchases and wants domestic chips."
+          }
+        ]
+      },
+      {
+        "heading": "AI and chips",
+        "tone": "ai",
+        "body": "Chip leadership is broadening today, but the infrastructure debate is no longer only Nvidia. Google/Blackstone’s TPU cloud plan validates demand for compute capacity and custom silicon while raising competitive questions for CRWV, ORCL, MSFT, AMZN and AVGO-style infrastructure exposure.",
+        "bullets": [
+          "Reuters: MRVL, INTC, MU and SOX advanced with NVDA earnings pending.",
+          "Google/Blackstone TPU cloud is a direct signal that capital wants AI compute infrastructure with custom-chip economics.",
+          "CoreWeave remains high beta: analyst support exists, but Reddit/social chatter reflects confusion around capex, competition and price action."
+        ],
+        "sources": [
+          {
+            "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+            "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+          },
+          {
+            "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+            "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-18",
+            "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+          },
+          {
+            "title": "Blackstone, Google launch new compute-as-a-service venture",
+            "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+            "publisher": "CIO Dive",
+            "date": "2026-05-19",
+            "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+          },
+          {
+            "title": "CoreWeave Analyst Ratings",
+            "url": "https://stockanalysis.com/stocks/crwv/ratings/",
+            "publisher": "StockAnalysis",
+            "date": "2026-05-13",
+            "note": "Analyst-action table: Jefferies and Citi maintained strong-buy ratings and lifted CoreWeave targets in early May."
+          },
+          {
+            "title": "What is actually happening with CRWV right now?",
+            "url": "https://www.reddit.com/r/CRWV/comments/1tgpohd/what_is_actually_happening_with_crwv_right_now/",
+            "publisher": "Reddit r/CRWV",
+            "date": "2026-05-20",
+            "note": "Retail confusion about CoreWeave price action versus AI deals; sentiment source only."
+          }
+        ]
+      },
+      {
+        "heading": "Earnings, filings, analyst actions",
+        "tone": "watch",
+        "body": "Single-name dispersion is high. Target’s fundamentals looked stronger than the stock reaction, Lowe’s showed stable but not exciting housing exposure, TJX remains the cleanest off-price retail winner, and Intuit’s AI-focused restructuring is a software-margin/productivity signal but also a labor/culture risk.",
+        "bullets": [
+          "Target: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%; Reuters still showed shares lower intraday.",
+          "Lowe’s: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY outlook affirmed.",
+          "TJX: beat and raised comparable-sales/profit outlook; Reuters update showed the stock among strong gainers.",
+          "Morgan Stanley’s NVDA target raise to $285 is constructive Street support, but price/reference confirmation still matters more today."
+        ],
+        "sources": [
+          {
+            "title": "Target Corporation Reports First Quarter Earnings",
+            "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+            "publisher": "Target Investor Relations",
+            "date": "2026-05-20",
+            "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+          },
+          {
+            "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+            "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+            "publisher": "Lowe's Investor Relations",
+            "date": "2026-05-20",
+            "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+          },
+          {
+            "title": "TJX shares jump on strong earnings beat and raised outlook",
+            "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+            "publisher": "Investing.com",
+            "date": "2026-05-20",
+            "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+          },
+          {
+            "title": "Exclusive: Intuit to cut 17% of global jobs to streamline operations, memo shows",
+            "url": "https://m.investing.com/news/stock-market-news/exclusiveintuit-to-cut-17-of-global-jobs-to-streamline-operations-memo-shows-4701442?ampMode=1",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Intuit to cut about 3,000 jobs, or roughly 17% of workforce, to streamline and focus on AI."
+          },
+          {
+            "title": "NVIDIA - Analysts’ Recommendations and Stock Price Forecast",
+            "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/forecast/",
+            "publisher": "MarketBeat",
+            "date": "2026-05-19",
+            "note": "Morgan Stanley raised Nvidia target to $285 from $260 and maintained Overweight on May 18, per Benzinga/MarketBeat."
+          }
+        ]
+      },
+      {
+        "heading": "IPO and market structure",
+        "tone": "opportunity",
+        "body": "The IPO window is becoming a real 2026 market-structure theme, led by AI and space names. SpaceX/OpenAI/Anthropic speculation and Cerebras validation can support AI-adjacent risk appetite, while tokenized-stock exemption headlines may keep CRCL and crypto-market-structure names in play.",
+        "bullets": [
+          "Kiplinger cited 93 IPO filings year-to-date through May 13 and proceeds up 86% year over year.",
+          "IG framed SpaceX, OpenAI and Anthropic as potentially massive listings if market conditions hold.",
+          "Tokenized-stock exemption reporting is lower-confidence but relevant for CRCL and market-structure sentiment."
+        ],
+        "sources": [
+          {
+            "title": "Hot Upcoming IPOs to Watch",
+            "url": "https://www.kiplinger.com/investing/stocks/upcoming-ipos",
+            "publisher": "Kiplinger",
+            "date": "2026-05-13",
+            "note": "IPO window context: 93 IPOs filed YTD through May 13, proceeds up 86% YoY, SpaceX/Anthropic/OpenAI in focus."
+          },
+          {
+            "title": "SpaceX, OpenAI, Anthropic: upcoming IPOs to watch in 2026",
+            "url": "https://www.ig.com/en/news-and-trade-ideas/spacex-openai-anthropic-2026-ipo-deals-260520",
+            "publisher": "IG International",
+            "date": "2026-05-20",
+            "note": "Mega-IPO scenario analysis for SpaceX, OpenAI, and Anthropic and potential fundraising scale."
+          },
+          {
+            "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+            "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+            "publisher": "Cointelegraph",
+            "date": "2026-05-19",
+            "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+          }
+        ]
+      }
+    ],
+    "recommendations": [
+      {
+        "label": "Keep NVDA/SMH in scenario mode",
+        "tone": "risk",
+        "summary": "Require NVDA reclaim of $237-$238 plus SMH/SOX breadth after earnings before calling the setup repaired.",
+        "tickers": [
+          "NVDA",
+          "SMH",
+          "MU",
+          "INTC",
+          "AVGO"
+        ],
+        "sources": [
+          {
+            "title": "Overnight Watchlist Trend Tracker",
+            "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+            "publisher": "Local dashboard tracker",
+            "date": "2026-05-20",
+            "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+          },
+          {
+            "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+            "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+          },
+          {
+            "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+            "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+            "publisher": "NVIDIA Investor Relations",
+            "date": "2026-05-17",
+            "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+          }
+        ]
+      },
+      {
+        "label": "Separate AI infrastructure winners by constraint",
+        "tone": "ai",
+        "summary": "Track GPU, TPU, networking, memory, cloud-capacity and power bottlenecks separately rather than treating all AI beta alike.",
+        "tickers": [
+          "NVDA",
+          "GOOGL",
+          "AVGO",
+          "MU",
+          "CRWV",
+          "MSFT",
+          "AMZN",
+          "ORCL"
+        ],
+        "sources": [
+          {
+            "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+            "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-18",
+            "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+          },
+          {
+            "title": "Blackstone, Google launch new compute-as-a-service venture",
+            "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+            "publisher": "CIO Dive",
+            "date": "2026-05-19",
+            "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+          },
+          {
+            "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+            "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+            "publisher": "Reuters via Investing.com",
+            "date": "2026-05-20",
+            "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+          }
+        ]
+      },
+      {
+        "label": "Watch retail dispersion for consumer signal",
+        "tone": "watch",
+        "summary": "Target, Lowe’s and TJX show different reads on traffic, housing and value-seeking demand.",
+        "tickers": [
+          "TGT",
+          "LOW",
+          "TJX",
+          "ABNB",
+          "AMZN"
+        ],
+        "sources": [
+          {
+            "title": "Target Corporation Reports First Quarter Earnings",
+            "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+            "publisher": "Target Investor Relations",
+            "date": "2026-05-20",
+            "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+          },
+          {
+            "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+            "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+            "publisher": "Lowe's Investor Relations",
+            "date": "2026-05-20",
+            "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+          },
+          {
+            "title": "TJX shares jump on strong earnings beat and raised outlook",
+            "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+            "publisher": "Investing.com",
+            "date": "2026-05-20",
+            "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+          }
+        ]
+      },
+      {
+        "label": "Treat tokenized-stock headlines as watchlist fuel",
+        "tone": "opportunity",
+        "summary": "CRCL can react to policy/microstructure headlines, but exemption details remain unverified.",
+        "tickers": [
+          "CRCL"
+        ],
+        "sources": [
+          {
+            "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+            "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+            "publisher": "Cointelegraph",
+            "date": "2026-05-19",
+            "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+        "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+        "publisher": "Reuters via Investing.com",
+        "date": "2026-05-20",
+        "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+      },
+      {
+        "title": "Morning Bid: Nvidia vigil",
+        "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+        "publisher": "Reuters via Investing.com",
+        "date": "2026-05-20",
+        "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+      },
+      {
+        "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+        "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+        "publisher": "NVIDIA Investor Relations",
+        "date": "2026-05-17",
+        "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+      },
+      {
+        "title": "Overnight Watchlist Trend Tracker",
+        "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+        "publisher": "Local dashboard tracker",
+        "date": "2026-05-20",
+        "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+      },
+      {
+        "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+        "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+        "publisher": "Reuters via Investing.com",
+        "date": "2026-05-14",
+        "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+      },
+      {
+        "title": "US Approves Nvidia H200 Sales to China, But Shipments Remain Stalled",
+        "url": "https://www.techrepublic.com/article/news-nvidia-h200-ai-chip-sales-china-stalled/",
+        "publisher": "TechRepublic",
+        "date": "2026-05-15",
+        "note": "Summarizes Reuters H200 approval and China-side clearance/shipment friction."
+      },
+      {
+        "title": "Trump says China is blocking Nvidia H200 purchases despite US approval",
+        "url": "https://www.tomshardware.com/tech-industry/trump-says-china-is-blocking-h200-purchases",
+        "publisher": "Tom's Hardware",
+        "date": "2026-05-15",
+        "note": "Reports Trump comments that Beijing is not approving purchases and wants domestic chips."
+      },
+      {
+        "title": "Federal Reserve issues FOMC statement",
+        "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+        "publisher": "Federal Reserve",
+        "date": "2026-04-29",
+        "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+      },
+      {
+        "title": "Implementation Note issued April 29, 2026",
+        "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a1.htm",
+        "publisher": "Federal Reserve",
+        "date": "2026-04-29",
+        "note": "Primary implementation note for 3.50%-3.75% federal funds target range."
+      },
+      {
+        "title": "Consumer Price Index News Release - April 2026",
+        "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "date": "2026-05-12",
+        "note": "Primary source: CPI +3.8% year over year in April."
+      },
+      {
+        "title": "Producer Price Index News Release - April 2026",
+        "url": "https://www.bls.gov/news.release/archives/ppi_05132026.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "date": "2026-05-13",
+        "note": "Primary source: PPI final demand +6.0% year over year in April."
+      },
+      {
+        "title": "Producer prices up 6.0 percent, energy up 22.7 percent, over the year ended April 2026",
+        "url": "https://www.bls.gov/opub/ted/2026/producer-prices-up-6-0-percent-energy-up-22-7-percent-over-the-year-ended-april-2026.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "date": "2026-05-19",
+        "note": "BLS summary tying the 6.0% PPI increase to energy pressure."
+      },
+      {
+        "title": "Target Corporation Reports First Quarter Earnings",
+        "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+        "publisher": "Target Investor Relations",
+        "date": "2026-05-20",
+        "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+      },
+      {
+        "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+        "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+        "publisher": "Lowe's Investor Relations",
+        "date": "2026-05-20",
+        "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+      },
+      {
+        "title": "TJX shares jump on strong earnings beat and raised outlook",
+        "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+        "publisher": "Investing.com",
+        "date": "2026-05-20",
+        "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+      },
+      {
+        "title": "Exclusive: Intuit to cut 17% of global jobs to streamline operations, memo shows",
+        "url": "https://m.investing.com/news/stock-market-news/exclusiveintuit-to-cut-17-of-global-jobs-to-streamline-operations-memo-shows-4701442?ampMode=1",
+        "publisher": "Reuters via Investing.com",
+        "date": "2026-05-20",
+        "note": "Intuit to cut about 3,000 jobs, or roughly 17% of workforce, to streamline and focus on AI."
+      },
+      {
+        "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+        "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+        "publisher": "Reuters via Investing.com",
+        "date": "2026-05-18",
+        "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+      },
+      {
+        "title": "Blackstone, Google launch new compute-as-a-service venture",
+        "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+        "publisher": "CIO Dive",
+        "date": "2026-05-19",
+        "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+      },
+      {
+        "title": "CoreWeave Analyst Ratings",
+        "url": "https://stockanalysis.com/stocks/crwv/ratings/",
+        "publisher": "StockAnalysis",
+        "date": "2026-05-13",
+        "note": "Analyst-action table: Jefferies and Citi maintained strong-buy ratings and lifted CoreWeave targets in early May."
+      },
+      {
+        "title": "NVIDIA - Analysts’ Recommendations and Stock Price Forecast",
+        "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/forecast/",
+        "publisher": "MarketBeat",
+        "date": "2026-05-19",
+        "note": "Morgan Stanley raised Nvidia target to $285 from $260 and maintained Overweight on May 18, per Benzinga/MarketBeat."
+      },
+      {
+        "title": "Palantir Q1 2026 Form 10-Q",
+        "url": "https://investors.palantir.com/files/2026%20Q1%20PLTR%2010-Q.pdf",
+        "publisher": "Palantir Investor Relations",
+        "date": "2026-05-06",
+        "note": "Primary filing for Palantir Q1 risk factors and operating disclosures."
+      },
+      {
+        "title": "Musk sounds cautious tone on robotaxis amid slower-than-expected rollout",
+        "url": "https://www.investing.com/news/stock-market-news/musk-sounds-cautious-tone-on-robotaxis-amid-slowerthanexpected-rollout-4633955",
+        "publisher": "Reuters via Investing.com",
+        "date": "2026-04-23",
+        "note": "Robotaxi rollout slower than some analyst expectations; key Tesla valuation debate remains execution."
+      },
+      {
+        "title": "Reddit Stock Falls despite Jefferies’ Backing for 2026 amid AI Threats",
+        "url": "https://www.tipranks.com/news/reddit-stock-rddt-falls-despite-jefferies-backing-for-2026-amid-ai-threats",
+        "publisher": "TipRanks",
+        "date": "2026-05-14",
+        "note": "Reddit debate: Jefferies constructive stance versus AI/margin risks."
+      },
+      {
+        "title": "Hot Upcoming IPOs to Watch",
+        "url": "https://www.kiplinger.com/investing/stocks/upcoming-ipos",
+        "publisher": "Kiplinger",
+        "date": "2026-05-13",
+        "note": "IPO window context: 93 IPOs filed YTD through May 13, proceeds up 86% YoY, SpaceX/Anthropic/OpenAI in focus."
+      },
+      {
+        "title": "SpaceX, OpenAI, Anthropic: upcoming IPOs to watch in 2026",
+        "url": "https://www.ig.com/en/news-and-trade-ideas/spacex-openai-anthropic-2026-ipo-deals-260520",
+        "publisher": "IG International",
+        "date": "2026-05-20",
+        "note": "Mega-IPO scenario analysis for SpaceX, OpenAI, and Anthropic and potential fundraising scale."
+      },
+      {
+        "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+        "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+        "publisher": "Cointelegraph",
+        "date": "2026-05-19",
+        "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+      },
+      {
+        "title": "Nvidia reports after the bell tonight with options showing elevated volatility. What are you watching for?",
+        "url": "https://www.reddit.com/r/TradingPlaybook/comments/1ti5xe6/nvidia_reports_after_the_bell_tonight_with/",
+        "publisher": "Reddit r/TradingPlaybook",
+        "date": "2026-05-20",
+        "note": "Retail/social thread framing NVDA earnings as volatility event; sentiment source only, not a factual primary source."
+      },
+      {
+        "title": "What is actually happening with CRWV right now?",
+        "url": "https://www.reddit.com/r/CRWV/comments/1tgpohd/what_is_actually_happening_with_crwv_right_now/",
+        "publisher": "Reddit r/CRWV",
+        "date": "2026-05-20",
+        "note": "Retail confusion about CoreWeave price action versus AI deals; sentiment source only."
+      }
+    ]
+  },
+  "indices": [
+    {
+      "label": "S&P 500",
+      "value": "7,405.93",
+      "change": "+0.71%",
+      "detail": "Investing.com market strip on Reuters Morning Bid page; intraday widget, not official close."
+    },
+    {
+      "label": "Nasdaq Composite",
+      "value": "26,147.32",
+      "change": "+1.07%",
+      "detail": "Chip/AI leadership ahead of NVDA earnings."
+    },
+    {
+      "label": "Dow Jones",
+      "value": "49,795.75",
+      "change": "+0.87%",
+      "detail": "Broad market positive but tech led."
+    },
+    {
+      "label": "S&P 500 VIX",
+      "value": "17.86",
+      "change": "-1.11%",
+      "detail": "Vol lower, but NVDA options imply large single-name event risk."
+    },
+    {
+      "label": "10Y Treasury",
+      "value": "4.595%",
+      "change": "-7.9 bps",
+      "detail": "Yield lower from Tuesday stress; Fed minutes and auction still pending."
+    },
+    {
+      "label": "WTI crude",
+      "value": "$99.19",
+      "change": "-4.97%",
+      "detail": "Oil retracing but still inflation-relevant."
+    },
+    {
+      "label": "Brent crude",
+      "value": "$105.77",
+      "change": "-5.65%",
+      "detail": "Below $110 in morning snapshot; geopolitical risk unresolved."
+    },
+    {
+      "label": "Gold futures",
+      "value": "$4,529",
+      "change": "-0.64%",
+      "detail": "Hedge sleeve cooling as yields/oil ease."
+    }
+  ],
+  "signals": [
+    {
+      "title": "NVDA event risk dominates the tape",
+      "severity": "watch",
+      "summary": "Nvidia reports after the close with Reuters citing a large options-implied move; the result can confirm or reject today’s chip repair.",
+      "tickers": [
+        "NVDA",
+        "SMH",
+        "MU",
+        "AVGO",
+        "INTC",
+        "MRVL"
+      ],
+      "sources": [
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        },
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "title": "Chip breadth confirms a repair attempt",
+      "severity": "positive",
+      "summary": "Reuters showed SOX, MRVL, INTC and MU higher; local tracker showed SMH and MU positive. Breadth is improving into NVDA earnings.",
+      "tickers": [
+        "SMH",
+        "MU",
+        "INTC",
+        "MRVL",
+        "NVDA"
+      ],
+      "sources": [
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        }
+      ]
+    },
+    {
+      "title": "NVDA reference still failed",
+      "severity": "negative",
+      "summary": "The latest sourceable local tracker mark remains below the user’s May 14 $237.57 reference area; the setup has not proved a clean reclaim.",
+      "tickers": [
+        "NVDA"
+      ],
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "title": "Rates and oil are still the macro governor",
+      "severity": "watch",
+      "summary": "Lower oil and yields help growth duration today, but CPI/PPI remain hot and Fed minutes plus the 20-year auction are live catalysts.",
+      "tickers": [
+        "QQQ",
+        "SMH",
+        "NEM"
+      ],
+      "sources": [
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Consumer Price Index News Release - April 2026",
+          "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Primary source: CPI +3.8% year over year in April."
+        },
+        {
+          "title": "Producer Price Index News Release - April 2026",
+          "url": "https://www.bls.gov/news.release/archives/ppi_05132026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Primary source: PPI final demand +6.0% year over year in April."
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+        }
+      ]
+    },
+    {
+      "title": "Google/Blackstone validates custom AI compute",
+      "severity": "positive",
+      "summary": "The TPU-cloud venture supports AI infrastructure demand, but it also broadens competition beyond GPU-only and neocloud narratives.",
+      "tickers": [
+        "GOOGL",
+        "AVGO",
+        "CRWV",
+        "MSFT",
+        "AMZN",
+        "ORCL"
+      ],
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        }
+      ]
+    },
+    {
+      "title": "Consumer tape is selective, not uniform",
+      "severity": "watch",
+      "summary": "Target’s raised sales outlook, Lowe’s affirmed guidance, and TJX’s stronger guide point to dispersion across consumer categories.",
+      "tickers": [
+        "TGT",
+        "LOW",
+        "TJX",
+        "AMZN",
+        "ABNB"
+      ],
+      "sources": [
+        {
+          "title": "Target Corporation Reports First Quarter Earnings",
+          "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+          "publisher": "Target Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+        },
+        {
+          "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+          "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+          "publisher": "Lowe's Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+        },
+        {
+          "title": "TJX shares jump on strong earnings beat and raised outlook",
+          "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+          "publisher": "Investing.com",
+          "date": "2026-05-20",
+          "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "title": "Tokenized-stock policy is a CRCL watch item",
+      "severity": "watch",
+      "summary": "Reported SEC innovation exemption work could affect stablecoin/market-structure sentiment, but details and implementation risk remain open.",
+      "tickers": [
+        "CRCL"
+      ],
+      "sources": [
+        {
+          "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+          "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+          "publisher": "Cointelegraph",
+          "date": "2026-05-19",
+          "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+        }
+      ]
+    }
+  ],
+  "movers": [
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "price": "$224.07 local tracker / Reuters positive intraday",
+      "change": "+0.35% vs local baseline; Reuters ticker strip +1.67%",
+      "volume": "not captured in local tracker",
+      "catalyst": "Earnings after close; AI-demand test; H200/China optionality still unresolved.",
+      "interpretation": "Event-risk bid, but below the $237.57 reference. Wobbling upward rather than repaired.",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        },
+        {
+          "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+          "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-14",
+          "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+        }
+      ]
+    },
+    {
+      "ticker": "SMH",
+      "name": "VanEck Semiconductor ETF",
+      "price": "$554.32 local tracker",
+      "change": "+0.63% vs baseline; +1.49% day change",
+      "volume": "not captured in local tracker",
+      "catalyst": "Semiconductor breadth improving before NVDA earnings.",
+      "interpretation": "Confirms repair attempt, but the NVDA event can still reverse or validate the group.",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology",
+      "price": "not captured",
+      "change": "Reuters: +7.8% in article body; ticker strip +4.45%",
+      "volume": "not captured",
+      "catalyst": "Chip rebound into NVDA earnings.",
+      "interpretation": "Strong peer confirmation but exact move conflicted between Reuters body/ticker strip as article updated.",
+      "sources": [
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel",
+      "price": "$115.54 local tracker",
+      "change": "local +1.97% vs baseline; Reuters body +6.3%; ticker strip +4.41%",
+      "volume": "not captured",
+      "catalyst": "Inference/foundry challenger bid and semiconductor rebound.",
+      "interpretation": "Positive but not decisive; still needs execution evidence beyond one-day chip beta.",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron Technology",
+      "price": "$723.55 local tracker",
+      "change": "local +0.52% vs baseline; Reuters body +3.6%; ticker strip +2.41%",
+      "volume": "not captured",
+      "catalyst": "HBM/memory confirmation into NVDA earnings.",
+      "interpretation": "Constructive peer confirmation, but volatile after sharp AI-memory moves.",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "TGT",
+      "name": "Target",
+      "price": "not captured",
+      "change": "Reuters: -7.1% in body; ticker strip -4.01%",
+      "volume": "not captured",
+      "catalyst": "Q1 beat and raised FY sales outlook, but market focused on quality/margin or elevated expectations.",
+      "interpretation": "Potential overreaction candidate only if margin/traffic narrative holds after call; no buy/sell advice.",
+      "sources": [
+        {
+          "title": "Target Corporation Reports First Quarter Earnings",
+          "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+          "publisher": "Target Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "TJX",
+      "name": "TJX Companies",
+      "price": "not captured",
+      "change": "Reuters ticker strip +6.17%; body +5.4%",
+      "volume": "not captured",
+      "catalyst": "Raised annual comparable-sales and profit forecasts.",
+      "interpretation": "Cleaner consumer winner than broad discretionary beta.",
+      "sources": [
+        {
+          "title": "TJX shares jump on strong earnings beat and raised outlook",
+          "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+          "publisher": "Investing.com",
+          "date": "2026-05-20",
+          "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "LOW",
+      "name": "Lowe's",
+      "price": "not captured",
+      "change": "Reuters body -3.8%; ticker strip +0.08%",
+      "volume": "not captured",
+      "catalyst": "Q1 sales/EPS and FY outlook affirmed.",
+      "interpretation": "Source conflict between article body and ticker strip; treat price reaction as stale/conflicted until a direct quote is checked.",
+      "sources": [
+        {
+          "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+          "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+          "publisher": "Lowe's Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "INTU",
+      "name": "Intuit",
+      "price": "not captured",
+      "change": "Reuters/Investing: fell after layoff report; ticker strip -3.93%",
+      "volume": "not captured",
+      "catalyst": "Reuters reported 3,000 job cuts, about 17% of workforce, to streamline and focus on AI.",
+      "interpretation": "AI productivity narrative with execution/culture risk; not a broad software read-through by itself.",
+      "sources": [
+        {
+          "title": "Exclusive: Intuit to cut 17% of global jobs to streamline operations, memo shows",
+          "url": "https://m.investing.com/news/stock-market-news/exclusiveintuit-to-cut-17-of-global-jobs-to-streamline-operations-memo-shows-4701442?ampMode=1",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intuit to cut about 3,000 jobs, or roughly 17% of workforce, to streamline and focus on AI."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "name": "NVDA post-earnings confirmation test",
+      "ticker": "NVDA",
+      "setup": "NVDA is the single most important event today: earnings can validate AI capex strength or expose the valuation bar as too high.",
+      "mispricing": "The market may be underpricing either direction because options imply a large dollar-value move but investors are split between structural AI demand and elevated expectations.",
+      "catalysts": [
+        "May 20 results around 1:20 PM PT",
+        "2:00 PM PT call",
+        "H200/China shipment or revenue commentary",
+        "Data-center growth/gross margin guidance"
+      ],
+      "bull_case": [
+        "Data-center demand and guidance beat the raised bar",
+        "Management confirms H200 revenue path or wider China optionality",
+        "SMH/SOX/MU/AVGO hold gains after the print"
+      ],
+      "bear_case": [
+        "Great numbers still fail a very high bar",
+        "H200 remains stalled or margin-dilutive",
+        "Rates/Fed minutes pressure long-duration AI multiples"
+      ],
+      "disconfirming_evidence": [
+        "Failure to reclaim $237-$238 after earnings",
+        "SMH/SOX reversal",
+        "Weak gross margin or China commentary",
+        "Memory/networking peers fail to confirm"
+      ],
+      "confidence": "medium - high signal, high volatility",
+      "sources": [
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+          "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-14",
+          "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+        }
+      ]
+    },
+    {
+      "name": "SMH breadth repair",
+      "ticker": "SMH",
+      "setup": "The semiconductor ETF and SOX are confirming a rebound after yesterday’s chip drawdown.",
+      "mispricing": "If NVDA confirms AI demand after the close, the market may rotate from single-name fear back into broad chip beneficiaries.",
+      "catalysts": [
+        "SOX breadth",
+        "NVDA earnings",
+        "MRVL/INTC/MU/AVGO confirmation",
+        "Rates/yields"
+      ],
+      "bull_case": [
+        "Broad peer gains persist",
+        "Yields stay contained",
+        "NVDA guidance supports full AI supply chain"
+      ],
+      "bear_case": [
+        "Rebound is only pre-event positioning",
+        "NVDA misses the raised bar",
+        "Higher yields compress semi multiples"
+      ],
+      "disconfirming_evidence": [
+        "SOX gives back the rebound",
+        "SMH fails to hold tracker baseline",
+        "Memory/networking diverge negatively"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "name": "Custom-compute AI infrastructure",
+      "ticker": "GOOGL / AVGO / CRWV / MSFT / AMZN / ORCL",
+      "setup": "Google/Blackstone’s TPU-cloud venture is a fresh signal that AI infrastructure demand is moving into financed capacity platforms and custom silicon.",
+      "mispricing": "Investors may still be treating AI infrastructure as one trade; the better opportunity is separating chip, memory, networking, cloud, and financing winners.",
+      "catalysts": [
+        "Google/Blackstone venture details",
+        "Hyperscaler capex updates",
+        "Broadcom/custom silicon demand",
+        "CRWV backlog and financing commentary"
+      ],
+      "bull_case": [
+        "Enterprise demand absorbs new capacity",
+        "Custom TPUs expand TAM rather than cannibalize GPUs",
+        "Cloud providers monetize scarce compute"
+      ],
+      "bear_case": [
+        "Capacity arms race compresses returns",
+        "TPUs pressure GPU/neocloud pricing",
+        "Debt/capex concerns hit CRWV and ORCL-style infrastructure stories"
+      ],
+      "disconfirming_evidence": [
+        "Weak customer commitments",
+        "Falling utilization/pricing",
+        "Analyst downgrades tied to capex ROI"
+      ],
+      "confidence": "medium-high as a theme; name selection matters",
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        },
+        {
+          "title": "CoreWeave Analyst Ratings",
+          "url": "https://stockanalysis.com/stocks/crwv/ratings/",
+          "publisher": "StockAnalysis",
+          "date": "2026-05-13",
+          "note": "Analyst-action table: Jefferies and Citi maintained strong-buy ratings and lifted CoreWeave targets in early May."
+        },
+        {
+          "title": "What is actually happening with CRWV right now?",
+          "url": "https://www.reddit.com/r/CRWV/comments/1tgpohd/what_is_actually_happening_with_crwv_right_now/",
+          "publisher": "Reddit r/CRWV",
+          "date": "2026-05-20",
+          "note": "Retail confusion about CoreWeave price action versus AI deals; sentiment source only."
+        }
+      ]
+    },
+    {
+      "name": "Retail dispersion after Q1 prints",
+      "ticker": "TGT / TJX / LOW / AMZN / ABNB",
+      "setup": "Consumer names are separating by traffic quality, category exposure, and margin resilience.",
+      "mispricing": "Target’s negative reaction despite better sales outlook may be an overreaction only if margin and investment concerns prove manageable; TJX looks more straightforward as an off-price winner.",
+      "catalysts": [
+        "Target call details",
+        "TJX guide-through",
+        "Lowe’s housing commentary",
+        "Consumer sentiment and retail sales"
+      ],
+      "bull_case": [
+        "Traffic and comp strength persist",
+        "Margin investments generate operating leverage",
+        "Lower oil/yields support discretionary demand"
+      ],
+      "bear_case": [
+        "Guidance quality is lower than headline sales",
+        "Costs absorb sales upside",
+        "Housing and travel soften"
+      ],
+      "disconfirming_evidence": [
+        "Negative revisions after calls",
+        "Traffic deceleration",
+        "Margin guide cuts"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Target Corporation Reports First Quarter Earnings",
+          "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+          "publisher": "Target Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+        },
+        {
+          "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+          "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+          "publisher": "Lowe's Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+        },
+        {
+          "title": "TJX shares jump on strong earnings beat and raised outlook",
+          "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+          "publisher": "Investing.com",
+          "date": "2026-05-20",
+          "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "name": "Tokenized-stock market-structure optionality",
+      "ticker": "CRCL",
+      "setup": "Reported SEC innovation exemption work can keep tokenization and stablecoin infrastructure names in focus.",
+      "mispricing": "The market may react before details are final; policy optionality is real but implementation is not yet verified.",
+      "catalysts": [
+        "SEC exemption text",
+        "Broker/exchange participation",
+        "Stablecoin volume/liquidity data"
+      ],
+      "bull_case": [
+        "Clear framework expands compliant tokenized equity venues",
+        "CRCL benefits from market-structure/stablecoin attention"
+      ],
+      "bear_case": [
+        "Report is delayed, narrowed, or opposed by market participants",
+        "Compliance burdens offset headline enthusiasm"
+      ],
+      "disconfirming_evidence": [
+        "No SEC release this week",
+        "Restrictive eligibility rules",
+        "Muted volume response"
+      ],
+      "confidence": "low-medium; headline-driven",
+      "sources": [
+        {
+          "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+          "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+          "publisher": "Cointelegraph",
+          "date": "2026-05-19",
+          "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+        }
+      ]
+    }
+  ],
+  "watchlist": [
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "why": "AI GPU leader",
+      "next_event": "Earnings after close; H200/China delivery commentary",
+      "date": "2026-05-20 1:20 PM PT results / 2:00 PM PT call",
+      "status": "wobbling - below May 14 reference, peers repairing",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        },
+        {
+          "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+          "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-14",
+          "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+        },
+        {
+          "title": "NVIDIA - Analysts’ Recommendations and Stock Price Forecast",
+          "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/forecast/",
+          "publisher": "MarketBeat",
+          "date": "2026-05-19",
+          "note": "Morgan Stanley raised Nvidia target to $285 from $260 and maintained Overweight on May 18, per Benzinga/MarketBeat."
+        }
+      ]
+    },
+    {
+      "ticker": "SMH",
+      "name": "VanEck Semiconductor ETF",
+      "why": "Broad chip breadth proxy",
+      "next_event": "Confirm whether SOX/SMH rebound survives NVDA event risk",
+      "date": "2026-05-20 intraday/after-hours",
+      "status": "watch - positive peer breadth but not yet decisive",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "RDDT",
+      "name": "Reddit",
+      "why": "Ads plus AI data licensing",
+      "next_event": "Watch ad-growth/data-licensing debate and AI margin risk",
+      "date": "next company update/sourceable analyst note",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Reddit Stock Falls despite Jefferies’ Backing for 2026 amid AI Threats",
+          "url": "https://www.tipranks.com/news/reddit-stock-rddt-falls-despite-jefferies-backing-for-2026-amid-ai-threats",
+          "publisher": "TipRanks",
+          "date": "2026-05-14",
+          "note": "Reddit debate: Jefferies constructive stance versus AI/margin risks."
+        }
+      ]
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "why": "EV, robotaxi and AI optionality",
+      "next_event": "Robotaxi execution evidence versus valuation sensitivity",
+      "date": "ongoing rollout milestones",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Musk sounds cautious tone on robotaxis amid slower-than-expected rollout",
+          "url": "https://www.investing.com/news/stock-market-news/musk-sounds-cautious-tone-on-robotaxis-amid-slowerthanexpected-rollout-4633955",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-04-23",
+          "note": "Robotaxi rollout slower than some analyst expectations; key Tesla valuation debate remains execution."
+        }
+      ]
+    },
+    {
+      "ticker": "PLTR",
+      "name": "Palantir",
+      "why": "AI software and government/commercial data platform",
+      "next_event": "Post-Q1 valuation digestion and government-commercial growth confirmation",
+      "date": "post-10-Q estimate revisions",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Palantir Q1 2026 Form 10-Q",
+          "url": "https://investors.palantir.com/files/2026%20Q1%20PLTR%2010-Q.pdf",
+          "publisher": "Palantir Investor Relations",
+          "date": "2026-05-06",
+          "note": "Primary filing for Palantir Q1 risk factors and operating disclosures."
+        }
+      ]
+    },
+    {
+      "ticker": "ORCL",
+      "name": "Oracle",
+      "why": "AI cloud/data-center capacity",
+      "next_event": "AI backlog, financing and cloud-capacity read-through",
+      "date": "next earnings/AI infrastructure update",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        }
+      ]
+    },
+    {
+      "ticker": "NFLX",
+      "name": "Netflix",
+      "why": "Streaming subscription/margin quality",
+      "next_event": "Less tied to chip tape; watch consumer/subscription resilience",
+      "date": "next ad-tier/subscriber update",
+      "status": "neutral",
+      "sources": [
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "NEM",
+      "name": "Newmont",
+      "why": "Gold/mining hedge",
+      "next_event": "Real rates, dollar, gold drawdown and geopolitical hedge demand",
+      "date": "Fed minutes / gold trend",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        },
+        {
+          "title": "Consumer Price Index News Release - April 2026",
+          "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Primary source: CPI +3.8% year over year in April."
+        },
+        {
+          "title": "Producer Price Index News Release - April 2026",
+          "url": "https://www.bls.gov/news.release/archives/ppi_05132026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Primary source: PPI final demand +6.0% year over year in April."
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "name": "Micron",
+      "why": "HBM and memory cycle",
+      "next_event": "Peer confirmation into NVDA; HBM pricing and inventory signals",
+      "date": "NVDA read-through and next memory pricing data",
+      "status": "positive but volatile",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "why": "AI cloud/OpenAI platform",
+      "next_event": "AI capex ROI, OpenAI diversification, Azure demand",
+      "date": "cloud/capex commentary",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        }
+      ]
+    },
+    {
+      "ticker": "INTC",
+      "name": "Intel",
+      "why": "Foundry/inference challenger",
+      "next_event": "Large rebound; needs execution proof and margin/yield evidence",
+      "date": "sector breadth and foundry updates",
+      "status": "positive but not decisive",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "why": "TPU/cloud/ads",
+      "next_event": "Blackstone TPU-cloud venture as custom-compute validation",
+      "date": "Google/Blackstone execution details",
+      "status": "opportunity/watch",
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "ticker": "CRWV",
+      "name": "CoreWeave",
+      "why": "AI cloud capacity",
+      "next_event": "Competition from Google/Blackstone and high capex/backlog debate",
+      "date": "analyst revisions and customer deal evidence",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "CoreWeave Analyst Ratings",
+          "url": "https://stockanalysis.com/stocks/crwv/ratings/",
+          "publisher": "StockAnalysis",
+          "date": "2026-05-13",
+          "note": "Analyst-action table: Jefferies and Citi maintained strong-buy ratings and lifted CoreWeave targets in early May."
+        },
+        {
+          "title": "What is actually happening with CRWV right now?",
+          "url": "https://www.reddit.com/r/CRWV/comments/1tgpohd/what_is_actually_happening_with_crwv_right_now/",
+          "publisher": "Reddit r/CRWV",
+          "date": "2026-05-20",
+          "note": "Retail confusion about CoreWeave price action versus AI deals; sentiment source only."
+        }
+      ]
+    },
+    {
+      "ticker": "CRCL",
+      "name": "Circle",
+      "why": "Stablecoin/tokenized-market infrastructure",
+      "next_event": "Tokenized stock exemption headlines and crypto beta",
+      "date": "SEC innovation exemption details",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+          "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+          "publisher": "Cointelegraph",
+          "date": "2026-05-19",
+          "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+        }
+      ]
+    },
+    {
+      "ticker": "AXON",
+      "name": "Axon",
+      "why": "Public safety tech/AI software",
+      "next_event": "Independent strength; less correlated with chip event risk",
+      "date": "next order/software update",
+      "status": "positive but idiosyncratic",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom",
+      "why": "Custom silicon/networking",
+      "next_event": "AI custom silicon confirmation and Google/Broadcom TPU read-through",
+      "date": "NVDA/Google AI capex reads",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        }
+      ]
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon",
+      "why": "AWS and retail",
+      "next_event": "AI capex/compute plus consumer read-through",
+      "date": "cloud/capex and retail data",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        },
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        }
+      ]
+    },
+    {
+      "ticker": "ABNB",
+      "name": "Airbnb",
+      "why": "Travel/consumer discretionary",
+      "next_event": "Consumer/travel resilience versus rates and oil",
+      "date": "travel demand data",
+      "status": "watch",
+      "sources": [
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        }
+      ]
+    },
+    {
+      "ticker": "AAPL",
+      "name": "Apple",
+      "why": "Consumer hardware/services",
+      "next_event": "Lower direct AI-infra beta; watch consumer demand and AI product cycle",
+      "date": "WWDC/product-cycle headlines",
+      "status": "neutral",
+      "sources": [
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-05-20",
+      "time": "1:00 PM ET / 10:00 AM PT",
+      "event": "U.S. 20-year Treasury auction",
+      "market_relevance": "Tests duration demand after yield stress; can affect long-multiple AI and software stocks.",
+      "sources": [
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "2:00 PM ET / 11:00 AM PT",
+      "event": "FOMC minutes from April 28-29 meeting",
+      "market_relevance": "Rates path, inflation tolerance, and dissent details matter for Nasdaq/SMH valuation.",
+      "sources": [
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+        },
+        {
+          "title": "Implementation Note issued April 29, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a1.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Primary implementation note for 3.50%-3.75% federal funds target range."
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "1:20 PM PT",
+      "event": "Nvidia Q1 FY2027 results expected",
+      "market_relevance": "Primary after-close AI-demand catalyst for NVDA, SMH, MU, AVGO, INTC, CRWV, MSFT, AMZN, ORCL.",
+      "sources": [
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "2:00 PM PT",
+      "event": "Nvidia earnings call",
+      "market_relevance": "Guidance, data-center demand, gross margin, H200/China, supply constraints and Blackwell/Rubin commentary.",
+      "sources": [
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        }
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "time": "market hours",
+      "event": "Target, Lowe’s, TJX earnings digestion",
+      "market_relevance": "Consumer, housing, off-price and margin read-through.",
+      "sources": [
+        {
+          "title": "Target Corporation Reports First Quarter Earnings",
+          "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+          "publisher": "Target Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+        },
+        {
+          "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+          "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+          "publisher": "Lowe's Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+        },
+        {
+          "title": "TJX shares jump on strong earnings beat and raised outlook",
+          "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+          "publisher": "Investing.com",
+          "date": "2026-05-20",
+          "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+        },
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "time": "8:30 AM ET / 5:30 AM PT",
+      "event": "May 2026 PPI release",
+      "market_relevance": "Next producer-inflation checkpoint after April PPI +6.0% YoY.",
+      "sources": [
+        {
+          "title": "Producer prices up 6.0 percent, energy up 22.7 percent, over the year ended April 2026",
+          "url": "https://www.bls.gov/opub/ted/2026/producer-prices-up-6-0-percent-energy-up-22-7-percent-over-the-year-ended-april-2026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-19",
+          "note": "BLS summary tying the 6.0% PPI increase to energy pressure."
+        }
+      ]
+    },
+    {
+      "date": "2026-06-16 to 2026-06-17",
+      "time": "2:00 PM ET decision on June 17",
+      "event": "Next FOMC meeting",
+      "market_relevance": "Policy reset after April hold and May minutes.",
+      "sources": [
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+        }
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "name": "Chip leadership repair",
+      "summary": "The chip tape moved from defensive to constructive, but NVDA earnings decide whether the repair has fundamental backing.",
+      "exposure": [
+        "NVDA",
+        "SMH",
+        "MU",
+        "AVGO",
+        "INTC",
+        "MRVL"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+          "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+        },
+        {
+          "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+          "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+          "publisher": "NVIDIA Investor Relations",
+          "date": "2026-05-17",
+          "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+        },
+        {
+          "title": "Overnight Watchlist Trend Tracker",
+          "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+          "publisher": "Local dashboard tracker",
+          "date": "2026-05-20",
+          "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+        }
+      ]
+    },
+    {
+      "name": "H200/China optionality versus execution risk",
+      "summary": "Export approvals remain positive optionality, but no verified shipments means the market should discount revenue timing.",
+      "exposure": [
+        "NVDA",
+        "AMD",
+        "Chinese hyperscalers",
+        "domestic China chips"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+          "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-14",
+          "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+        },
+        {
+          "title": "US Approves Nvidia H200 Sales to China, But Shipments Remain Stalled",
+          "url": "https://www.techrepublic.com/article/news-nvidia-h200-ai-chip-sales-china-stalled/",
+          "publisher": "TechRepublic",
+          "date": "2026-05-15",
+          "note": "Summarizes Reuters H200 approval and China-side clearance/shipment friction."
+        },
+        {
+          "title": "Trump says China is blocking Nvidia H200 purchases despite US approval",
+          "url": "https://www.tomshardware.com/tech-industry/trump-says-china-is-blocking-h200-purchases",
+          "publisher": "Tom's Hardware",
+          "date": "2026-05-15",
+          "note": "Reports Trump comments that Beijing is not approving purchases and wants domestic chips."
+        }
+      ]
+    },
+    {
+      "name": "Custom AI compute and financing platforms",
+      "summary": "Google/Blackstone reframes AI infrastructure as a financed capacity platform, potentially benefiting custom silicon while pressuring neocloud multiples.",
+      "exposure": [
+        "GOOGL",
+        "AVGO",
+        "CRWV",
+        "MSFT",
+        "AMZN",
+        "ORCL"
+      ],
+      "confidence": "medium-high",
+      "sources": [
+        {
+          "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+          "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-18",
+          "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+        },
+        {
+          "title": "Blackstone, Google launch new compute-as-a-service venture",
+          "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+          "publisher": "CIO Dive",
+          "date": "2026-05-19",
+          "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+        }
+      ]
+    },
+    {
+      "name": "Inflation/rates governor",
+      "summary": "Hot CPI/PPI and Fed dissent keep duration risk live even as oil/yields ease intraday.",
+      "exposure": [
+        "QQQ",
+        "SMH",
+        "PLTR",
+        "ORCL",
+        "NEM"
+      ],
+      "confidence": "high",
+      "sources": [
+        {
+          "title": "Consumer Price Index News Release - April 2026",
+          "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-12",
+          "note": "Primary source: CPI +3.8% year over year in April."
+        },
+        {
+          "title": "Producer Price Index News Release - April 2026",
+          "url": "https://www.bls.gov/news.release/archives/ppi_05132026.htm",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "date": "2026-05-13",
+          "note": "Primary source: PPI final demand +6.0% year over year in April."
+        },
+        {
+          "title": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+          "publisher": "Federal Reserve",
+          "date": "2026-04-29",
+          "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+        },
+        {
+          "title": "Morning Bid: Nvidia vigil",
+          "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+          "publisher": "Reuters via Investing.com",
+          "date": "2026-05-20",
+          "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+        }
+      ]
+    },
+    {
+      "name": "Consumer dispersion",
+      "summary": "Target, Lowe’s and TJX show that stock selection matters more than a broad consumer call.",
+      "exposure": [
+        "TGT",
+        "LOW",
+        "TJX",
+        "AMZN",
+        "ABNB"
+      ],
+      "confidence": "medium",
+      "sources": [
+        {
+          "title": "Target Corporation Reports First Quarter Earnings",
+          "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+          "publisher": "Target Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+        },
+        {
+          "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+          "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+          "publisher": "Lowe's Investor Relations",
+          "date": "2026-05-20",
+          "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+        },
+        {
+          "title": "TJX shares jump on strong earnings beat and raised outlook",
+          "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+          "publisher": "Investing.com",
+          "date": "2026-05-20",
+          "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+        }
+      ]
+    },
+    {
+      "name": "IPO window and market structure",
+      "summary": "Mega-IPO attention and tokenized-stock policy reports can affect risk appetite and crypto/fintech infrastructure names.",
+      "exposure": [
+        "SpaceX",
+        "OpenAI",
+        "Anthropic",
+        "CBRS",
+        "CRCL"
+      ],
+      "confidence": "medium for IPO window; low-medium for tokenized-stock timing",
+      "sources": [
+        {
+          "title": "Hot Upcoming IPOs to Watch",
+          "url": "https://www.kiplinger.com/investing/stocks/upcoming-ipos",
+          "publisher": "Kiplinger",
+          "date": "2026-05-13",
+          "note": "IPO window context: 93 IPOs filed YTD through May 13, proceeds up 86% YoY, SpaceX/Anthropic/OpenAI in focus."
+        },
+        {
+          "title": "SpaceX, OpenAI, Anthropic: upcoming IPOs to watch in 2026",
+          "url": "https://www.ig.com/en/news-and-trade-ideas/spacex-openai-anthropic-2026-ipo-deals-260520",
+          "publisher": "IG International",
+          "date": "2026-05-20",
+          "note": "Mega-IPO scenario analysis for SpaceX, OpenAI, and Anthropic and potential fundraising scale."
+        },
+        {
+          "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+          "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+          "publisher": "Cointelegraph",
+          "date": "2026-05-19",
+          "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+        }
+      ]
+    }
+  ],
+  "citations": [
+    {
+      "title": "Wall St rises on chips’ strength ahead of Nvidia results",
+      "url": "https://www.investing.com/news/stock-market-news/us-stock-futures-climb-as-chip-stocks-rebound-ahead-of-nvidia-results-4700711",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-20",
+      "note": "Intraday market update: chip rebound, SOX, NVDA, MRVL, INTC, MU, Target/Lowe/TJX, rates and Fed minutes."
+    },
+    {
+      "title": "Morning Bid: Nvidia vigil",
+      "url": "https://ca.investing.com/news/commodities-news/morning-bid-nvidia-vigil-4650599",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-20",
+      "note": "Global setup: NVDA options-implied move, Asia/Europe weakness, 20-year auction, Fed minutes, oil/geopolitics."
+    },
+    {
+      "title": "NVIDIA Sets Conference Call for First-Quarter Financial Results",
+      "url": "https://nvidianews.nvidia.com/_gallery/download_pdf/69f271ca3d6332198c9914bb/",
+      "publisher": "NVIDIA Investor Relations",
+      "date": "2026-05-17",
+      "note": "Primary source: fiscal Q1 FY2027 results at about 1:20 p.m. PT and call at 2 p.m. PT on May 20."
+    },
+    {
+      "title": "Overnight Watchlist Trend Tracker",
+      "url": "file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/data/overnight_watchlist.json",
+      "publisher": "Local dashboard tracker",
+      "date": "2026-05-20",
+      "note": "Local quote capture generated 4:33 AM PT; useful for scenario monitoring but not a consolidated live market feed."
+    },
+    {
+      "title": "Exclusive: US clears H200 chip sales to 10 China firms as Nvidia CEO looks for breakthrough",
+      "url": "https://m.investing.com/news/stock-market-news/exclusiveus-clears-h200-chip-sales-to-10-china-firms-as-nvidia-ceo-looks-breakthrough-4687123?ampMode=1",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-14",
+      "note": "U.S. cleared roughly 10 Chinese firms to buy H200, but no deliveries had been made."
+    },
+    {
+      "title": "US Approves Nvidia H200 Sales to China, But Shipments Remain Stalled",
+      "url": "https://www.techrepublic.com/article/news-nvidia-h200-ai-chip-sales-china-stalled/",
+      "publisher": "TechRepublic",
+      "date": "2026-05-15",
+      "note": "Summarizes Reuters H200 approval and China-side clearance/shipment friction."
+    },
+    {
+      "title": "Trump says China is blocking Nvidia H200 purchases despite US approval",
+      "url": "https://www.tomshardware.com/tech-industry/trump-says-china-is-blocking-h200-purchases",
+      "publisher": "Tom's Hardware",
+      "date": "2026-05-15",
+      "note": "Reports Trump comments that Beijing is not approving purchases and wants domestic chips."
+    },
+    {
+      "title": "Federal Reserve issues FOMC statement",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm",
+      "publisher": "Federal Reserve",
+      "date": "2026-04-29",
+      "note": "Primary source: FOMC maintained target range at 3.50%-3.75%."
+    },
+    {
+      "title": "Implementation Note issued April 29, 2026",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a1.htm",
+      "publisher": "Federal Reserve",
+      "date": "2026-04-29",
+      "note": "Primary implementation note for 3.50%-3.75% federal funds target range."
+    },
+    {
+      "title": "Consumer Price Index News Release - April 2026",
+      "url": "https://www.bls.gov/news.release/archives/cpi_05122026.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-12",
+      "note": "Primary source: CPI +3.8% year over year in April."
+    },
+    {
+      "title": "Producer Price Index News Release - April 2026",
+      "url": "https://www.bls.gov/news.release/archives/ppi_05132026.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-13",
+      "note": "Primary source: PPI final demand +6.0% year over year in April."
+    },
+    {
+      "title": "Producer prices up 6.0 percent, energy up 22.7 percent, over the year ended April 2026",
+      "url": "https://www.bls.gov/opub/ted/2026/producer-prices-up-6-0-percent-energy-up-22-7-percent-over-the-year-ended-april-2026.htm",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "date": "2026-05-19",
+      "note": "BLS summary tying the 6.0% PPI increase to energy pressure."
+    },
+    {
+      "title": "Target Corporation Reports First Quarter Earnings",
+      "url": "https://corporate.target.com/press/release/2026/05/target-corporation-reports-first-quarter-earnings",
+      "publisher": "Target Investor Relations",
+      "date": "2026-05-20",
+      "note": "Primary source: Q1 net sales +6.7%, comps +5.6%, FY sales growth outlook raised around 4%."
+    },
+    {
+      "title": "Lowe's Reports First Quarter 2026 Sales and Earnings Results",
+      "url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2026-sales-and-earnings-results-05-20-26",
+      "publisher": "Lowe's Investor Relations",
+      "date": "2026-05-20",
+      "note": "Primary source: Q1 sales $23.1B, comps +0.6%, adjusted EPS $3.03, FY2026 outlook affirmed."
+    },
+    {
+      "title": "TJX shares jump on strong earnings beat and raised outlook",
+      "url": "https://www.investing.com/news/earnings/tjx-shares-jump-on-strong-earnings-beat-and-raised-outlook-4701124",
+      "publisher": "Investing.com",
+      "date": "2026-05-20",
+      "note": "Reports Q1 beat and raised FY comparable-sales/profit guidance."
+    },
+    {
+      "title": "Exclusive: Intuit to cut 17% of global jobs to streamline operations, memo shows",
+      "url": "https://m.investing.com/news/stock-market-news/exclusiveintuit-to-cut-17-of-global-jobs-to-streamline-operations-memo-shows-4701442?ampMode=1",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-20",
+      "note": "Intuit to cut about 3,000 jobs, or roughly 17% of workforce, to streamline and focus on AI."
+    },
+    {
+      "title": "Google, Blackstone plan AI cloud venture with $5 billion backing, WSJ reports",
+      "url": "https://www.investing.com/news/stock-market-news/google-blackstone-to-create-new-ai-cloud-company-wsj-reports-4697320",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-05-18",
+      "note": "Google and Blackstone planning an AI cloud company using Google specialized chips."
+    },
+    {
+      "title": "Blackstone, Google launch new compute-as-a-service venture",
+      "url": "https://www.ciodive.com/news/blackstone-google-launch-joint-venture/820653/",
+      "publisher": "CIO Dive",
+      "date": "2026-05-19",
+      "note": "Adds context: venture answers enterprise cloud infrastructure demand and follows Google/Broadcom/Anthropic TPU capacity agreement."
+    },
+    {
+      "title": "CoreWeave Analyst Ratings",
+      "url": "https://stockanalysis.com/stocks/crwv/ratings/",
+      "publisher": "StockAnalysis",
+      "date": "2026-05-13",
+      "note": "Analyst-action table: Jefferies and Citi maintained strong-buy ratings and lifted CoreWeave targets in early May."
+    },
+    {
+      "title": "NVIDIA - Analysts’ Recommendations and Stock Price Forecast",
+      "url": "https://www.marketbeat.com/stocks/NASDAQ/NVDA/forecast/",
+      "publisher": "MarketBeat",
+      "date": "2026-05-19",
+      "note": "Morgan Stanley raised Nvidia target to $285 from $260 and maintained Overweight on May 18, per Benzinga/MarketBeat."
+    },
+    {
+      "title": "Palantir Q1 2026 Form 10-Q",
+      "url": "https://investors.palantir.com/files/2026%20Q1%20PLTR%2010-Q.pdf",
+      "publisher": "Palantir Investor Relations",
+      "date": "2026-05-06",
+      "note": "Primary filing for Palantir Q1 risk factors and operating disclosures."
+    },
+    {
+      "title": "Musk sounds cautious tone on robotaxis amid slower-than-expected rollout",
+      "url": "https://www.investing.com/news/stock-market-news/musk-sounds-cautious-tone-on-robotaxis-amid-slowerthanexpected-rollout-4633955",
+      "publisher": "Reuters via Investing.com",
+      "date": "2026-04-23",
+      "note": "Robotaxi rollout slower than some analyst expectations; key Tesla valuation debate remains execution."
+    },
+    {
+      "title": "Reddit Stock Falls despite Jefferies’ Backing for 2026 amid AI Threats",
+      "url": "https://www.tipranks.com/news/reddit-stock-rddt-falls-despite-jefferies-backing-for-2026-amid-ai-threats",
+      "publisher": "TipRanks",
+      "date": "2026-05-14",
+      "note": "Reddit debate: Jefferies constructive stance versus AI/margin risks."
+    },
+    {
+      "title": "Hot Upcoming IPOs to Watch",
+      "url": "https://www.kiplinger.com/investing/stocks/upcoming-ipos",
+      "publisher": "Kiplinger",
+      "date": "2026-05-13",
+      "note": "IPO window context: 93 IPOs filed YTD through May 13, proceeds up 86% YoY, SpaceX/Anthropic/OpenAI in focus."
+    },
+    {
+      "title": "SpaceX, OpenAI, Anthropic: upcoming IPOs to watch in 2026",
+      "url": "https://www.ig.com/en/news-and-trade-ideas/spacex-openai-anthropic-2026-ipo-deals-260520",
+      "publisher": "IG International",
+      "date": "2026-05-20",
+      "note": "Mega-IPO scenario analysis for SpaceX, OpenAI, and Anthropic and potential fundraising scale."
+    },
+    {
+      "title": "SEC to make innovation exemption for tokenized stock trading: Report",
+      "url": "https://cointelegraph.com/news/sec-to-make-innovation-exemption-for-tokenized-stock-trading-report/",
+      "publisher": "Cointelegraph",
+      "date": "2026-05-19",
+      "note": "Reports SEC innovation exemption discussions for tokenized stock trading; lower-confidence policy/microstructure catalyst."
+    },
+    {
+      "title": "Nvidia reports after the bell tonight with options showing elevated volatility. What are you watching for?",
+      "url": "https://www.reddit.com/r/TradingPlaybook/comments/1ti5xe6/nvidia_reports_after_the_bell_tonight_with/",
+      "publisher": "Reddit r/TradingPlaybook",
+      "date": "2026-05-20",
+      "note": "Retail/social thread framing NVDA earnings as volatility event; sentiment source only, not a factual primary source."
+    },
+    {
+      "title": "What is actually happening with CRWV right now?",
+      "url": "https://www.reddit.com/r/CRWV/comments/1tgpohd/what_is_actually_happening_with_crwv_right_now/",
+      "publisher": "Reddit r/CRWV",
+      "date": "2026-05-20",
+      "note": "Retail confusion about CoreWeave price action versus AI deals; sentiment source only."
+    }
+  ],
+  "freshness": {
+    "prices": {
+      "as_of": "Local tracker generated 2026-05-20 4:33 AM PT; Reuters/Investing article updated 2026-05-20 10:30 AM ET",
+      "status": "mixed",
+      "notes": "NVDA/SMH point prices use local tracker. Reuters percent moves use article/ticker strips. Official premarket high/low not sourceable."
+    },
+    "news": {
+      "as_of": "May 20, 2026 10:05 AM PT",
+      "status": "fresh",
+      "notes": "Current-day Reuters/Investing, company IR, BLS/Fed and other dated sources used."
+    },
+    "filings": {
+      "as_of": "2026-05-20",
+      "status": "partial",
+      "notes": "Primary IR releases used for Target, Lowe’s, Nvidia call timing and Palantir 10-Q. No new SEC filing pass was run beyond cited sources."
+    },
+    "analyst_actions": {
+      "as_of": "2026-05-20",
+      "status": "partial",
+      "notes": "High-signal NVDA Morgan Stanley and CRWV analyst-action sources included; comprehensive analyst tape was not fully sourceable."
+    },
+    "social_commentary": {
+      "as_of": "2026-05-20",
+      "status": "limited",
+      "notes": "Reddit/social sources used only for sentiment mosaic, not as primary factual support."
+    },
+    "stale_or_missing": {
+      "as_of": "May 20, 2026 10:05 AM PT",
+      "status": "explicit",
+      "notes": "Missing reliable NVDA/SMH official premarket high-low; LOW and MRVL percentage moves conflicted between Reuters body and ticker strip; local tracker volume mostly zero/not captured."
+    },
+    "theses": {
+      "as_of": "May 20, 2026 10:05 AM PT",
+      "status": "fresh",
+      "notes": "Scenario reads updated for May 20 event-driven tape and user NVDA reference area."
+    }
+  },
+  "source_conflicts": [
+    "NVDA price/action: local tracker shows a 4:33 AM PT point price of $224.07; Reuters later showed NVDA positive intraday but did not provide a clean current price/high-low in accessible text.",
+    "MRVL, INTC, MU and LOW moves differed between Reuters article body and ticker strip as the article updated; dashboard labels both where relevant.",
+    "H200 reports agree on U.S. approvals but differ in emphasis around whether the blocker is China-side approval, purchase intent, inspection/fee terms, or broader policy distrust."
+  ]
+}</script>
+
+  <header class="site-top">
+    <div class="top-inner">
+      <div class="brand-row">
+        <div class="brand" id="page-title">Opportunity Wire</div>
+        <div class="edition">Private Research Hub</div>
+      </div>
+      <div class="timestamp" id="meta"></div>
+    </div>
+    <div class="access-strip" aria-label="Dashboard link">
+      <div class="access-inner">
+        <span class="access-label">Report link</span>
+        <a class="dashboard-link" id="dashboard-link" href="">Open this dashboard</a>
+        <span class="access-label">Overnight tracker</span>
+        <a class="dashboard-link" href="overnight.html">Open hourly watchlist</a>
+      </div>
+    </div>
   </header>
 
-  <section class="controls">
-    <article class="control"><h3>Macro Risk Panel</h3><div class="metric"><span>Brent crude</span><b>$108.06 -1.10%</b></div><div class="metric"><span>10Y yield</span><b>4.577%</b></div><div class="metric"><span>VIX</span><b>18.58 +0.81%</b></div><div class="metric"><span>QQQ proxy</span><b>+0.22%</b></div></article>
-    <article class="control"><h3>Sector Confirmation</h3><p class="muted">Not confirming: NVDA remains below the $237.57 reference while SMH/AMD/AVGO/MU are mixed-to-negative.</p><span class="pill risk">weak breadth</span></article>
-    <article class="control"><h3>Red But Rising</h3><div class="metric"><span>NVDA</span><b>low $223.57 to $224-$226</b></div><p class="muted">Bounce attempt only; not a confirmed turnaround.</p></article>
-    <article class="control"><h3>Catalyst Clock</h3><div class="metric"><span>NVDA earnings</span><b>May 20</b></div><div class="metric"><span>FOMC minutes</span><b>May 20</b></div><div class="metric"><span>May CPI</span><b>Jun 10</b></div></article>
+  <main class="shell">
+    <section class="urgent-banner" id="stale-banner"></section>
+    <section class="market-strip" id="market-strip"></section>
+    <section class="report-controls" id="report-controls" aria-label="Daily report controls"></section>
+
+    <section class="controls" aria-label="Research controls">
+      <input class="search" id="search" type="search" placeholder="Search research">
+      <nav class="tabs" id="tabs" aria-label="Research sections"></nav>
+    </section>
+
+    <section id="content"></section>
+  </main>
+
+  <section class="reader-overlay" id="reader" aria-hidden="true">
+    <article class="reader-panel" role="dialog" aria-modal="true" aria-labelledby="reader-title">
+      <header class="reader-header">
+        <div>
+          <div class="eyebrow" id="reader-kicker">Brief</div>
+          <h2 id="reader-title"></h2>
+        </div>
+        <button class="close-reader" id="reader-close" type="button" aria-label="Close">×</button>
+      </header>
+      <div class="reader-body" id="reader-body"></div>
+    </article>
   </section>
 
-  <section class="grid">
-    <article class="card">
-      <h2>Market Read</h2>
-      <p>The tape is event-driven rather than cleanly risk-on. SPY and QQQ were modestly positive, but semiconductor confirmation was weak. NVDA remained below the user-provided May 14 entry reference near $237.57, so the short-term NVDA read was wobbling to failing unless it reclaimed the $237-$238 area with peer confirmation.</p>
-    </article>
-    <article class="card">
-      <h2>NVDA Trade Watch</h2>
-      <p><strong>Scenario:</strong> bounce attempt, not confirmed turnaround. Accessible quotes around $224.72-$226.10 were below the $237.57 reference. H200/China optionality remained unresolved: approvals were reported, but deliveries and China approval remained the gating issues.</p>
-      <p><span class="pill watch">reclaim</span> $237-$238 hold with SMH/AMD/AVGO/MU breadth. <span class="pill risk">failure</span> continued weakness below entry reference or loss of the $223.57 intraday low.</p>
-    </article>
-    <article class="card">
-      <h2>Highest-Signal Opportunity</h2>
-      <p>AI power/grid exposure through the NextEra/Dominion deal was the cleanest AI-adjacent catalyst. The opportunity is data-center power scarcity; the key risks are regulatory review, all-stock deal spread, and NEE share weakness.</p>
-    </article>
-    <article class="card">
-      <h2>Daily Controls Added</h2>
-      <p>Standing controls added to the daily report: Last Updated banner, macro risk panel, sector confirmation meter, red-but-rising scanner, stale data warning, catalyst clock, hot-vs-chase column, and entry-zone logic.</p>
-    </article>
-  </section>
+  <script>
+    const data = JSON.parse(document.getElementById("dashboard-data").textContent);
+    const tabs = [
+      ["latest", "Overview"],
+      ["brief", "Daily Brief"],
+      ["movers", "Movers"],
+      ["opportunities", "Opportunities"],
+      ["watchlist", "Watchlist"],
+      ["calendar", "Calendar"],
+      ["themes", "Themes"],
+      ["sources", "Sources"]
+    ];
+    const state = { tab: "latest", query: "" };
 
-  <section class="card" style="margin-top:14px;">
-    <h2>Movers Snapshot</h2>
-    <table>
-      <thead><tr><th>Ticker</th><th>Read</th><th>Hot vs Chase</th></tr></thead>
-      <tbody>
-        <tr><td>NVDA</td><td>Below $237.57 reference; May 20 earnings catalyst.</td><td><span class="pill watch">red-but-rising watch</span></td></tr>
-        <tr><td>D / NEE</td><td>AI power-demand M&A signal.</td><td><span class="pill good">hot but deal-spread</span></td></tr>
-        <tr><td>REGN</td><td>Trial headline pressure.</td><td><span class="pill risk">falling knife</span></td></tr>
-        <tr><td>NOW / FFIV / FICO / DXCM</td><td>Relative strength, catalyst verification needed.</td><td><span class="pill watch">verify catalyst</span></td></tr>
-      </tbody>
-    </table>
-  </section>
-</main>
+    const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[char]));
+    const arr = (value) => Array.isArray(value) ? value : [];
+    const text = (value, fallback = "") => value === undefined || value === null || value === "" ? fallback : String(value);
+    const objText = (value) => JSON.stringify(value ?? {}).toLowerCase();
+    const matches = (value) => !state.query || objText(value).includes(state.query);
+    const entries = (kind) => arr(data[kind]).map((item, index) => ({ kind, item, index })).filter((entry) => matches(entry.item));
+    const market = data.market_read || {};
+    const memo = data.daily_memo || data.daily_research || data.memo || {};
+
+    function toneFor(value) {
+      const raw = String(value || "").toLowerCase();
+      if (raw.includes("risk-off") || raw.includes("negative") || raw.includes("down") || raw.includes("-")) return "negative";
+      if (raw.includes("risk-on") || raw.includes("positive") || raw.includes("current") || raw.includes("+")) return "positive";
+      if (raw.includes("watch") || raw.includes("partial") || raw.includes("event")) return "watch";
+      return "neutral";
+    }
+
+    function pill(label, tone = "neutral") {
+      return `<span class="pill ${esc(toneFor(tone))}">${esc(label)}</span>`;
+    }
+
+    function tagList(items) {
+      return arr(items).filter(Boolean).map((item) => `<span class="tag">${esc(item)}</span>`).join("");
+    }
+
+    function bulletList(items) {
+      const list = arr(items).filter(Boolean);
+      return list.length ? `<ul class="clean">${list.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>` : "";
+    }
+
+    function titleFor(kind, item) {
+      if (kind === "movers") return `${item.ticker || ""} ${item.name || "Mover"}`.trim();
+      if (kind === "calendar") return item.event || "Market Event";
+      if (kind === "watchlist") return `${item.ticker ? item.ticker + " " : ""}${item.name || "Watchlist"}`;
+      return `${item.ticker ? item.ticker + " " : ""}${item.name || item.title || "Research Brief"}`.trim();
+    }
+
+    function leadHeadline() {
+      if (market.headline) return market.headline;
+      if (market.title) return market.title;
+      const firstSentence = String(market.summary || "").split(". ")[0];
+      return firstSentence || data.title || "Latest Investment Research";
+    }
+
+    function summaryFor(kind, item) {
+      if (kind === "opportunities") return item.setup || item.mispricing || "";
+      if (kind === "movers") return item.catalyst || item.interpretation || "";
+      if (kind === "watchlist") return item.why || item.next_event || "";
+      if (kind === "calendar") return item.market_relevance || "";
+      if (kind === "themes") return item.summary || "";
+      return item.summary || "";
+    }
+
+    function sourceLinks(sources) {
+      const list = arr(sources).filter(Boolean);
+      if (!list.length) return "";
+      return `<div class="source-row">${list.map((source) => {
+        const label = source.title || source.publisher || source.url || "Source";
+        const meta = [source.publisher, source.date].filter(Boolean).join(" · ");
+        const full = meta ? `${label} (${meta})` : label;
+        if (source.url) return `<a class="source" href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(full)}</a>`;
+        return `<span class="source">${esc(full)}</span>`;
+      }).join("")}</div>`;
+    }
+
+    function empty(label) {
+      return `<div class="empty">${esc(label)}</div>`;
+    }
+
+    function renderMarketStrip() {
+      const tiles = arr(data.indices).slice(0, 4);
+      document.getElementById("market-strip").innerHTML = (tiles.length ? tiles : [
+        { label: "Market", value: market.stance || "Research", change: data.as_of || data.generated_at }
+      ]).map((item) => `<article class="quote-tile">
+        <div class="eyebrow">${esc(item.label || "Signal")}</div>
+        <div class="quote-value">${esc(item.value || "-")}</div>
+        <div class="quote-note">${esc([item.change, item.detail].filter(Boolean).join(" · "))}</div>
+      </article>`).join("");
+    }
+
+    function reportDate() {
+      const source = data.generated_at || data.as_of || "";
+      const parsed = new Date(source);
+      if (!Number.isNaN(parsed.getTime())) return parsed;
+      const match = String(source).match(/([A-Z][a-z]+) (\d{1,2}), (\d{4})/);
+      return match ? new Date(`${match[1]} ${match[2]}, ${match[3]}`) : null;
+    }
+
+    function renderStaleBanner() {
+      const banner = document.getElementById("stale-banner");
+      const generated = reportDate();
+      const now = new Date();
+      const sameDay = generated && generated.getFullYear() === now.getFullYear()
+        && generated.getMonth() === now.getMonth()
+        && generated.getDate() === now.getDate();
+      const freshness = data.freshness || {};
+      const staleFlag = Object.values(freshness).some((value) => {
+        const status = typeof value === "object" ? value.status : value;
+        return String(status || "").toLowerCase().includes("stale");
+      });
+      if (sameDay && !staleFlag) {
+        banner.classList.remove("show");
+        banner.textContent = "";
+        return;
+      }
+      banner.classList.add("show");
+      banner.textContent = `DO NOT TRADE FROM THIS: dashboard date is ${esc(data.as_of || data.generated_at || "unknown")} and current local date is ${now.toLocaleDateString()}. Refresh before relying on the thesis.`;
+    }
+
+    function renderMetricRows(items) {
+      return arr(items).slice(0, 6).map((item) => `<div class="metric-row">
+        <span>${esc(item.label || item.ticker || item.name || "Metric")}</span>
+        <span class="metric-value">${esc([item.value, item.change, item.status].filter(Boolean).join(" "))}</span>
+      </div>`).join("");
+    }
+
+    function renderReportControls() {
+      const controls = data.report_controls || {};
+      const macro = data.macro_risk_panel || controls.macro_risk_panel || {};
+      const sector = data.sector_confirmation || controls.sector_confirmation || {};
+      const rising = data.red_but_rising || controls.red_but_rising || [];
+      const entriesWithZones = arr(data.watchlist).filter((item) => item.entry_zone || item.reclaim_level || item.failure_level);
+      const score = Math.max(0, Math.min(100, Number(sector.score ?? 0)));
+      const tone = toneFor(sector.status || sector.interpretation || "watch");
+      const cards = [
+        `<article class="control-card">
+          <h3>Last Updated</h3>
+          <p>${esc(data.as_of || data.generated_at || "Unknown")}</p>
+          <div class="metric-row"><span>Status</span><span class="metric-value">${esc((data.freshness && data.freshness.dashboard && data.freshness.dashboard.status) || "current")}</span></div>
+        </article>`,
+        `<article class="control-card">
+          <h3>Macro Risk Panel</h3>
+          ${renderMetricRows(macro.items || arr(data.indices).filter((item) => /oil|10y|yield|dollar|vix|nasdaq|qqq/i.test(`${item.label} ${item.detail}`))) || empty("No macro metrics.")}
+        </article>`,
+        `<article class="control-card">
+          <h3>Sector Confirmation</h3>
+          <p>${esc(sector.interpretation || "No sector confirmation read.")}</p>
+          <div class="meter"><div class="meter-fill ${esc(tone)}" style="width:${score}%"></div></div>
+          ${renderMetricRows(sector.components)}
+        </article>`,
+        `<article class="control-card">
+          <h3>Red But Rising</h3>
+          ${renderMetricRows(rising)}
+        </article>`,
+        `<article class="control-card">
+          <h3>Catalyst Clock</h3>
+          ${renderMetricRows(arr(data.calendar).map((item) => ({ label: item.event, value: [item.date, item.time].filter(Boolean).join(" · ") })))}
+        </article>`,
+        `<article class="control-card">
+          <h3>Entry Zone Logic</h3>
+          ${renderMetricRows(entriesWithZones.map((item) => ({ label: item.ticker || item.name, value: item.entry_zone || [item.reclaim_level, item.failure_level].filter(Boolean).join(" / ") })))}
+        </article>`
+      ];
+      document.getElementById("report-controls").innerHTML = cards.join("");
+    }
+
+    function renderList(kind, limit = 5) {
+      const rows = entries(kind).slice(0, limit);
+      if (!rows.length) return empty("No matching research.");
+      return `<div class="news-list">${rows.map(({ item, index }) => `<article class="list-item" data-open-kind="${kind}" data-open-index="${index}">
+        <div class="meta-row">${item.ticker ? pill(item.ticker, "neutral") : ""}${pill(item.change || item.confidence || item.status || item.severity || item.date || "Brief", item.severity || item.status || item.change)}</div>
+        <h3 class="item-title">${esc(titleFor(kind, item))}</h3>
+        <p class="item-desc">${esc(summaryFor(kind, item))}</p>
+      </article>`).join("")}</div>`;
+    }
+
+    function renderStoryCard(entry, label) {
+      const { kind, item, index } = entry;
+      return `<article class="story-card" data-open-kind="${kind}" data-open-index="${index}">
+        <div class="meta-row">${pill(label || kind, item.severity || item.status || item.change)}${item.ticker ? pill(item.ticker, "neutral") : ""}</div>
+        <h3>${esc(titleFor(kind, item))}</h3>
+        <p>${esc(summaryFor(kind, item))}</p>
+        <div class="story-footer">${sourceLinks(item.sources) || tagList(item.tickers || item.exposure || [item.date].filter(Boolean))}</div>
+      </article>`;
+    }
+
+    function memoTone(tone) {
+      const raw = String(tone || "").toLowerCase();
+      if (raw.includes("risk") || raw.includes("negative") || raw.includes("bear")) return "negative";
+      if (raw.includes("watch") || raw.includes("uncertain") || raw.includes("pending")) return "watch";
+      if (raw.includes("opportunity") || raw.includes("positive") || raw.includes("bull")) return "positive";
+      return "neutral";
+    }
+
+    function renderDailyBrief() {
+      if (!memo || !Object.keys(memo).length) {
+        return empty("No daily brief has been published to this dashboard yet.");
+      }
+      const sections = arr(memo.sections).filter((section) => matches(section));
+      const recs = arr(memo.recommendations).filter((item) => matches(item));
+      const sectionHtml = sections.map((section) => `<section class="memo-section">
+        <div class="meta-row">${pill(section.tone || "Brief", memoTone(section.tone))}</div>
+        <h3>${esc(section.heading || section.title || "Research note")}</h3>
+        ${section.body ? `<p>${esc(section.body)}</p>` : ""}
+        ${bulletList(section.bullets)}
+        ${sourceLinks(section.sources)}
+      </section>`).join("");
+      const recHtml = recs.map((item) => `<article class="list-item">
+        <div class="meta-row">${pill(item.tone || item.status || "Recommendation", memoTone(item.tone || item.status))}${tagList(item.tickers)}</div>
+        <h3 class="item-title">${esc(item.label || item.name || "Recommendation")}</h3>
+        <p class="item-desc">${esc(item.summary || item.why || "")}</p>
+        ${sourceLinks(item.sources)}
+      </article>`).join("");
+      return `<section class="memo-shell">
+        <article class="memo-article">
+          <div class="lead-kicker">${esc(memo.as_of || data.as_of || "Daily research")}</div>
+          <h1 class="memo-title">${esc(memo.title || "Daily Research Brief")}</h1>
+          <p class="memo-summary">${esc(memo.summary || market.summary || "")}</p>
+          ${memo.doc_url ? `<a class="memo-link" href="${esc(memo.doc_url)}" target="_blank" rel="noreferrer">Open Google Doc</a>` : ""}
+          ${sectionHtml || empty("No matching brief sections.")}
+        </article>
+        <aside class="right-rail">
+          <section class="rail-card">
+            <h2 class="section-title">Recommendations <span class="mini-count">${recs.length}</span></h2>
+            <div class="news-list">${recHtml || empty("No matching recommendations.")}</div>
+          </section>
+          <section class="rail-card">
+            <h2 class="section-title">Brief Sources <span class="mini-count">${arr(memo.sources).length}</span></h2>
+            ${sourceLinks(memo.sources) || empty("No brief-level sources.")}
+          </section>
+        </aside>
+      </section>`;
+    }
+
+    function renderFreshness() {
+      const items = Object.entries(data.freshness || {});
+      if (!items.length) return empty("No freshness metadata.");
+      return items.map(([key, value]) => {
+        const status = typeof value === "object" ? value.status : value;
+        const asOf = typeof value === "object" ? value.as_of : "";
+        return `<div class="freshness-row">
+          <div>
+            <div class="item-title">${esc(key.replaceAll("_", " "))}</div>
+            <p class="item-desc">${esc(asOf)}</p>
+          </div>
+          ${pill(status || "current", status)}
+        </div>`;
+      }).join("");
+    }
+
+    function renderLatest() {
+      const leadPoints = arr(market.key_points).slice(0, 6).map((point) => `<div class="lead-point">${esc(point)}</div>`).join("");
+      const opportunityCards = entries("opportunities").slice(0, 3).map((entry) => renderStoryCard(entry, "Opportunity")).join("");
+      const signalCards = entries("signals").slice(0, 3).map((entry) => renderStoryCard(entry, "Signal")).join("");
+      const memoCard = memo && Object.keys(memo).length ? `<section class="panel">
+        <h2 class="section-title">Daily Brief <span class="mini-count">${esc(memo.as_of || data.as_of || "")}</span></h2>
+        <p class="item-desc">${esc(memo.summary || "The daily research memo is available in the Daily Brief tab.")}</p>
+        ${memo.doc_url ? `<a class="memo-link" href="${esc(memo.doc_url)}" target="_blank" rel="noreferrer">Open Google Doc</a>` : ""}
+      </section>` : "";
+      return `
+        <section class="front-grid">
+          <article class="lead-story" data-open-kind="market" data-open-index="0">
+            <div class="lead-kicker">${esc(market.stance || "Latest read")}</div>
+            <h1 class="lead-title">${esc(leadHeadline())}</h1>
+            <p class="lead-summary">${esc(market.summary || "No lead research summary is available.")}</p>
+            <div class="lead-points">${leadPoints}</div>
+          </article>
+          <aside class="right-rail">
+            <section class="rail-card">
+              <h2 class="section-title">Top Opportunities <span class="mini-count">${entries("opportunities").length}</span></h2>
+              ${renderList("opportunities", 4)}
+            </section>
+            <section class="rail-card">
+              <h2 class="section-title">Freshness <span class="mini-count">${Object.keys(data.freshness || {}).length}</span></h2>
+              ${renderFreshness()}
+            </section>
+            ${memoCard}
+          </aside>
+        </section>
+
+        <section class="content-stack">
+          <section>
+            <h2 class="section-title">Research Front Page <span class="mini-count">Signals</span></h2>
+            <div class="news-grid">${signalCards || empty("No matching signals.")}</div>
+          </section>
+          <section class="two-column">
+            <article class="panel">
+              <h2 class="section-title">Mover Radar <span class="mini-count">${entries("movers").length}</span></h2>
+              ${renderList("movers", 6)}
+            </article>
+            <article class="panel">
+              <h2 class="section-title">Next Catalysts <span class="mini-count">${entries("calendar").length}</span></h2>
+              ${renderTimeline(5)}
+            </article>
+          </section>
+          <section>
+            <h2 class="section-title">Opportunity Desk <span class="mini-count">Priority briefs</span></h2>
+            <div class="news-grid">${opportunityCards || empty("No matching opportunities.")}</div>
+          </section>
+        </section>`;
+    }
+
+    function renderMovers() {
+      const rows = entries("movers");
+      if (!rows.length) return empty("No matching movers.");
+      return `<div class="table-wrap"><table>
+        <thead><tr><th>Ticker</th><th>Move</th><th>Hot vs Chase</th><th>Company</th><th>Catalyst</th><th>Interpretation</th><th>Sources</th></tr></thead>
+        <tbody>${rows.map(({ item, index }) => `<tr data-open-kind="movers" data-open-index="${index}">
+          <td class="ticker">${esc(item.ticker || "")}</td>
+          <td class="move">${esc(item.change || "")}</td>
+          <td>${pill(item.hot_chase || item.quality || "Unscored", item.hot_chase || item.quality || "neutral")}</td>
+          <td><strong>${esc(item.name || "")}</strong><br><span class="item-desc">${esc([item.price, item.volume].filter(Boolean).join(" · "))}</span></td>
+          <td>${esc(item.catalyst || "")}</td>
+          <td>${esc(item.interpretation || "")}</td>
+          <td>${sourceLinks(item.sources)}</td>
+        </tr>`).join("")}</tbody>
+      </table></div>`;
+    }
+
+    function renderOpportunities() {
+      const cards = entries("opportunities").map((entry) => renderStoryCard(entry, "Opportunity")).join("");
+      return `<section class="news-grid">${cards || empty("No matching opportunities.")}</section>`;
+    }
+
+    function renderWatchlist() {
+      const cards = entries("watchlist").map((entry) => renderStoryCard(entry, "Watchlist")).join("");
+      return `<section class="news-grid">${cards || empty("No matching watchlist items.")}</section>`;
+    }
+
+    function renderThemes() {
+      const cards = entries("themes").map((entry) => renderStoryCard(entry, "Theme")).join("");
+      return `<section class="news-grid">${cards || empty("No matching themes.")}</section>`;
+    }
+
+    function renderTimeline(limit = Infinity) {
+      const items = entries("calendar").slice(0, limit);
+      if (!items.length) return empty("No matching calendar items.");
+      return items.map(({ item, index }) => `<article class="timeline-row" data-open-kind="calendar" data-open-index="${index}">
+        <div>
+          <div class="timeline-date">${esc([item.date, item.time].filter(Boolean).join(" · "))}</div>
+          <h3 class="item-title">${esc(item.event || "Market event")}</h3>
+          <p class="item-desc">${esc(item.market_relevance || "")}</p>
+        </div>
+        ${pill("Catalyst", "watch")}
+      </article>`).join("");
+    }
+
+    function renderCalendar() {
+      return `<section class="panel"><h2 class="section-title">Catalyst Calendar <span class="mini-count">${entries("calendar").length}</span></h2>${renderTimeline()}</section>`;
+    }
+
+    function collectSources() {
+      const seen = new Set();
+      const sources = [];
+      const add = (source, context) => {
+        if (!source) return;
+        const src = typeof source === "string" ? { title: source } : source;
+        const key = [src.url, src.title, src.date].join("|");
+        if (seen.has(key)) return;
+        seen.add(key);
+        sources.push({ ...src, context });
+      };
+      const walk = (value, context = "Dashboard") => {
+        if (Array.isArray(value)) return value.forEach((item) => walk(item, context));
+        if (!value || typeof value !== "object") return;
+        if (Array.isArray(value.sources)) value.sources.forEach((source) => add(source, value.title || value.name || value.ticker || context));
+        if (value.source) add(value.source, value.title || value.name || context);
+        Object.entries(value).forEach(([key, child]) => {
+          if (key !== "sources" && key !== "source") walk(child, value.title || value.name || context);
+        });
+      };
+      arr(data.citations).forEach((source) => add(source, "Global"));
+      walk(data);
+      return sources;
+    }
+
+    function renderSources() {
+      const sources = collectSources().filter(matches);
+      if (!sources.length) return empty("No matching sources.");
+      return `<section class="news-grid">${sources.map((source) => `<article class="story-card">
+        <div class="meta-row">${pill(source.publisher || source.context || "Source", "neutral")}${source.date ? pill(source.date, "watch") : ""}</div>
+        <h3>${source.url ? `<a href="${esc(source.url)}" target="_blank" rel="noreferrer">${esc(source.title || source.url)}</a>` : esc(source.title || "Source")}</h3>
+        <p>${esc(source.note || source.context || "")}</p>
+      </article>`).join("")}</section>`;
+    }
+
+    function detailSection(title, body) {
+      if (!body) return "";
+      return `<section class="reader-section"><h3>${esc(title)}</h3>${body}</section>`;
+    }
+
+    function renderDetail(kind, item) {
+      if (kind === "market") {
+        return `
+          <p class="reader-lede">${esc(market.summary || "")}</p>
+          ${detailSection("Key points", bulletList(market.key_points))}
+          ${detailSection("Freshness", renderFreshness())}`;
+      }
+      const lede = summaryFor(kind, item);
+      const sections = [];
+      if (kind === "opportunities") {
+        sections.push(detailSection("Mispricing hypothesis", `<p>${esc(item.mispricing || "")}</p>`));
+        sections.push(detailSection("Catalysts", bulletList(item.catalysts)));
+        sections.push(`<div class="split"><div class="mini"><strong>Bull case</strong>${bulletList(item.bull_case)}</div><div class="mini"><strong>Bear case</strong>${bulletList(item.bear_case)}</div></div>`);
+        sections.push(detailSection("Disconfirming evidence", bulletList(item.disconfirming_evidence)));
+      }
+      if (kind === "movers") {
+        sections.push(detailSection("Catalyst", `<p>${esc(item.catalyst || "")}</p>`));
+        sections.push(detailSection("Interpretation", `<p>${esc(item.interpretation || "")}</p>`));
+        sections.push(detailSection("Market action", `<p>${esc([item.price, item.change, item.volume].filter(Boolean).join(" · "))}</p>`));
+      }
+      if (kind === "watchlist") {
+        sections.push(detailSection("Why it matters", `<p>${esc(item.why || "")}</p>`));
+        sections.push(detailSection("Next event", `<p>${esc([item.next_event, item.date].filter(Boolean).join(" · "))}</p>`));
+        if (item.entry_zone || item.reclaim_level || item.failure_level) {
+          sections.push(detailSection("Entry zone logic", `<p>${esc([
+            item.entry_zone ? `Pullback zone: ${item.entry_zone}` : "",
+            item.reclaim_level ? `Reclaim: ${item.reclaim_level}` : "",
+            item.failure_level ? `Failure: ${item.failure_level}` : ""
+          ].filter(Boolean).join(" · "))}</p>`));
+        }
+      }
+      if (kind === "calendar") {
+        sections.push(detailSection("Market relevance", `<p>${esc(item.market_relevance || "")}</p>`));
+        sections.push(detailSection("Timing", `<p>${esc([item.date, item.time].filter(Boolean).join(" · "))}</p>`));
+      }
+      if (kind === "signals" || kind === "themes") {
+        sections.push(detailSection("Exposure", tagList(item.tickers || item.exposure)));
+      }
+      sections.push(detailSection("Sources", sourceLinks(item.sources)));
+      return `<p class="reader-lede">${esc(lede)}</p>${sections.join("")}`;
+    }
+
+    function openReader(kind, index) {
+      const item = kind === "market" ? market : arr(data[kind])[Number(index)];
+      if (!item) return;
+      document.getElementById("reader-kicker").textContent = kind === "market" ? "Lead Read" : kind.replaceAll("_", " ");
+      document.getElementById("reader-title").textContent = kind === "market" ? (market.stance || "Market Read") : titleFor(kind, item);
+      document.getElementById("reader-body").innerHTML = renderDetail(kind, item);
+      document.getElementById("reader").classList.add("open");
+      document.getElementById("reader").setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+    }
+
+    function closeReader() {
+      document.getElementById("reader").classList.remove("open");
+      document.getElementById("reader").setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    function render() {
+      document.getElementById("page-title").textContent = "Opportunity Wire";
+      const dashboardLink = document.getElementById("dashboard-link");
+      if (dashboardLink) {
+        dashboardLink.href = window.location.href;
+        dashboardLink.textContent = window.location.href;
+      }
+      document.getElementById("meta").innerHTML = [
+        `<span>${esc(text(data.as_of, data.generated_at))}</span>`,
+        `<span>${esc(arr(data.citations).length)} sources</span>`
+      ].join("");
+      renderMarketStrip();
+      renderStaleBanner();
+      renderReportControls();
+      document.getElementById("tabs").innerHTML = tabs.map(([id, label]) => `<button class="tab ${state.tab === id ? "active" : ""}" data-tab="${id}" type="button">${label}</button>`).join("");
+      document.querySelectorAll("[data-tab]").forEach((button) => button.addEventListener("click", () => {
+        state.tab = button.dataset.tab;
+        render();
+      }));
+
+      const views = {
+        latest: renderLatest,
+        brief: renderDailyBrief,
+        movers: renderMovers,
+        opportunities: renderOpportunities,
+        watchlist: renderWatchlist,
+        calendar: renderCalendar,
+        themes: renderThemes,
+        sources: renderSources
+      };
+      document.getElementById("content").innerHTML = (views[state.tab] || renderLatest)();
+    }
+
+    document.getElementById("search").addEventListener("input", (event) => {
+      state.query = event.target.value.trim().toLowerCase();
+      render();
+      document.getElementById("search").value = event.target.value;
+      document.getElementById("search").focus();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (event.target.closest("a")) return;
+      const trigger = event.target.closest("[data-open-kind]");
+      if (trigger) openReader(trigger.dataset.openKind, trigger.dataset.openIndex);
+      if (event.target.id === "reader" || event.target.id === "reader-close") closeReader();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeReader();
+    });
+
+    render();
+  </script>
 </body>
 </html>

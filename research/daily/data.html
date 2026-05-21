@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Data</title>
+  
+    <style>
+      body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f7fb; color: #172033; }
+      main { width: min(980px, calc(100vw - 32px)); margin: 0 auto; padding: 32px 0 54px; }
+      header { border-bottom: 1px solid #d9e2ef; margin-bottom: 22px; padding-bottom: 18px; }
+      h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 42px); letter-spacing: 0; }
+      h2 { margin-top: 24px; font-size: 20px; }
+      p, li { line-height: 1.45; }
+      .muted { color: #5f6b7a; }
+      .card { background: white; border: 1px solid #d9e2ef; border-radius: 8px; padding: 18px; margin: 14px 0; }
+      .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+      a.button { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; padding: 0 13px; border-radius: 7px; background: #1f6feb; color: white; text-decoration: none; font-weight: 750; font-size: 13px; }
+      a.button.secondary { background: #eaf1fb; color: #174ea6; }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { padding: 8px 9px; border-bottom: 1px solid #d9e2ef; text-align: left; vertical-align: top; }
+      th { color: #5f6b7a; font-size: 12px; }
+      .table-wrap { overflow-x: auto; }
+      .up { color: #0f9f5a; font-weight: 850; }
+      code { background: #eef2f7; padding: 2px 5px; border-radius: 5px; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #101828; color: #eef3f8; padding: 14px; border-radius: 8px; max-height: 440px; overflow: auto; }
+    </style>
+    
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Dashboard Data</h1>
+      <p class="muted">Browser-safe data page rebuilt 2026-05-20 10:06 AM PDT.</p>
+      <div class="actions">
+        <a class="button" href="file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/reports.html">Back to reports home</a>
+        <a class="button secondary" href="file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/index.html">Open dashboard</a>
+      </div>
+    </header>
+    <section class="card">
+      <h2>Latest Research Payload</h2>
+      <p><strong>As of:</strong> May 20, 2026 10:05 AM PT</p>
+      <p><strong>Market read:</strong> The U.S. tape has shifted from yesterday’s chip-led risk-off to an event-driven semiconductor rebound. Reuters’ 10:30 a.m. ET update showed Nasdaq and SOX leadership, with Marvell, Intel and Micron confirming better chip breadth ahead of Nvidia results. The risk-management read is still not clean risk-on: NVDA remains below the user’s $237.57 May 14 reference on the latest local tracker mark, Fed minutes and a 20-year auction sit in the same session, and H200/China headlines still describe approval without confirmed deliveries. This is investment research and scenario analysis, not personalized buy/sell advice.</p>
+      <p class="muted">Raw JSON files may be blocked by the in-app browser, so the useful fields are shown here.</p>
+    </section>
+    <section class="card" id="watchlist-json">
+      <h2>Watchlist Data</h2>
+      <p><strong>Generated:</strong> 2026-05-20T04:33:22-07:00</p>
+      <p><strong>Rows:</strong> 30</p>
+      <p><strong>Errors:</strong> 0</p>
+    </section>
+    <section class="card">
+      <h2>Raw Preview</h2>
+      <pre>{
+  &quot;latest_as_of&quot;: &quot;May 20, 2026 10:05 AM PT&quot;,
+  &quot;market_read&quot;: {
+    &quot;stance&quot;: &quot;event-driven&quot;,
+    &quot;headline&quot;: &quot;Chip breadth is repairing into NVDA earnings, but the NVDA May 14 reference remains unreclaimed and H200/China is still unresolved.&quot;,
+    &quot;summary&quot;: &quot;The U.S. tape has shifted from yesterday\u2019s chip-led risk-off to an event-driven semiconductor rebound. Reuters\u2019 10:30 a.m. ET update showed Nasdaq and SOX leadership, with Marvell, Intel and Micron confirming better chip breadth ahead of Nvidia results. The risk-management read is still not clean risk-on: NVDA remains below the user\u2019s $237.57 May 14 reference on the latest local tracker mark, Fed minutes and a 20-year auction sit in the same session, and H200/China headlines still describe approval without confirmed deliveries. This is investment research and scenario analysis, not personalized buy/sell advice.&quot;,
+    &quot;key_points&quot;: [
+      &quot;Reuters: the Nasdaq led U.S. gains as chips rebounded ahead of Nvidia earnings; SOX advanced, with MRVL, INTC and MU higher in the update.&quot;,
+      &quot;NVDA trade-watch: local tracker mark of $224.07 at 4:33 AM PT remains about $13.50 below the $237.57 May 14 reference, or roughly -5.7%; Reuters later showed NVDA positive intraday but no clean public live high/low was sourceable.&quot;,
+      &quot;SMH trade-watch: local tracker mark of $554.32 was +0.63% versus its 1:00 AM baseline and +1.49% day change; this supports a wobbling/repair attempt but not a fully working scenario until NVDA clears the reference and peers hold.&quot;,
+      &quot;H200/China: what changed is not revenue confirmation; U.S. clearances exist for roughly 10 Chinese firms, but accessible reporting still says deliveries are stalled and China-side approval/purchase intent remains the gating item.&quot;,
+      &quot;Macro: 10-year yields eased from Tuesday\u2019s 16-month high, oil fell hard from still-elevated levels, and markets await Fed minutes plus the 20-year auction for duration-risk confirmation.&quot;,
+      &quot;Earnings dispersion is high: Target reported stronger growth and raised sales outlook, Lowe\u2019s affirmed FY guidance, TJX raised outlook, while Intuit fell on Reuters-reported AI-focused workforce cuts.&quot;,
+      &quot;AI infrastructure is broadening beyond GPU beta: Google/Blackstone TPU-cloud headlines validate custom compute and could pressure pure-play neocloud multiples such as CRWV while benefiting GOOGL/BX/Broadcom-style ecosystems.&quot;
+    ],
+    &quot;nvda_trade_watch&quot;: {
+      &quot;position_reference&quot;: &quot;User May 14 reference area near $237.57.&quot;,
+      &quot;current_premarket_price&quot;: &quot;Local overnight tracker: NVDA $224.07 at 2026-05-20 4:33 AM PT. Reuters later showed NVDA positive intraday, but the current consolidated live price and premarket high/low were not sourceable from accessible public pages.&quot;,
+      &quot;entry_area_status&quot;: &quot;Failed to reclaim on sourceable tracker data. $224.07 is $13.50 below $237.57, roughly -5.7%.&quot;,
+      &quot;overnight_high_low&quot;: &quot;Not reliably sourceable. The local tracker captures point-in-time marks, not official premarket high/low ranges.&quot;,
+      &quot;h200_china_change&quot;: &quot;No verified shipment inflection. The Reuters/secondary-source mosaic still says approvals exist, but delivery/purchase execution is blocked or unconfirmed on the China side.&quot;,
+      &quot;peer_confirmation&quot;: &quot;Improving: Reuters showed MRVL, INTC, MU and SOX higher; local tracker showed SMH and MU positive. Confirmation is still event-dependent because NVDA earnings can reset the whole group after the close.&quot;,
+      &quot;scenario_read&quot;: &quot;Wobbling upward, not fully working. The setup upgrades only if NVDA reclaims and holds the $237-$238 area with SMH/SOX and memory/networking confirmation after earnings.&quot;,
+      &quot;risk_management_note&quot;: &quot;No buy/sell instruction. Treat this as thesis-integrity work: define event-risk tolerance, monitor the failed reference area, require peer confirmation, and mark H200 as optionality until deliveries or guidance are verified.&quot;
+    },
+    &quot;research_frame&quot;: &quot;Investment research and scenario analysis for learning and decision support; not personalized financial advice.&quot;
+  },
+  &quot;watchlist_generated_at&quot;: &quot;2026-05-20T04:33:22-07:00&quot;
+}</pre>
+    </section>
+  </main>
+</body>
+</html>

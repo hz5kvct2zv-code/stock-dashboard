@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workbook Access</title>
+  
+    <style>
+      body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f7fb; color: #172033; }
+      main { width: min(980px, calc(100vw - 32px)); margin: 0 auto; padding: 32px 0 54px; }
+      header { border-bottom: 1px solid #d9e2ef; margin-bottom: 22px; padding-bottom: 18px; }
+      h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 42px); letter-spacing: 0; }
+      h2 { margin-top: 24px; font-size: 20px; }
+      p, li { line-height: 1.45; }
+      .muted { color: #5f6b7a; }
+      .card { background: white; border: 1px solid #d9e2ef; border-radius: 8px; padding: 18px; margin: 14px 0; }
+      .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+      a.button { display: inline-flex; min-height: 38px; align-items: center; justify-content: center; padding: 0 13px; border-radius: 7px; background: #1f6feb; color: white; text-decoration: none; font-weight: 750; font-size: 13px; }
+      a.button.secondary { background: #eaf1fb; color: #174ea6; }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { padding: 8px 9px; border-bottom: 1px solid #d9e2ef; text-align: left; vertical-align: top; }
+      th { color: #5f6b7a; font-size: 12px; }
+      .table-wrap { overflow-x: auto; }
+      .up { color: #0f9f5a; font-weight: 850; }
+      code { background: #eef2f7; padding: 2px 5px; border-radius: 5px; }
+      pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #101828; color: #eef3f8; padding: 14px; border-radius: 8px; max-height: 440px; overflow: auto; }
+    </style>
+    
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Workbook Access</h1>
+      <p class="muted">Browser-safe workbook page rebuilt 2026-05-20 10:06 AM PDT.</p>
+      <div class="actions">
+        <a class="button" href="file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/reports.html">Back to reports home</a>
+        <a class="button secondary" href="file:///Users/leahrading/Desktop/Codex%20Projects/Investing%20Project/dashboard/overnight.html">Open tracker page</a>
+      </div>
+    </header>
+    <section class="card">
+      <h2>Excel Watchlist</h2>
+      <p><strong>Workbook rebuilt:</strong> 2026-05-20 10:06 AM PDT</p>
+      <p><strong>Data generated:</strong> 2026-05-20T04:33:22-07:00</p>
+      <p>The in-app browser may not open <code>.xlsx</code> directly. Use the table below in the browser; the workbook file is still rebuilt here:</p>
+      <p><code>/Users/leahrading/Desktop/Codex Projects/Investing Project/dashboard/data/morning_watchlist_report.xlsx</code></p>
+      <div class="actions">
+        <a class="button secondary" href="data/morning_watchlist_report.xlsx">Try direct workbook link</a>
+        <a class="button secondary" href="data/overnight_watchlist.xlsx" id="legacy">Try legacy workbook link</a>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Hourly Chart View</h2>
+      <p class="muted">Rows are sorted with NVDA and SMH first. Each hourly cell shows the actual price and the percentage change versus the close.</p>
+      <p class="muted">No hourly price sheet found.</p>
+    </section>
+    <section class="card">
+      <h2>Browser View Of Watchlist</h2>
+      <div class="table-wrap"><table><thead><tr><th>Rank</th><th>Symbol</th><th>Theme</th><th>Last</th><th>% Since Base</th><th>Day %</th><th>Signal</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td><strong>INTC</strong></td><td>Semis/foundry</td><td>115.54</td><td>1.97%</td><td>6.81%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>2</td><td><strong>NBIS</strong></td><td>AI cloud / neocloud infrastructure</td><td>203.8</td><td>1.89%</td><td>1.97%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>3</td><td><strong>AXON</strong></td><td>Public safety tech</td><td>400.0</td><td>1.73%</td><td>0.16%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>4</td><td><strong>AFRM</strong></td><td>Fintech/consumer credit</td><td>66.0</td><td>1.37%</td><td>2.47%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>5</td><td><strong>CBRS</strong></td><td>AI chip IPO / wafer-scale inference</td><td>315.2365</td><td>1.33%</td><td>6.27%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>6</td><td><strong>AVGO</strong></td><td>AI semis</td><td>418.62</td><td>0.98%</td><td>-0.5%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>7</td><td><strong>ABNB</strong></td><td>Consumer/travel</td><td>132.7</td><td>0.94%</td><td>-1.19%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>8</td><td><strong>TSLA</strong></td><td>EV/AI</td><td>409.2219</td><td>0.92%</td><td>-0.19%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>9</td><td><strong>CRWV</strong></td><td>AI cloud</td><td>101.84</td><td>0.84%</td><td>-1.86%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>10</td><td><strong>NEM</strong></td><td>Gold/mining</td><td>106.1737</td><td>0.73%</td><td>-3.35%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>11</td><td><strong>SMH</strong></td><td>Semiconductor ETF</td><td>554.32</td><td>0.63%</td><td>1.49%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>12</td><td><strong>MU</strong></td><td>AI memory</td><td>723.552</td><td>0.52%</td><td>6.16%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>13</td><td><strong>LLY</strong></td><td>Healthcare</td><td>1024.1682</td><td>0.51%</td><td>3.65%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>14</td><td><strong>CRCL</strong></td><td>Crypto/fintech</td><td>113.07</td><td>0.35%</td><td>1.51%</td><td>Positive but not decisive; monitor confirmation.</td><td>ok</td></tr><tr><td>15</td><td><strong>NVDA</strong></td><td>AI semis</td><td>224.07</td><td>0.35%</td><td>0.79%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>16</td><td><strong>SBUX</strong></td><td>Consumer restaurants</td><td>106.279</td><td>0.26%</td><td>-0.3%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>17</td><td><strong>AMZN</strong></td><td>Cloud/retail</td><td>260.0</td><td>0.25%</td><td>-1.83%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>18</td><td><strong>UNH</strong></td><td>Healthcare</td><td>388.79</td><td>0.22%</td><td>-0.6%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>19</td><td><strong>ORCL</strong></td><td>AI cloud</td><td>182.12</td><td>0.09%</td><td>-2.41%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>20</td><td><strong>SPOT</strong></td><td>Consumer/subscription</td><td>441.9988</td><td>0.02%</td><td>-0.68%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>21</td><td><strong>RDDT</strong></td><td>Social/media</td><td>155.5</td><td>-0.03%</td><td>-2.27%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>22</td><td><strong>XLE</strong></td><td>Energy ETF</td><td>60.88</td><td>-0.08%</td><td>0.5%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>23</td><td><strong>GOOGL</strong></td><td>Mega-cap AI/ads</td><td>388.8218</td><td>-0.11%</td><td>-2.05%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>24</td><td><strong>PLTR</strong></td><td>AI software</td><td>134.86</td><td>-0.11%</td><td>-0.21%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>25</td><td><strong>KO</strong></td><td>Defensive staples</td><td>81.755</td><td>-0.16%</td><td>0.68%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>26</td><td><strong>AAPL</strong></td><td>Mega-cap tech</td><td>298.4</td><td>-0.2%</td><td>0.19%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>27</td><td><strong>MSFT</strong></td><td>Mega-cap AI/cloud</td><td>416.18</td><td>-0.3%</td><td>-1.74%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>28</td><td><strong>NMAX</strong></td><td>Speculative media</td><td>7.0012</td><td>-0.41%</td><td>-3.03%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>29</td><td><strong>NFLX</strong></td><td>Streaming</td><td>88.9</td><td>-0.46%</td><td>-0.84%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr><tr><td>30</td><td><strong>XOM</strong></td><td>Energy</td><td>160.94</td><td>-0.65%</td><td>0.28%</td><td>Neutral/watch; needs clearer trend.</td><td>ok</td></tr></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2>CNBC Energy Snapshot</h2>
+      <p class="muted">User-provided CNBC screen: oil and gas are broadly green.</p>
+      <div class="table-wrap"><table><thead><tr><th>Contract</th><th>Price</th><th>Move</th><th>%</th></tr></thead><tbody><tr><td><strong>WTI crude</strong> <span class="muted">Jun</span></td><td>103.92</td><td>+2.75</td><td class="up">+2.72%</td></tr><tr><td><strong>ICE Brent crude</strong> <span class="muted">Jul</span></td><td>108.05</td><td>+2.33</td><td class="up">+2.20%</td></tr><tr><td><strong>RBOB gas</strong> <span class="muted">Jun</span></td><td>3.6385</td><td>+0.0328</td><td class="up">+0.91%</td></tr><tr><td><strong>Natural gas</strong> <span class="muted">Jun</span></td><td>2.964</td><td>+0.070</td><td class="up">+2.42%</td></tr></tbody></table></div>
+    </section>
+    <section class="card" id="csv">
+      <h2>CSV Data</h2>
+      <p><strong>CSV updated:</strong> 2026-05-20 04:33 AM PDT</p>
+      <p><code>/Users/leahrading/Desktop/Codex Projects/Investing Project/dashboard/data/overnight_watchlist.csv</code></p>
+      <div class="actions">
+        <a class="button secondary" href="data/overnight_watchlist.csv">Try direct CSV link</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
